@@ -27,7 +27,6 @@ The key attribute prefix identifies the venue; year comes from <year>.
 from __future__ import annotations
 
 import gzip
-import logging
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
@@ -48,7 +47,6 @@ from rich.progress import (
 from viz_sys_conferences.models import ConferenceEdition, Paper
 from viz_sys_conferences.storage import save_edition
 
-logger = logging.getLogger(__name__)
 console = Console()
 
 DUMP_URL = "https://dblp.org/xml/dblp.xml.gz"
@@ -129,7 +127,7 @@ def extract_editions(
 
     Returns:
         List of ConferenceEdition objects, one per (conference, year) pair,
-        each with a single session containing all papers found in the dump.
+        each containing all papers found in the dump for that (conference, year).
     """
     # papers[conference][year] = [Paper, ...]
     papers: dict[str, dict[int, list[Paper]]] = {

@@ -5,6 +5,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from rich.console import Console
+
+console = Console()
+
 
 def main() -> None:
     """Read all edition JSON files and write STATS.md with a summary table."""
@@ -57,7 +61,7 @@ def main() -> None:
     ]
 
     output_path.write_text("\n".join(lines))
-    print(f"Written to {output_path}")
+    console.print(f"Written to {output_path}")
 
 
 if __name__ == "__main__":

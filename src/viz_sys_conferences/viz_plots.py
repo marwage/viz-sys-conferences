@@ -15,6 +15,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import scipy.sparse as sp
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import normalize
@@ -364,7 +365,7 @@ def get_cluster_labels(
 ) -> dict[int, str]:
     """Return {cluster_id: topic_label}, using cache if available.
 
-    Calls Claude claude-haiku-4-5 for each cluster if the cache does not exist.
+    Calls Claude claude-sonnet-4-6 for each cluster if the cache does not exist.
 
     Args:
         titles: Paper title strings.
@@ -411,7 +412,7 @@ def get_cluster_labels(
     return labels
 
 
-def umap_projection(matrix) -> np.ndarray:
+def umap_projection(matrix: sp.spmatrix) -> np.ndarray:
     """Project a TF-IDF sparse matrix to 2-D with UMAP.
 
     Args:
