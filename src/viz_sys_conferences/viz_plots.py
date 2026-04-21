@@ -71,6 +71,15 @@ _STOPWORDS = {
     "panel",
     "award",
     "joint",
+    # conference names
+    "osdi",
+    "nsdi",
+    "atc",
+    "sosp",
+    "eurosys",
+    "usenix",
+    "ieee",
+    "acm",
     # domain-generic — appear in almost every paper/session
     "system",
     "systems",
