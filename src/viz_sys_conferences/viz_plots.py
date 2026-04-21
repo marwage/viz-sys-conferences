@@ -457,24 +457,25 @@ def keyword_trends(editions: list[dict]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def topic_trends_tfidf(
+def topic_trends_embedding(
     editions: list[dict],
     topics: list[str],
+    model_name: str = "google/embeddinggemma-300m",
 ) -> pd.DataFrame:
-    """Assign each paper to its closest topic using TF-IDF cosine similarity.
+    """Assign each paper to its closest topic using semantic embeddings.
 
-    Fits a shared TF-IDF space over all paper titles and topic strings, then
-    assigns each paper to the topic with the highest cosine similarity.
-    Returns per-year counts and normalised frequency for each topic.
+    Encodes paper titles and topic names with a sentence embedding model,
+    then assigns each paper to the topic with the highest cosine similarity.
 
     Args:
         editions: Raw edition dicts from load_editions().
-        topics: List of topic name strings (e.g. from sosp26_topics.txt).
+        topics: List of topic name strings.
+        model_name: HuggingFace model identifier for the embedding model.
 
     Returns:
         DataFrame with columns: year, topic, count, frequency.
     """
-    from sklearn.metrics.pairwise import cosine_similarity
+    from sentence_transformers import SentenceTransformer
 
     paper_rows: list[dict] = []
     for e in editions:
@@ -483,14 +484,11 @@ def topic_trends_tfidf(
 
     paper_titles = [r["title"] for r in paper_rows]
 
-    vectoriser = TfidfVectorizer(ngram_range=(1, 2), stop_words="english")
-    all_docs = paper_titles + topics
-    tfidf = vectoriser.fit_transform(all_docs)
+    model = SentenceTransformer(model_name)
+    paper_vecs = model.encode_document(paper_titles, show_progress_bar=True, batch_size=64)
+    topic_vecs = model.encode_query(topics)
 
-    paper_vecs = tfidf[: len(paper_titles)]
-    topic_vecs = tfidf[len(paper_titles) :]
-
-    sims = cosine_similarity(paper_vecs, topic_vecs)
+    sims = model.similarity(topic_vecs, paper_vecs).numpy().T
     assignments = sims.argmax(axis=1)
 
     for i, row in enumerate(paper_rows):
