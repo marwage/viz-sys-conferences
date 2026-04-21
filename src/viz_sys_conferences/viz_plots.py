@@ -8,7 +8,6 @@ to Plotly. Keeping Plotly imports out of this module makes it fully unit-testabl
 from __future__ import annotations
 
 import json
-import logging
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -19,8 +18,6 @@ import scipy.sparse as sp
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import normalize
-
-logger = logging.getLogger(__name__)
 
 # ── stopwords ────────────────────────────────────────────────────────────────
 
@@ -408,7 +405,6 @@ def get_cluster_labels(
         )
         label = response.content[0].text.strip()
         labels[cid] = label
-        logger.info("Cluster %d → %s", cid, label)
 
     cache_path.parent.mkdir(parents=True, exist_ok=True)
     cache_path.write_text(json.dumps({str(k): v for k, v in labels.items()}, indent=2))
@@ -459,6 +455,53 @@ def keyword_trends(editions: list[dict]) -> pd.DataFrame:
             hits = sum(1 for t in all_titles if any(kw in t for kw in keywords))
             rows.append({"year": year, "topic": topic, "frequency": hits / n if n else 0.0})
     return pd.DataFrame(rows)
+
+
+def topic_trends_tfidf(
+    editions: list[dict],
+    topics: list[str],
+) -> pd.DataFrame:
+    """Assign each paper to its closest topic using TF-IDF cosine similarity.
+
+    Fits a shared TF-IDF space over all paper titles and topic strings, then
+    assigns each paper to the topic with the highest cosine similarity.
+    Returns per-year counts and normalised frequency for each topic.
+
+    Args:
+        editions: Raw edition dicts from load_editions().
+        topics: List of topic name strings (e.g. from sosp26_topics.txt).
+
+    Returns:
+        DataFrame with columns: year, topic, count, frequency.
+    """
+    from sklearn.metrics.pairwise import cosine_similarity
+
+    paper_rows: list[dict] = []
+    for e in editions:
+        for p in e["papers"]:
+            paper_rows.append({"title": p["title"], "year": e["year"]})
+
+    paper_titles = [r["title"] for r in paper_rows]
+
+    vectoriser = TfidfVectorizer(ngram_range=(1, 2), stop_words="english")
+    all_docs = paper_titles + topics
+    tfidf = vectoriser.fit_transform(all_docs)
+
+    paper_vecs = tfidf[: len(paper_titles)]
+    topic_vecs = tfidf[len(paper_titles) :]
+
+    sims = cosine_similarity(paper_vecs, topic_vecs)
+    assignments = sims.argmax(axis=1)
+
+    for i, row in enumerate(paper_rows):
+        row["topic"] = topics[assignments[i]]
+
+    df = pd.DataFrame(paper_rows)
+    totals = df.groupby("year")["title"].count().rename("total")
+    counts = df.groupby(["year", "topic"]).size().reset_index(name="count")
+    counts = counts.join(totals, on="year")
+    counts["frequency"] = counts["count"] / counts["total"]
+    return counts[["year", "topic", "count", "frequency"]]
 
 
 # ── 5 · conference similarity ────────────────────────────────────────────────
