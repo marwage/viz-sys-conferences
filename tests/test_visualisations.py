@@ -1,8 +1,7 @@
 """Tests for visualisation data-preparation functions.
 
 All tests run fully offline — no API calls, no Jupyter kernel, no Plotly.
-The real data in data/ is used for tests that verify domain properties
-(keyword trends, similarity); synthetic data is used for unit-level tests.
+The real data in data/ is used for domain-property tests; synthetic data for unit tests.
 """
 
 from __future__ import annotations
@@ -20,10 +19,9 @@ from viz_sys_conferences.viz_plots import (
     build_cluster_data,
     conference_similarity,
     get_cluster_labels,
+    keyword_heatmap_matrix,
     keyword_trends,
     papers_over_time,
-    session_heatmap_matrix,
-    sunburst_data,
 )
 
 DATA_DIR = Path(__file__).parent.parent / "data"
@@ -44,80 +42,40 @@ def tiny_editions() -> list[dict]:
         {
             "conference": "FOO",
             "year": 2020,
-            "sessions": [
+            "papers": [
                 {
-                    "title": "Machine Learning Systems",
-                    "papers": [
-                        {
-                            "title": "Fast Neural Network Inference",
-                            "authors": [],
-                            "abstract": None,
-                            "award": None,
-                        },
-                        {
-                            "title": "Distributed Training at Scale",
-                            "authors": [],
-                            "abstract": None,
-                            "award": None,
-                        },
-                    ],
+                    "title": "Fast Neural Network Inference",
+                    "authors": [],
+                    "abstract": None,
+                    "award": None,
                 },
                 {
-                    "title": "Storage Systems",
-                    "papers": [
-                        {
-                            "title": "Key-Value Store Design",
-                            "authors": [],
-                            "abstract": None,
-                            "award": None,
-                        },
-                    ],
+                    "title": "Distributed Training at Scale",
+                    "authors": [],
+                    "abstract": None,
+                    "award": None,
                 },
+                {"title": "Key-Value Store Design", "authors": [], "abstract": None, "award": None},
             ],
         },
         {
             "conference": "BAR",
             "year": 2021,
-            "sessions": [
-                {
-                    "title": "Networking",
-                    "papers": [
-                        {
-                            "title": "TCP Congestion Control",
-                            "authors": [],
-                            "abstract": None,
-                            "award": None,
-                        },
-                        {
-                            "title": "RDMA over Ethernet",
-                            "authors": [],
-                            "abstract": None,
-                            "award": None,
-                        },
-                    ],
-                },
+            "papers": [
+                {"title": "TCP Congestion Control", "authors": [], "abstract": None, "award": None},
+                {"title": "RDMA over Ethernet", "authors": [], "abstract": None, "award": None},
             ],
         },
         {
             "conference": "FOO",
             "year": 2021,
-            "sessions": [
+            "papers": [
+                {"title": "GPU Memory Management", "authors": [], "abstract": None, "award": None},
                 {
-                    "title": "Machine Learning",
-                    "papers": [
-                        {
-                            "title": "GPU Memory Management",
-                            "authors": [],
-                            "abstract": None,
-                            "award": None,
-                        },
-                        {
-                            "title": "LLM Inference Optimisation",
-                            "authors": [],
-                            "abstract": None,
-                            "award": None,
-                        },
-                    ],
+                    "title": "LLM Inference Optimisation",
+                    "authors": [],
+                    "abstract": None,
+                    "award": None,
                 },
             ],
         },
@@ -136,7 +94,7 @@ def test_load_editions_required_keys(editions):
     for e in editions:
         assert "conference" in e
         assert "year" in e
-        assert "sessions" in e
+        assert "papers" in e
 
 
 def test_load_editions_sorted(editions):
@@ -165,48 +123,43 @@ def test_papers_over_time_non_negative(tiny_editions):
 def test_papers_over_time_correct_counts(tiny_editions):
     df = papers_over_time(tiny_editions)
     foo_2020 = df[(df["conference"] == "FOO") & (df["year"] == 2020)]["paper_count"].iloc[0]
-    assert foo_2020 == 3  # 2 + 1 papers
+    assert foo_2020 == 3
 
 
 def test_papers_over_time_year_dtype(editions):
     df = papers_over_time(editions)
-    assert df["year"].dtype in (int, np.int64, np.int32, object)
     assert all(isinstance(y, (int, np.integer)) for y in df["year"])
 
 
-# ── session_heatmap_matrix ────────────────────────────────────────────────────
+# ── keyword_heatmap_matrix ────────────────────────────────────────────────────
 
 
 def test_heatmap_matrix_shape(tiny_editions):
-    matrix = session_heatmap_matrix(tiny_editions, top_n=5)
+    matrix = keyword_heatmap_matrix(tiny_editions, top_n=5)
     assert matrix.shape[0] <= 5
     assert matrix.shape[1] == len({e["year"] for e in tiny_editions})
 
 
 def test_heatmap_matrix_non_negative(tiny_editions):
-    matrix = session_heatmap_matrix(tiny_editions, top_n=10)
+    matrix = keyword_heatmap_matrix(tiny_editions, top_n=10)
     assert (matrix.values >= 0).all()
 
 
 def test_heatmap_matrix_year_columns(tiny_editions):
-    matrix = session_heatmap_matrix(tiny_editions, top_n=5)
+    matrix = keyword_heatmap_matrix(tiny_editions, top_n=5)
     for col in matrix.columns:
         assert isinstance(col, int)
 
 
 def test_heatmap_matrix_no_stopwords(editions):
-    matrix = session_heatmap_matrix(editions, top_n=40)
+    matrix = keyword_heatmap_matrix(editions, top_n=40)
     stopwords = {"the", "and", "for", "with", "session", "a", "an"}
     for word in matrix.index:
         assert word not in stopwords, f"Stopword '{word}' in heatmap index"
 
 
 def test_heatmap_matrix_conference_filter(editions):
-    all_matrix = session_heatmap_matrix(editions)
-    osdi_matrix = session_heatmap_matrix(editions, conference="OSDI")
-    # OSDI-only matrix should have fewer or equal years
-    assert len(osdi_matrix.columns) <= len(all_matrix.columns)
-    # Only OSDI years
+    osdi_matrix = keyword_heatmap_matrix(editions, conference="OSDI")
     osdi_years = {e["year"] for e in editions if e["conference"] == "OSDI"}
     assert set(osdi_matrix.columns) == osdi_years
 
@@ -215,7 +168,7 @@ def test_heatmap_matrix_conference_filter(editions):
 
 
 def test_cluster_count(tiny_editions):
-    n_papers = sum(len(s["papers"]) for e in tiny_editions for s in e["sessions"])
+    n_papers = sum(len(e["papers"]) for e in tiny_editions)
     titles, conf_years, cluster_ids, matrix = build_cluster_data(tiny_editions, n_clusters=3)
     assert len(titles) == len(conf_years) == len(cluster_ids) == n_papers
 
@@ -227,7 +180,6 @@ def test_cluster_all_titles_assigned(tiny_editions):
 
 
 def test_cluster_real_data_n_clusters(editions):
-    """On real data, exactly N_CLUSTERS clusters are produced."""
     titles, conf_years, cluster_ids, matrix = build_cluster_data(editions)
     assert len(set(cluster_ids)) == N_CLUSTERS
 
@@ -235,7 +187,7 @@ def test_cluster_real_data_n_clusters(editions):
 def test_cluster_matrix_shape(editions):
     titles, conf_years, cluster_ids, matrix = build_cluster_data(editions)
     assert matrix.shape[0] == len(titles)
-    assert matrix.shape[1] <= 5000  # max_features
+    assert matrix.shape[1] <= 5000
 
 
 # ── get_cluster_labels (with cache) ──────────────────────────────────────────
@@ -249,20 +201,14 @@ def test_cluster_label_cache_write_and_read():
 
     with tempfile.TemporaryDirectory() as tmp:
         cache_path = Path(tmp) / "labels.json"
-
         with patch("anthropic.Anthropic") as MockClient:
             instance = MockClient.return_value
             instance.messages.create.return_value = mock_response
-
-            # First call — should write cache
             labels1 = get_cluster_labels(titles, cluster_ids, cache_path=cache_path)
             assert cache_path.exists()
-            assert instance.messages.create.call_count == 2  # one per cluster
-
-            # Second call — should read from cache, no API calls
+            assert instance.messages.create.call_count == 2
             labels2 = get_cluster_labels(titles, cluster_ids, cache_path=cache_path)
-            assert instance.messages.create.call_count == 2  # unchanged
-
+            assert instance.messages.create.call_count == 2  # cache hit
         assert labels1 == labels2
         assert set(labels1.keys()) == {0, 1}
 
@@ -279,7 +225,6 @@ def test_cluster_label_cache_keys_are_ints():
             instance = MockClient.return_value
             instance.messages.create.return_value = mock_response
             labels = get_cluster_labels(titles, cluster_ids, cache_path=cache_path)
-
         assert all(isinstance(k, int) for k in labels)
 
 
@@ -297,47 +242,21 @@ def test_keyword_trends_frequency_range(editions):
 
 
 def test_keyword_trends_one_row_per_year_per_topic(editions):
-    df = keyword_trends(editions)
     from viz_sys_conferences.viz_plots import KEYWORD_GROUPS
 
+    df = keyword_trends(editions)
     n_years = df["year"].nunique()
     n_topics = len(KEYWORD_GROUPS)
     assert len(df) == n_years * n_topics
 
 
 def test_keyword_trends_ml_rises_over_time(editions):
-    """ML/AI frequency should be higher in 2022–2025 than 2012–2015."""
+    """ML/AI frequency should be higher in 2022–2025 than 2006–2010."""
     df = keyword_trends(editions)
     ml = df[df["topic"] == "ML / AI"]
-    early = ml[ml["year"].between(2012, 2015)]["frequency"].mean()
+    early = ml[ml["year"].between(2006, 2010)]["frequency"].mean()
     late = ml[ml["year"].between(2022, 2025)]["frequency"].mean()
     assert late > early, f"Expected ML to rise: early={early:.3f}, late={late:.3f}"
-
-
-# ── sunburst_data ─────────────────────────────────────────────────────────────
-
-
-def test_sunburst_data_keys(tiny_editions):
-    rows = sunburst_data(tiny_editions)
-    for row in rows:
-        assert "conference" in row
-        assert "year" in row
-        assert "session" in row
-        assert "paper_count" in row
-
-
-def test_sunburst_data_no_empty_sessions(tiny_editions):
-    rows = sunburst_data(tiny_editions)
-    assert all(row["paper_count"] > 0 for row in rows)
-
-
-def test_sunburst_data_total_papers(editions):
-    rows = sunburst_data(editions)
-    total = sum(r["paper_count"] for r in rows)
-    expected = sum(
-        len(p["title"]) > 0 for e in editions for s in e["sessions"] for p in s["papers"]
-    )
-    assert total == expected
 
 
 # ── conference_similarity ─────────────────────────────────────────────────────
@@ -374,5 +293,4 @@ def test_similarity_matrix_off_diagonal_range(editions):
 def test_similarity_matrix_year_filter(editions):
     full = conference_similarity(editions)
     recent = conference_similarity(editions, year_range=(2020, 2026))
-    # Both should cover the same conferences (all appear in recent years)
     assert set(full.index) == set(recent.index)

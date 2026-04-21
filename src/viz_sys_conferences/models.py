@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 
 class Paper(BaseModel):
-    """A single paper within a conference session."""
+    """A single paper within a conference edition."""
 
     title: str
     authors: list[str] = []
@@ -14,24 +14,16 @@ class Paper(BaseModel):
     award: str | None = None
 
 
-class Session(BaseModel):
-    """A named session grouping one or more papers."""
-
-    title: str
-    chair: str | None = None
-    papers: list[Paper] = []
-
-
 class ConferenceEdition(BaseModel):
-    """One year of a conference, with all its sessions and papers."""
+    """One year of a conference with all its papers."""
 
     conference: str
     year: int
     url: str
     crawled_at: date
-    sessions: list[Session] = []
+    papers: list[Paper] = []
 
     @property
     def paper_count(self) -> int:
-        """Total number of papers across all sessions."""
-        return sum(len(s.papers) for s in self.sessions)
+        """Total number of papers in this edition."""
+        return len(self.papers)

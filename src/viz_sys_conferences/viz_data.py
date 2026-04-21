@@ -14,7 +14,7 @@ def load_editions(data_dir: Path = Path("data")) -> list[dict]:
 
     Returns:
         List of edition dicts, each with keys: conference, year, url,
-        crawled_at, sessions.
+        crawled_at, papers.
     """
     editions = []
     for path in sorted(data_dir.glob("*.json")):

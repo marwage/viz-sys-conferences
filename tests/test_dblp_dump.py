@@ -169,7 +169,7 @@ def test_extract_editions_journal_excluded():
     with tempfile.TemporaryDirectory() as tmp:
         dump = _write_dump(Path(tmp))
         editions = extract_editions(dump, start_year=2006, end_year=2026)
-    all_titles = [p.title for e in editions for s in e.sessions for p in s.papers]
+    all_titles = [p.title for e in editions for p in e.papers]
     assert not any("Journal Article" in t for t in all_titles)
 
 
@@ -179,7 +179,7 @@ def test_extract_osdi_2010_papers():
         editions = extract_editions(dump, start_year=2006, end_year=2026)
     osdi = next(e for e in editions if e.conference == "OSDI" and e.year == 2010)
     assert osdi.paper_count == 2
-    titles = [p.title for s in osdi.sessions for p in s.papers]
+    titles = [p.title for p in osdi.papers]
     assert any("Scalability" in t for t in titles)
     assert any("Flat Datacenter" in t for t in titles)
 
@@ -189,9 +189,8 @@ def test_extract_trailing_period_stripped():
         dump = _write_dump(Path(tmp))
         editions = extract_editions(dump, start_year=2006, end_year=2026)
     for e in editions:
-        for s in e.sessions:
-            for p in s.papers:
-                assert not p.title.endswith("."), f"Trailing period: {p.title!r}"
+        for p in e.papers:
+            assert not p.title.endswith("."), f"Trailing period: {p.title!r}"
 
 
 def test_extract_authors():
@@ -199,18 +198,9 @@ def test_extract_authors():
         dump = _write_dump(Path(tmp))
         editions = extract_editions(dump, start_year=2006, end_year=2026)
     osdi = next(e for e in editions if e.conference == "OSDI" and e.year == 2010)
-    scalability = next(p for s in osdi.sessions for p in s.papers if "Scalability" in p.title)
+    scalability = next(p for p in osdi.papers if "Scalability" in p.title)
     assert "Silas Boyd-Wickizer" in scalability.authors
     assert "Austin T. Clements" in scalability.authors
-
-
-def test_extract_single_session_per_edition():
-    with tempfile.TemporaryDirectory() as tmp:
-        dump = _write_dump(Path(tmp))
-        editions = extract_editions(dump, start_year=2006, end_year=2026)
-    for e in editions:
-        assert len(e.sessions) == 1
-        assert e.sessions[0].title == "All Papers"
 
 
 def test_extract_all_five_conferences():

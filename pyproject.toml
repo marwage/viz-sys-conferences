@@ -9,7 +9,6 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=0.96.0",
-    "beautifulsoup4>=4.12",
     "click>=8.1",
     "httpx>=0.28.1",
     "ipykernel>=7.2.0",
@@ -17,18 +16,15 @@ dependencies = [
     "lxml>=5.0",
     "nbformat>=5.10.4",
     "pandas>=3.0.2",
-    "playwright>=1.44",
     "plotly>=6.7.0",
     "pydantic>=2.7",
     "python-dotenv>=1.2.2",
     "rich>=13.0",
     "scikit-learn>=1.8.0",
-    "tenacity>=8.3",
     "umap-learn>=0.5.12",
 ]
 
 [project.scripts]
-crawl = "viz_sys_conferences.__main__:main"
 stats = "viz_sys_conferences.stats:main"
 dblp-extract = "viz_sys_conferences.dblp_dump:main"
 

@@ -272,20 +272,21 @@ def papers_over_time(editions: list[dict]) -> pd.DataFrame:
     """
     rows = []
     for e in editions:
-        paper_count = sum(len(s["papers"]) for s in e["sessions"])
-        rows.append({"conference": e["conference"], "year": e["year"], "paper_count": paper_count})
+        rows.append(
+            {"conference": e["conference"], "year": e["year"], "paper_count": len(e["papers"])}
+        )
     return pd.DataFrame(rows)
 
 
-# ── 2 · session topic heatmap ────────────────────────────────────────────────
+# ── 2 · paper title keyword heatmap ──────────────────────────────────────────
 
 
-def session_heatmap_matrix(
+def keyword_heatmap_matrix(
     editions: list[dict],
     top_n: int = 40,
     conference: str | None = None,
 ) -> pd.DataFrame:
-    """Build a keyword × year count matrix from session titles.
+    """Build a keyword × year count matrix from paper titles.
 
     Args:
         editions: Raw edition dicts from load_editions().
@@ -301,9 +302,8 @@ def session_heatmap_matrix(
     counts: dict[int, Counter] = defaultdict(Counter)
     for e in editions:
         year = e["year"]
-        for s in e["sessions"]:
-            words = _tokenise(s["title"])
-            counts[year].update(words)
+        for p in e["papers"]:
+            counts[year].update(_tokenise(p["title"]))
 
     all_years = sorted(counts)
     total: Counter = Counter()
@@ -345,10 +345,9 @@ def build_cluster_data(
     conf_years: list[str] = []
     for e in editions:
         label = f"{e['conference']} {e['year']}"
-        for s in e["sessions"]:
-            for p in s["papers"]:
-                titles.append(p["title"])
-                conf_years.append(label)
+        for p in e["papers"]:
+            titles.append(p["title"])
+            conf_years.append(label)
 
     k = min(n_clusters, len(titles))
     vectoriser = TfidfVectorizer(max_features=5000, ngram_range=(1, 2), stop_words="english")
@@ -442,14 +441,11 @@ def keyword_trends(editions: list[dict]) -> pd.DataFrame:
     Returns:
         DataFrame with columns: year, topic, frequency.
     """
-    # Collect all titles per year
     titles_by_year: dict[int, list[str]] = defaultdict(list)
     for e in editions:
         year = e["year"]
-        for s in e["sessions"]:
-            for p in s["papers"]:
-                titles_by_year[year].append(p["title"].lower())
-            titles_by_year[year].append(s["title"].lower())
+        for p in e["papers"]:
+            titles_by_year[year].append(p["title"].lower())
 
     rows = []
     for year in sorted(titles_by_year):
@@ -461,36 +457,7 @@ def keyword_trends(editions: list[dict]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-# ── 5 · session sunburst ─────────────────────────────────────────────────────
-
-
-def sunburst_data(editions: list[dict]) -> list[dict]:
-    """Build records for a conference → year → session sunburst plot.
-
-    Args:
-        editions: Raw edition dicts from load_editions().
-
-    Returns:
-        List of dicts with keys: conference, year, session, paper_count.
-        Only sessions with paper_count > 0 are included.
-    """
-    rows = []
-    for e in editions:
-        for s in e["sessions"]:
-            count = len(s["papers"])
-            if count > 0:
-                rows.append(
-                    {
-                        "conference": e["conference"],
-                        "year": e["year"],
-                        "session": s["title"],
-                        "paper_count": count,
-                    }
-                )
-    return rows
-
-
-# ── 6 · conference similarity ────────────────────────────────────────────────
+# ── 5 · conference similarity ────────────────────────────────────────────────
 
 
 def conference_similarity(
@@ -516,10 +483,8 @@ def conference_similarity(
     word_sets: dict[str, set[str]] = defaultdict(Counter)
     for e in editions:
         conf = e["conference"]
-        for s in e["sessions"]:
-            word_sets[conf].update(_tokenise(s["title"]))
-            for p in s["papers"]:
-                word_sets[conf].update(_tokenise(p["title"]))
+        for p in e["papers"]:
+            word_sets[conf].update(_tokenise(p["title"]))
 
     # Take top-N words per conference as a set
     top_sets: dict[str, set[str]] = {

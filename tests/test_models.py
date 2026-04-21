@@ -1,6 +1,6 @@
 from datetime import date
 
-from viz_sys_conferences.models import ConferenceEdition, Paper, Session
+from viz_sys_conferences.models import ConferenceEdition, Paper
 
 
 def test_paper_no_abstract():
@@ -21,27 +21,18 @@ def test_paper_with_all_fields():
     assert len(paper.authors) == 2
 
 
-def test_session_defaults():
-    session = Session(title="OS Design")
-    assert session.papers == []
-    assert session.chair is None
-
-
 def test_conference_edition_paper_count():
     edition = ConferenceEdition(
         conference="OSDI",
         year=2024,
         url="https://example.com",
         crawled_at=date.today(),
-        sessions=[
-            Session(title="S1", papers=[Paper(title="P1"), Paper(title="P2")]),
-            Session(title="S2", papers=[Paper(title="P3")]),
-        ],
+        papers=[Paper(title="P1"), Paper(title="P2"), Paper(title="P3")],
     )
     assert edition.paper_count == 3
 
 
-def test_conference_edition_empty_sessions():
+def test_conference_edition_empty():
     edition = ConferenceEdition(
         conference="SOSP",
         year=2025,
@@ -49,7 +40,7 @@ def test_conference_edition_empty_sessions():
         crawled_at=date.today(),
     )
     assert edition.paper_count == 0
-    assert edition.sessions == []
+    assert edition.papers == []
 
 
 def test_conference_edition_json_roundtrip():
@@ -58,15 +49,9 @@ def test_conference_edition_json_roundtrip():
         year=2026,
         url="https://example.com",
         crawled_at=date(2026, 4, 21),
-        sessions=[
-            Session(
-                title="Systems",
-                papers=[Paper(title="A Paper", authors=["Author One"])],
-            )
-        ],
+        papers=[Paper(title="A Paper", authors=["Author One"])],
     )
-    json_str = edition.model_dump_json()
-    restored = ConferenceEdition.model_validate_json(json_str)
+    restored = ConferenceEdition.model_validate_json(edition.model_dump_json())
     assert restored.conference == "EuroSys"
     assert restored.paper_count == 1
-    assert restored.sessions[0].papers[0].authors == ["Author One"]
+    assert restored.papers[0].authors == ["Author One"]

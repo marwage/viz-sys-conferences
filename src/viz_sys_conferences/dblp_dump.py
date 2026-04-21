@@ -22,8 +22,6 @@ XML structure of interest:
     </inproceedings>
 
 The key attribute prefix identifies the venue; year comes from <year>.
-No session structure is present in the dump, so all papers for a given
-edition are grouped into a single session.
 """
 
 from __future__ import annotations
@@ -47,7 +45,7 @@ from rich.progress import (
     TransferSpeedColumn,
 )
 
-from viz_sys_conferences.models import ConferenceEdition, Paper, Session
+from viz_sys_conferences.models import ConferenceEdition, Paper
 from viz_sys_conferences.storage import save_edition
 
 logger = logging.getLogger(__name__)
@@ -192,7 +190,7 @@ def extract_editions(
                     year=year,
                     url=url,
                     crawled_at=date.today(),
-                    sessions=[Session(title="All Papers", papers=paper_list)],
+                    papers=paper_list,
                 )
             )
 
