@@ -435,6 +435,38 @@ def conference_similarity(
     return pd.DataFrame(matrix, index=conferences, columns=conferences)
 
 
+def topic_trends_from_embeddings(embeddings_path: Path = Path("data/embeddings.npz")) -> pd.DataFrame:
+    """Load pre-computed embeddings and assign papers to topics by cosine similarity.
+
+    Args:
+        embeddings_path: Path to the .npz file produced by the embed command.
+
+    Returns:
+        DataFrame with columns: year, topic, count, frequency.
+    """
+    from sklearn.metrics.pairwise import cosine_similarity
+
+    data = np.load(embeddings_path, allow_pickle=True)
+    paper_vecs = data["paper_vecs"]
+    topic_vecs = data["topic_vecs"]
+    paper_years = data["paper_years"].tolist()
+    topics = data["topics"].tolist()
+
+    sims = cosine_similarity(paper_vecs, topic_vecs)
+    assignments = sims.argmax(axis=1)
+
+    rows = [
+        {"year": year, "topic": topics[cid]}
+        for year, cid in zip(paper_years, assignments, strict=True)
+    ]
+    df = pd.DataFrame(rows)
+    totals = df.groupby("year")["topic"].count().rename("total")
+    counts = df.groupby(["year", "topic"]).size().reset_index(name="count")
+    counts = counts.join(totals, on="year")
+    counts["frequency"] = counts["count"] / counts["total"]
+    return counts[["year", "topic", "count", "frequency"]]
+
+
 # ── helpers ──────────────────────────────────────────────────────────────────
 
 
