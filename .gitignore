@@ -1,6 +1,7 @@
 data/
 STATS.md
 notebooks/.ipynb_checkpoints/
+.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
