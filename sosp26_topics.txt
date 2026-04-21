@@ -1,17 +1,16 @@
-Operating systems
-File and storage systems
-Distributed systems
-Cloud computing
-Mobile and edge systems
-Secure and reliable systems
-Systems aspects of big data and machine learning
-Embedded and real-time systems
-Virtualization
-Networking as it relates to operating systems
-Management and troubleshooting of complex systems
-Computer architecture
-Networking
-Programming languages
-Analytics
-Verification
-Databases
+operating systems
+file and storage systems
+distributed systems
+cloud computing
+mobile and edge systems
+secure and reliable systems
+systems aspects of big data and machine learning
+embedded and real-time systems
+virtualization
+management and troubleshooting of complex systems
+computer architecture
+networking
+programming languages
+analytics
+verification
+databases
