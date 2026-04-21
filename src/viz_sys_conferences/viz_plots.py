@@ -390,13 +390,16 @@ def get_cluster_labels(
 
     labels: dict[int, str] = {}
     for cid in sorted(clusters):
-        sample = clusters[cid][:15]
+        sample = clusters[cid][:20]
         prompt = (
-            "Below are titles of systems research papers that have been grouped "
-            "into a cluster by a topic model.\n\n"
+            "These are titles of computer systems research papers grouped by topic:\n\n"
             + "\n".join(f"- {t}" for t in sample)
-            + "\n\nGive this cluster a concise 2–4 word research topic label. "
-            "Reply with only the label, nothing else."
+            + "\n\nGive this cluster a specific 2–3 word technical label that names the "
+            "exact research area (e.g. 'Consensus Protocols', 'GPU Scheduling', "
+            "'Erasure Coding', 'Serverless Computing'). "
+            "Do NOT use generic words like 'systems', 'management', 'design', "
+            "'research', 'performance', or 'optimization' — name the specific technology "
+            "or problem being studied. Reply with only the label."
         )
         response = client.messages.create(
             model="claude-sonnet-4-6",
