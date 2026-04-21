@@ -1,4 +1,5 @@
 """Tests for EuroSys parsing across different HTML eras."""
+
 from pathlib import Path
 
 import pytest
@@ -20,6 +21,7 @@ def _load(name: str) -> BeautifulSoup:
 
 # ── 2025: table.pap (3-column) ────────────────────────────────────────────────
 
+
 def test_2025_session_count(crawler: EuroSysCrawler):
     sessions = crawler.parse_sessions(_load("eurosys_2025"))
     assert len(sessions) >= 15
@@ -38,6 +40,7 @@ def test_2025_authors_extracted(crawler: EuroSysCrawler):
 
 
 # ── 2023/2024: td[id] + ul.sch ────────────────────────────────────────────────
+
 
 def test_2024_session_count(crawler: EuroSysCrawler):
     sessions = crawler.parse_sessions(_load("eurosys_2024"))
@@ -69,6 +72,7 @@ def test_2023_papers_non_empty(crawler: EuroSysCrawler):
 
 # ── 2022: h5 + ul > li ────────────────────────────────────────────────────────
 
+
 def test_2022_session_count(crawler: EuroSysCrawler):
     sessions = crawler.parse_sessions(_load("eurosys_2022"))
     assert len(sessions) >= 8
@@ -82,12 +86,14 @@ def test_2022_papers_extracted(crawler: EuroSysCrawler):
 
 def test_2022_session_titles_no_time(crawler: EuroSysCrawler):
     import re
+
     sessions = crawler.parse_sessions(_load("eurosys_2022"))
     for s in sessions:
         assert not re.search(r"\d+:\d+", s.title), f"Time in title: {s.title!r}"
 
 
 # ── 2019: h6 + div ────────────────────────────────────────────────────────────
+
 
 def test_2019_session_count(crawler: EuroSysCrawler):
     sessions = crawler.parse_sessions(_load("eurosys_2019"))

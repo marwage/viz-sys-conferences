@@ -1,4 +1,5 @@
 """Tests for SOSP parsing across different HTML eras."""
+
 from pathlib import Path
 
 import pytest
@@ -15,6 +16,7 @@ def crawler() -> SospCrawler:
 
 
 # ── ACM TOC era (2021, 2023) ──────────────────────────────────────────────────
+
 
 @pytest.fixture
 def sosp_2021_soup() -> BeautifulSoup:
@@ -65,6 +67,7 @@ def test_2023_abstracts_present(sosp_2023_soup: BeautifulSoup, crawler: SospCraw
 
 
 # ── tr.info era (2013, 2017, 2019) ───────────────────────────────────────────
+
 
 @pytest.fixture
 def sosp_2017_soup() -> BeautifulSoup:

@@ -1,7 +1,5 @@
 from datetime import date
 
-import pytest
-
 from viz_sys_conferences.models import ConferenceEdition, Paper, Session
 
 

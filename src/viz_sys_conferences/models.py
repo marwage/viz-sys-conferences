@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import date
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -11,15 +10,15 @@ class Paper(BaseModel):
 
     title: str
     authors: list[str] = []
-    abstract: Optional[str] = None
-    award: Optional[str] = None
+    abstract: str | None = None
+    award: str | None = None
 
 
 class Session(BaseModel):
     """A named session grouping one or more papers."""
 
     title: str
-    chair: Optional[str] = None
+    chair: str | None = None
     papers: list[Paper] = []
 
 

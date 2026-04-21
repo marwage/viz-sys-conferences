@@ -4,8 +4,8 @@ import re
 
 from bs4 import BeautifulSoup, Tag
 
-from viz_sys_conferences.models import Paper, Session
 from viz_sys_conferences.crawlers.base import BaseCrawler
+from viz_sys_conferences.models import Paper, Session
 
 _SKIP_ROW_CLASSES = {"break-row", "event-row", "reg-row", "opening-row", "award-row"}
 
@@ -122,7 +122,9 @@ class EuroSysCrawler(BaseCrawler):
             # Session title is the first text content of the th, before sub-spans
             session_title = self._clean_text(th.get_text())
             # Strip "Location: ..." and "Chair: ..." suffixes
-            session_title = re.sub(r"\s*-\s*(Location|Chair):.*$", "", session_title, flags=re.IGNORECASE).strip()
+            session_title = re.sub(
+                r"\s*-\s*(Location|Chair):.*$", "", session_title, flags=re.IGNORECASE
+            ).strip()
             papers: list[Paper] = []
             for row in table.select("tbody tr"):
                 tds = row.select("td")

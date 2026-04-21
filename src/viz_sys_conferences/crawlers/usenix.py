@@ -4,11 +4,13 @@ import re
 
 from bs4 import BeautifulSoup, Tag
 
-from viz_sys_conferences.models import Paper, Session
 from viz_sys_conferences.crawlers.base import BaseCrawler
+from viz_sys_conferences.models import Paper, Session
 
 # Matches date headers like "Wednesday, April 25, 2012"
-_DATE_HEADER_RE = re.compile(r"^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),", re.IGNORECASE)
+_DATE_HEADER_RE = re.compile(
+    r"^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),", re.IGNORECASE
+)
 # Matches "Session Chair:" at the start of a content div — identifies session h2s
 _CHAIR_PREFIX_RE = re.compile(r"^Session\s+Chair:", re.IGNORECASE)
 
@@ -178,12 +180,7 @@ class UsenixCrawler(BaseCrawler):
         """
         # Take content up to any linebreak (after which abstract may follow)
         first_line = re.split(r"\n|(?:\s{3,})", text)[0].strip()
-        # Split on semicolons (author separators) first
-        if ";" in first_line:
-            parts = first_line.split(";")
-        else:
-            # Comma-separated: group by "Name, Affil" pairs
-            parts = [first_line]
+        parts = first_line.split(";") if ";" in first_line else [first_line]
         authors: list[str] = []
         for part in parts:
             name = part.split(",")[0].strip()

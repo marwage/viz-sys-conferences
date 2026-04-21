@@ -13,11 +13,11 @@ _EUROSYS_URL_OVERRIDES: dict[int, str | None] = {
 # Maps year → URL path suffix
 _SOSP_URL_MAP: dict[int, str] = {
     2013: "program.html",
-    2015: None,   # 404
+    2015: None,  # 404
     2017: "program.html",
     2019: "program.html",
-    2021: "toc.html",    # ACM DL TOC format (has abstracts)
-    2023: "toc.html",    # ACM DL TOC format (has abstracts)
+    2021: "toc.html",  # ACM DL TOC format (has abstracts)
+    2023: "toc.html",  # ACM DL TOC format (has abstracts)
     2025: "schedule.html",
 }
 
@@ -108,9 +108,7 @@ def _eurosys_targets(start: int, end: int) -> list[ConferenceTarget]:
             url = _EUROSYS_URL_OVERRIDES[year]
             if url is None:
                 continue
-        elif year >= 2026:
-            url = f"https://{year}.eurosys.org/preliminary-program.html"
-        elif year == 2025:
+        elif year >= 2026 or year == 2025:
             url = f"https://{year}.eurosys.org/preliminary-program.html"
         elif year >= 2023:
             url = f"https://{year}.eurosys.org/program.html"

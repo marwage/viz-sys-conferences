@@ -1,4 +1,5 @@
 """Tests for USENIX parsing across different HTML eras."""
+
 from pathlib import Path
 
 from bs4 import BeautifulSoup
@@ -43,6 +44,7 @@ def test_nsdi12_session_titles_not_dates():
     crawler = UsenixCrawler("NSDI")
     sessions = crawler.parse_sessions(_load("usenix_nsdi12"))
     import re
+
     for s in sessions:
         assert not re.match(r"^(Monday|Tuesday|Wednesday|Thursday|Friday)", s.title), (
             f"Date leaked into session title: {s.title!r}"

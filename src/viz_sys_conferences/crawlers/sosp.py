@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import re
 
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup, Tag
 
-from viz_sys_conferences.models import Paper, Session
 from viz_sys_conferences.crawlers.base import BaseCrawler
+from viz_sys_conferences.models import Paper, Session
 
 # Patterns for SOSP session title rows in tr.info (strip time + chair)
-_SESSION_PREFIX_RE = re.compile(r"^(Session\s+\d+[A-Z]?:.*?)[\s,]*(?:Chair:|Mon|Tue|Wed|Thu|Fri|\d+:\d+)", re.IGNORECASE)
+_SESSION_PREFIX_RE = re.compile(
+    r"^(Session\s+\d+[A-Z]?:.*?)[\s,]*(?:Chair:|Mon|Tue|Wed|Thu|Fri|\d+:\d+)", re.IGNORECASE
+)
 
 
 class SospCrawler(BaseCrawler):
@@ -123,7 +125,9 @@ class SospCrawler(BaseCrawler):
                 # This is an author row following a title row
                 award = None
                 if "best paper" in pending_title.lower():
-                    pending_title = re.sub(r"^Best\s+Paper\s*", "", pending_title, flags=re.IGNORECASE).strip()
+                    pending_title = re.sub(
+                        r"^Best\s+Paper\s*", "", pending_title, flags=re.IGNORECASE
+                    ).strip()
                     award = "Best Paper"
                 authors = self._parse_authors(row_text)
                 current_session.papers.append(
@@ -174,13 +178,21 @@ class SospCrawler(BaseCrawler):
 
             elif el.name == "ul" and "DLauthors" in (el.get("class") or []):
                 if current_session and current_session.papers:
-                    authors = [self._clean_text(li.get_text()) for li in el.select("li") if li.get_text(strip=True)]
-                    current_session.papers[-1] = current_session.papers[-1].model_copy(update={"authors": authors})
+                    authors = [
+                        self._clean_text(li.get_text())
+                        for li in el.select("li")
+                        if li.get_text(strip=True)
+                    ]
+                    current_session.papers[-1] = current_session.papers[-1].model_copy(
+                        update={"authors": authors}
+                    )
 
             elif el.name == "div" and "DLabstract" in (el.get("class") or []):
                 if current_session and current_session.papers:
                     abstract = self._clean_text(el.get_text())
-                    current_session.papers[-1] = current_session.papers[-1].model_copy(update={"abstract": abstract})
+                    current_session.papers[-1] = current_session.papers[-1].model_copy(
+                        update={"abstract": abstract}
+                    )
 
         if current_session and current_session.papers:
             sessions.append(current_session)

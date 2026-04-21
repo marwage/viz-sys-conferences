@@ -33,6 +33,7 @@ def test_session_titles_non_empty(eurosys_2026_soup: BeautifulSoup, crawler: Eur
 def test_session_title_no_time(eurosys_2026_soup: BeautifulSoup, crawler: EuroSysCrawler):
     """Session titles must not contain time ranges."""
     import re
+
     sessions = crawler.parse_sessions(eurosys_2026_soup)
     for s in sessions:
         assert not re.search(r"\d+:\d+\s*[–-]\s*\d+:\d+", s.title), (

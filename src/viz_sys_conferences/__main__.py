@@ -98,9 +98,7 @@ def main(
                 )
             except Exception as exc:
                 logger.warning("Failed to crawl %s %s: %s", target.conference, target.year, exc)
-                console.print(
-                    f"[red]✗[/red] {target.conference} {target.year}: {exc}"
-                )
+                console.print(f"[red]✗[/red] {target.conference} {target.year}: {exc}")
             progress.advance(task)
 
     if jsonl and editions:

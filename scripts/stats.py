@@ -1,4 +1,5 @@
 """Generate a markdown statistics table from crawled conference data."""
+
 from __future__ import annotations
 
 import json
@@ -13,12 +14,14 @@ def main() -> None:
     editions = []
     for path in sorted(data_dir.glob("*.json")):
         d = json.loads(path.read_text())
-        editions.append({
-            "conference": d["conference"],
-            "year": d["year"],
-            "sessions": len(d["sessions"]),
-            "papers": sum(len(s["papers"]) for s in d["sessions"]),
-        })
+        editions.append(
+            {
+                "conference": d["conference"],
+                "year": d["year"],
+                "sessions": len(d["sessions"]),
+                "papers": sum(len(s["papers"]) for s in d["sessions"]),
+            }
+        )
 
     # Sort by conference name then year
     editions.sort(key=lambda e: (e["conference"], e["year"]))

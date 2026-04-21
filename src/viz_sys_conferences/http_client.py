@@ -83,7 +83,7 @@ class HttpClient:
         """Close the underlying httpx client."""
         self._client.close()
 
-    def __enter__(self) -> "HttpClient":
+    def __enter__(self) -> HttpClient:
         return self
 
     def __exit__(self, *_: object) -> None:

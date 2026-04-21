@@ -63,9 +63,7 @@ def test_known_paper_present(osdi25_soup: BeautifulSoup, crawler: UsenixCrawler)
     """Basilisk paper should appear in the Distributed Systems session."""
     sessions = crawler.parse_sessions(osdi25_soup)
     all_titles = [p.title for s in sessions for p in s.papers]
-    assert any("Basilisk" in t for t in all_titles), (
-        f"Basilisk not found. Titles: {all_titles[:5]}"
-    )
+    assert any("Basilisk" in t for t in all_titles), f"Basilisk not found. Titles: {all_titles[:5]}"
 
 
 def test_abstracts_extracted(osdi25_soup: BeautifulSoup, crawler: UsenixCrawler):
