@@ -8,14 +8,12 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "anthropic>=0.96.0",
     "click>=8.1",
     "httpx>=0.28.1",
     "lxml>=5.0",
     "pandas>=3.0.2",
     "plotly>=6.7.0",
     "pydantic>=2.7",
-    "python-dotenv>=1.2.2",
     "rich>=13.0",
     "scikit-learn>=1.8.0",
     "scipy>=1.17.1",
