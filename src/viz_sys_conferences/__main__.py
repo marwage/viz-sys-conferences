@@ -7,6 +7,7 @@ import click
 from rich.console import Console
 from rich.progress import Progress
 
+from viz_sys_conferences.crawlers.dblp import DblpCrawler
 from viz_sys_conferences.crawlers.eurosys import EuroSysCrawler
 from viz_sys_conferences.crawlers.sosp import SospCrawler
 from viz_sys_conferences.crawlers.usenix import UsenixCrawler
@@ -20,10 +21,13 @@ logger = logging.getLogger(__name__)
 
 console = Console()
 
-_CRAWLER_MAP = {
+_USENIX_CRAWLERS = {
     "OSDI": lambda: UsenixCrawler("OSDI"),
     "NSDI": lambda: UsenixCrawler("NSDI"),
     "ATC": lambda: UsenixCrawler("ATC"),
+}
+_CRAWLER_MAP = {
+    **_USENIX_CRAWLERS,
     "SOSP": lambda: SospCrawler(),
     "EuroSys": lambda: EuroSysCrawler(),
 }
@@ -107,7 +111,10 @@ def main(
 
 
 def _crawl_target(client: HttpClient, target: ConferenceTarget) -> ConferenceEdition:
-    crawler = _CRAWLER_MAP[target.conference]()
+    if "dblp.org" in target.url:
+        crawler = DblpCrawler(target.conference)
+    else:
+        crawler = _CRAWLER_MAP[target.conference]()
     result = client.fetch(target.url)
     return crawler.parse(result.html, target.url, target.year)
 

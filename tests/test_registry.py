@@ -19,12 +19,13 @@ def test_sosp_odd_years_only():
         assert t.year % 2 == 1, f"SOSP has even year {t.year}"
 
 
-def test_sosp_starts_at_2013():
-    """SOSP before 2013 returns 404 at sigops.org."""
+def test_sosp_starts_at_2007():
+    """SOSP 2007+ is covered: 2007/2009/2011 via DBLP, 2013+ via sigops.org."""
     targets = [t for t in generate_targets(2006, 2026) if t.conference == "SOSP"]
     years = [t.year for t in targets]
-    assert 2007 not in years
-    assert 2011 not in years
+    assert 2007 in years
+    assert 2009 in years
+    assert 2011 in years
     assert 2013 in years
 
 
@@ -48,22 +49,42 @@ def test_eurosys_2026_preliminary_url():
 
 
 def test_nsdi_annual():
-    """NSDI URLs exist from 2012; older years return 404."""
-    targets = [t for t in generate_targets(2012, 2020) if t.conference == "NSDI"]
+    """NSDI is annual from 2006; pre-2012 uses DBLP."""
+    targets = [t for t in generate_targets(2006, 2020) if t.conference == "NSDI"]
     years = [t.year for t in targets]
-    assert years == list(range(2012, 2021))
+    assert years == list(range(2006, 2021))
+
+
+def test_nsdi_dblp_for_old_years():
+    targets = [t for t in generate_targets(2006, 2011) if t.conference == "NSDI"]
+    assert all("dblp.org" in t.url for t in targets)
 
 
 def test_atc_annual():
-    """ATC URLs exist from 2012; older years return 404."""
-    targets = [t for t in generate_targets(2012, 2020) if t.conference == "ATC"]
+    """ATC is annual from 2006; pre-2012 uses DBLP."""
+    targets = [t for t in generate_targets(2006, 2020) if t.conference == "ATC"]
     years = [t.year for t in targets]
-    assert years == list(range(2012, 2021))
+    assert years == list(range(2006, 2021))
+
+
+def test_atc_dblp_for_old_years():
+    targets = [t for t in generate_targets(2006, 2011) if t.conference == "ATC"]
+    assert all("dblp.org" in t.url for t in targets)
 
 
 def test_usenix_url_format():
     targets = [t for t in generate_targets(2024, 2025) if t.conference == "OSDI"]
     assert any("osdi24" in t.url for t in targets)
+
+
+def test_eurosys_dblp_for_old_years():
+    targets = [t for t in generate_targets(2006, 2018) if t.conference == "EuroSys"]
+    assert all("dblp.org" in t.url for t in targets)
+
+
+def test_sosp_dblp_for_2007_2011():
+    targets = [t for t in generate_targets(2006, 2012) if t.conference == "SOSP"]
+    assert all("dblp.org" in t.url for t in targets)
 
 
 def test_sosp_toc_url_for_2021_2023():

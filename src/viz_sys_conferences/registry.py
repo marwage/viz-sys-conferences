@@ -27,6 +27,12 @@ _USENIX_MIN_YEAR = 2012
 # Last year with actual content for each USENIX conference
 _USENIX_MAX_YEAR = 2025
 
+# DBLP base URL for conference bibliography pages
+_DBLP = "https://dblp.org/db/conf"
+
+# DBLP venue slug for USENIX ATC (called "usenix" in DBLP)
+_ATC_DBLP_SLUG = "usenix"
+
 
 @dataclass
 class ConferenceTarget:
@@ -61,35 +67,66 @@ def _usenix_url(abbr: str, year: int) -> str:
     return f"https://www.usenix.org/conference/{abbr}{yy}/technical-sessions"
 
 
+def _dblp_url(venue: str, year: int) -> str:
+    return f"{_DBLP}/{venue}/{venue}{year}.html"
+
+
 def _osdi_targets(start: int, end: int) -> list[ConferenceTarget]:
-    """OSDI: even years, URLs exist from 2012 onwards."""
+    """OSDI: even years.
+
+    2006–2010: DBLP (USENIX legacy pages return 403).
+    2012+: USENIX website via Playwright.
+    """
     targets = []
-    for year in range(max(start, _USENIX_MIN_YEAR), min(end, _USENIX_MAX_YEAR) + 1):
+    for year in range(max(start, 2006), min(end, _USENIX_MAX_YEAR) + 1):
         if year % 2 != 0:
             continue
-        targets.append(ConferenceTarget("OSDI", year, _usenix_url("osdi", year)))
+        url = _dblp_url("osdi", year) if year < _USENIX_MIN_YEAR else _usenix_url("osdi", year)
+        targets.append(ConferenceTarget("OSDI", year, url))
     return targets
 
 
 def _nsdi_targets(start: int, end: int) -> list[ConferenceTarget]:
-    """NSDI: annual, URLs exist from 2012 onwards."""
-    return [
-        ConferenceTarget("NSDI", year, _usenix_url("nsdi", year))
-        for year in range(max(start, _USENIX_MIN_YEAR), min(end, _USENIX_MAX_YEAR) + 1)
-    ]
+    """NSDI: annual.
+
+    2006–2011: DBLP.
+    2012+: USENIX website via Playwright.
+    """
+    targets = []
+    for year in range(max(start, 2006), min(end, _USENIX_MAX_YEAR) + 1):
+        url = _dblp_url("nsdi", year) if year < _USENIX_MIN_YEAR else _usenix_url("nsdi", year)
+        targets.append(ConferenceTarget("NSDI", year, url))
+    return targets
 
 
 def _atc_targets(start: int, end: int) -> list[ConferenceTarget]:
-    """USENIX ATC: annual, URLs exist from 2012 onwards."""
-    return [
-        ConferenceTarget("ATC", year, _usenix_url("atc", year))
-        for year in range(max(start, _USENIX_MIN_YEAR), min(end, _USENIX_MAX_YEAR) + 1)
-    ]
+    """USENIX ATC: annual.
+
+    2006–2011: DBLP (venue slug "usenix").
+    2012+: USENIX website via Playwright.
+    """
+    targets = []
+    for year in range(max(start, 2006), min(end, _USENIX_MAX_YEAR) + 1):
+        if year < _USENIX_MIN_YEAR:
+            url = _dblp_url(_ATC_DBLP_SLUG, year)
+        else:
+            url = _usenix_url("atc", year)
+        targets.append(ConferenceTarget("ATC", year, url))
+    return targets
 
 
 def _sosp_targets(start: int, end: int) -> list[ConferenceTarget]:
-    """SOSP: odd years from 2013 onwards (earlier years return 404 at sigops.org)."""
+    """SOSP: odd years.
+
+    2007–2011: DBLP (sigops.org pages return 404 for these years).
+    2013+: sigops.org.
+    """
     targets = []
+    # DBLP for 2007, 2009, 2011
+    for year in [2007, 2009, 2011]:
+        if start <= year <= end:
+            targets.append(ConferenceTarget("SOSP", year, _dblp_url("sosp", year)))
+    # sigops.org for 2013+
     for year, path in _SOSP_URL_MAP.items():
         if year < start or year > end:
             continue
@@ -101,19 +138,24 @@ def _sosp_targets(start: int, end: int) -> list[ConferenceTarget]:
 
 
 def _eurosys_targets(start: int, end: int) -> list[ConferenceTarget]:
-    """EuroSys: annual from 2019 (earlier subdomains do not resolve)."""
+    """EuroSys: annual from 2006.
+
+    2006–2018: DBLP (conference subdomains do not resolve for these years,
+                      except 2022 which uses a WordPress override).
+    2019+: conference websites.
+    """
     targets = []
-    for year in range(max(start, 2019), end + 1):
+    for year in range(max(start, 2006), end + 1):
         if year in _EUROSYS_URL_OVERRIDES:
             url = _EUROSYS_URL_OVERRIDES[year]
             if url is None:
                 continue
+        elif year < 2019:
+            url = _dblp_url("eurosys", year)
         elif year >= 2026 or year == 2025:
             url = f"https://{year}.eurosys.org/preliminary-program.html"
         elif year >= 2023:
             url = f"https://{year}.eurosys.org/program.html"
-        elif year == 2022:
-            url = _EUROSYS_URL_OVERRIDES[2022]
         else:  # 2019
             url = f"https://{year}.eurosys.org/program/"
         targets.append(ConferenceTarget("EuroSys", year, url))
