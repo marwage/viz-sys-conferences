@@ -17,7 +17,9 @@ def load_editions(data_dir: Path = Path("data")) -> list[dict]:
         crawled_at, sessions.
     """
     editions = []
-    for path in sorted(data_dir.glob("[A-Z]*.json")):
-        editions.append(json.loads(path.read_text()))
+    for path in sorted(data_dir.glob("*.json")):
+        data = json.loads(path.read_text())
+        if "conference" in data and "year" in data:
+            editions.append(data)
     editions.sort(key=lambda e: (e["conference"], e["year"]))
     return editions
