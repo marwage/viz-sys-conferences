@@ -1,0 +1,549 @@
+{
+  "conference": "OSDI",
+  "year": 2016,
+  "url": "https://www.usenix.org/conference/osdi16/technical-sessions",
+  "crawled_at": "2026-04-21",
+  "sessions": [
+    {
+      "title": "Operating Systems I",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Push-Button Verification of File Systems via Crash Refinement",
+          "authors": [
+            "Helgi Sigurbjarnarson"
+          ],
+          "abstract": "The file system is an essential operating system component for persisting data on storage devices. Writing bug-free file systems is non-trivial, as they must correctly implement and maintain complex on-disk data structures even in the presence of system crashes and reorderings of disk operations. This paper presents Yggdrasil, a toolkit for writing file systems with push-button verification: Yggdrasil requires no manual annotations or proofs about the implementation code, and it produces a counterexample if there is a bug. Yggdrasil achieves this automation through a novel definition of file system correctness called crash refinement, which requires the set of possible disk states produced by an implementation (including states produced by crashes) to be a subset of those allowed by the specification. Crash refinement is amenable to fully automated satisfiability modulo theories (SMT) reasoning, and enables developers to implement file systems in a modular way for verification. With Yggdrasil, we have implemented and verified the Yxv6 journaling file system, the Ycp file copy utility, and the Ylog persistent log. Our experience shows that the ease of proof and counterexample-based debugging support make Yggdrasil practical for building reliable storage applications.",
+          "award": null
+        },
+        {
+          "title": "Intermittent Computation without Hardware Support or Programmer Intervention",
+          "authors": [
+            "Joel Van Der Woude",
+            "Matthew Hicks"
+          ],
+          "abstract": "As computation scales downward in area, the limitations imposed by the batteries required to power that computation become more pronounced. Thus, many future devices will forgo batteries and harvest energy from their environment. Harvested energy, with its frequent power cycles, is at odds with current models of long-running computation. To enable the correct execution of long-running applications on harvested energy—without requiring special purpose hardware or programmer intervention—we propose Ratchet. Ratchet is a compiler that adds lightweight checkpoints to unmodified programs that allow existing programs to execute across power cycles correctly. Ratchet leverages the idea of idempotency, decomposing programs into a continuous stream of re-executable sections connected by lightweight checkpoints, stored in non-volatile memory. We implement Ratchet on top of LLVM, targeted at embedded systems with high-performance non-volatile main memory. Using eight embedded systems benchmarks, we show that Ratchet correctly stretches program execution across frequent, random power cycles. Experimental results show that Ratchet enables a range of existing programs to run on intermittent power, with total run-time overhead averaging below 60%—comparable to approaches that require hardware support or programmer intervention.",
+          "award": null
+        },
+        {
+          "title": "Machine-Aware Atomic Broadcast Trees for Multicores",
+          "authors": [
+            "Stefan Kaestle"
+          ],
+          "abstract": "The performance of parallel programs on multicore machines often critically depends on group communication operations like barriers and reductions being highly tuned to hardware, a task requiring considerable developer skill. Smelt is a library that automatically builds efficient inter-core broadcast trees tuned to individual machines, using a machine model derived from hardware registers plus micro-benchmarks capturing the low-level machine characteristics missing from vendor specifications. Experiments on a wide variety of multicore machines show that near-optimal tree topologies and communication patterns are highly machine-dependent, but can nevertheless be derived by Smelt and often further improve performance over well-known static topologies. Furthermore, we show that the broadcast trees built by Smelt can be the basis for complex group operations like global barriers or state machine replication, and that the hardware-tuning provided by the underlying tree is sufficient to deliver as good or better performance than state-of-the-art approaches: the higher-level operations require no further hardware optimization.",
+          "award": null
+        },
+        {
+          "title": "Light-Weight Contexts: An OS Abstraction for Safety and Performance",
+          "authors": [
+            "James Litton",
+            "Anjo Vahldiek-Oberwagner",
+            "Bobby Bhattacharjee",
+            "Peter Druschel"
+          ],
+          "abstract": "We introduce a new OS abstraction—light-weight contexts (lwCs)—that provides independent units of protection, privilege, and execution state within a process. A process may include several lwCs, each with possibly different views of memory, file descriptors, and access capabilities. lwCs can be used to efficiently implement roll-back (process can return to a prior recorded state), isolated address spaces (lwCs within the process may have different views of memory, e.g., isolating sensitive data from network-facing components or isolating different user sessions), and privilege separation (in-process reference monitors can arbitrate and control access). lwCs can be implemented efficiently: the overhead of a lwC is proportional to the amount of memory exclusive to the lwC; switching lwCs is quicker than switching kernel threads within the same process. We describe the lwC abstraction and API, and an implementation of lwCs within the FreeBSD 11.0 kernel. Finally, we present an evaluation of common usage patterns, including fast rollback, session isolation, sensitive data isolation, and inprocess reference monitoring, using Apache, nginx, PHP, and OpenSSL.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Cloud Systems I",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Altruistic Scheduling in Multi-Resource Clusters",
+          "authors": [
+            "Robert Grandl",
+            "Mosharaf Chowdhury",
+            "Aditya Akella",
+            "Ganesh Ananthanarayanan"
+          ],
+          "abstract": "Given the well-known tradeoffs between fairness, performance, and efficiency, modern cluster schedulers often prefer instantaneous fairness as their primary objective to ensure performance isolation between users and groups. However, instantaneous, short-term convergence to fairness often does not result in noticeable long-term benefits. Instead, we propose an altruistic, long-term approach, CARBYNE, where jobs yield fractions of their allocated resources without impacting their own completion times. We show that leftover resources collected via altruisms of many jobs can then be rescheduled to further secondary goals such as application-level performance and cluster efficiency without impacting performance isolation. Deployments and large-scale simulations show that CARBYNE closely approximates the state-of- the-art solutions (e.g., DRF) in terms of performance isolation, while providing 1:26x better efficiency and 1:59x lower average job completion time.",
+          "award": null
+        },
+        {
+          "title": "GRAPHENE: Packing and Dependency-Aware Scheduling for Data-Parallel Clusters",
+          "authors": [
+            "Robert Grandl",
+            "Srikanth Kandula and Sriram Rao",
+            "Aditya Akella",
+            "Janardhan Kulkarni"
+          ],
+          "abstract": "We present a new cluster scheduler, GRAPHENE, aimed at jobs that have a complex dependency structure and heterogeneous resource demands. Relaxing either of these challenges, i.e., scheduling a DAG of homogeneous tasks or an independent set of heterogeneous tasks, leads to NP-hard problems. Reasonable heuristics exist for these simpler problems, but they perform poorly when scheduling heterogeneous DAGs. Our key insights are: (1) focus on the long-running tasks and those with tough-to-pack resource demands, (2) compute a DAG schedule, offline, by first scheduling such troublesome tasks and then scheduling the remaining tasks without violating dependencies. These offline schedules are distilled to a simple precedence order and are enforced by an online component that scales to many jobs. The online component also uses heuristics to compactly pack tasks and to trade-off fairness for faster job completion. Evaluation on a 200-server cluster and using traces of production DAGs at Microsoft, shows that GRAPHENE improves median job completion time by 25% and cluster throughput by 30%.",
+          "award": null
+        },
+        {
+          "title": "Firmament: Fast, Centralized Cluster Scheduling at Scale",
+          "authors": [
+            "Ionel Gog",
+            "Malte Schwarzkopf",
+            "Adam Gleave and Robert N. M. Watson",
+            "Steven Hand"
+          ],
+          "abstract": "Centralized datacenter schedulers can make high-quality placement decisions when scheduling tasks in a cluster. Today, however, high-quality placements come at the cost of high latency at scale, which degrades response time for interactive tasks and reduces cluster utilization. This paper describes Firmament, a centralized scheduler that scales to over ten thousand machines at sub-second placement latency even though it continuously reschedules all tasks via a min-cost max-flow (MCMF) optimization. Firmament achieves low latency by using multiple MCMF algorithms, by solving the problem incrementally, and via problem-specific optimizations. Experiments with a Google workload trace from a 12,500-machine cluster show that Firmament improves placement latency by 20x over Quincy, a prior centralized scheduler using the same MCMF optimization. Moreover, even though Firmament is centralized, it matches the placement latency of distributed schedulers for workloads of short tasks. Finally, Firmament exceeds the placement quality of four widely-used centralized and distributed schedulers on a real-world cluster, and hence improves batch task response time by 6x.",
+          "award": null
+        },
+        {
+          "title": "Morpheus: Towards Automated SLOs for Enterprise Clusters",
+          "authors": [
+            "Sangeetha Abdu Jyothi",
+            "Carlo Curino",
+            "Alexey Tumanov",
+            "Jonathan Yaniv",
+            "Ruslan Mavlyutov",
+            "Íñigo Goiri"
+          ],
+          "abstract": "Modern resource management frameworks for largescale analytics leave unresolved the problematic tension between high cluster utilization and job’s performance predictability—respectively coveted by operators and users. We address this in Morpheus, a new system that: 1) codifies implicit user expectations as explicit Service Level Objectives (SLOs), inferred from historical data, 2) enforces SLOs using novel scheduling techniques that isolate jobs from sharing-induced performance variability, and 3) mitigates inherent performance variance (e.g., due to failures) by means of dynamic reprovisioning of jobs. We validate these ideas against production traces from a 50k node cluster, and show that Morpheus can lower the number of deadline violations by 5x to 13x, while retaining cluster-utilization, and lowering cluster footprint by 14% to 28%. We demonstrate the scalability and practicality of our implementation by deploying Morpheus on a 2700-node cluster and running it against production-derived workloads.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Transactions and Storage",
+      "chair": null,
+      "papers": [
+        {
+          "title": "The SNOW Theorem and Latency-Optimal Read-Only Transactions",
+          "authors": [
+            "Haonan Lu",
+            "Christopher Hodsdon",
+            "Khiem Ngo",
+            "Shuai Mu",
+            "Wyatt Lloyd"
+          ],
+          "abstract": "Scalable storage systems where data is sharded across many machines are now the norm for Web services as their data has grown beyond what a single machine can handle. Consistently reading data across different shards requires transactional isolation for the reads. Yet a Web service may read from its data store hundreds or thousands of times for a single page load and must minimize read latency to keep response times low. Examining the read-only transaction algorithms for many recent academic and industrial scalable storage systems suggests there is a tradeoff between their power—expressed as the consistency they provide and their compatibility with other types of transactions—and their latency. We show that this tradeoff is fundamental by proving the SNOW Theorem, an impossibility result that states that no read-only transaction algorithm can provide both the lowest latency and the highest power. We then use the tight boundary from the theorem to guide the design of new read-only transaction algorithms for two scalable storage systems, COPS and Rococo. We implement our new algorithms and then evaluate them to demonstrate they provide lower latency for read-only transactions and to understand their impact on overall throughput.",
+          "award": null
+        },
+        {
+          "title": "Correlated Crash Vulnerabilities",
+          "authors": [
+            "Ramnatthan Alagappan"
+          ],
+          "abstract": "Modern distributed storage systems employ complex protocols to update replicated data. In this paper, we study whether such update protocols work correctly in the presence of correlated crashes. We find that the correctness of such protocols hinges on how local filesystem state is updated by each replica in the system. We build PACE, a framework that systematically generates and explores persistent states that can occur in a distributed execution. PACE uses a set of generic rules to effectively prune the state space, reducing checking time from days to hours in some cases. We apply PACE to eight widely used distributed storage systems to find correlated crash vulnerabilities, i.e., problems in the update protocol that lead to user-level guarantee violations. PACE finds a total of 26 vulnerabilities across eight systems, many of which lead to severe consequences such as data loss, corrupted data, or unavailable clusters.",
+          "award": null
+        },
+        {
+          "title": "Incremental Consistency Guarantees for Replicated Objects",
+          "authors": [
+            "Rachid Guerraoui"
+          ],
+          "abstract": "Programming with replicated objects is difficult. Developers must face the fundamental trade-off between consistency and performance head on, while struggling with the complexity of distributed storage stacks. We introduce Correctables, a novel abstraction that hides most of this complexity, allowing developers to focus on the task of balancing consistency and performance. To aid developers with this task, Correctables provide incremental consistency guarantees, which capture successive refinements on the result of an ongoing operation on a replicated object. In short, applications receive both a preliminary—fast, possibly inconsistent—result, as well as a final—consistent—result that arrives later. We show how to leverage incremental consistency guarantees by speculating on preliminary values, trading throughput and bandwidth for improved latency. We experiment with two popular storage systems (Cassandra and ZooKeeper) and three applications: a Twissandrabased microblogging service, an ad serving system, and a ticket selling system. Our evaluation on the Amazon EC2 platform with YCSB workloads A, B, and C shows that we can reduce the latency of strongly consistent operations by up to 40% (from 100ms to 60ms) at little cost (10% bandwidth increase, 6% throughput drop) in the ad system. Even if the preliminary result is frequently inconsistent (25% of accesses), incremental consistency incurs a bandwidth overhead of only 27%.",
+          "award": null
+        },
+        {
+          "title": "FaSST: Fast, Scalable and Simple Distributed Transactions with Two-Sided (RDMA) Datagram RPCs",
+          "authors": [
+            "Anuj Kalia",
+            "Michael Kaminsky",
+            "David G. Andersen"
+          ],
+          "abstract": "FaSST is an RDMA-based system that provides distributed in-memory transactions with serializability and durability. Existing RDMA-based transaction processing systems use one-sided RDMA primitives for their ability to bypass the remote CPU. This design choice brings several drawbacks. First, the limited flexibility of one-sided RDMA reduces performance and increases software complexity when designing distributed data stores. Second, deep-rooted technical limitations of RDMA hardware limit scalability in large clusters. FaSST eschews one-sided RDMA for fast RPCs using two-sided unreliable datagrams, which we show drop packets extremely rarely on modern RDMA networks. This approach provides better performance, scalability, and simplicity, without requiring expensive reliability mechanisms in software. In comparison with published numbers, FaSST outperforms FaRM on the TATP benchmark by almost 2x while using close to half the hardware resources, and it outperforms DrTM+R on the SmallBank benchmark by around 1.7x without making data locality assumptions.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Networking",
+      "chair": null,
+      "papers": [
+        {
+          "title": "NetBricks: Taking the V out of NFV",
+          "authors": [
+            "Aurojit Panda and Sangjin Han",
+            "Keon Jang",
+            "Melvin Walls and Sylvia Ratnasamy",
+            "Scott Shenker"
+          ],
+          "abstract": "The move from hardware middleboxes to software network functions, as advocated by NFV, has proven more challenging than expected. Developing new NFs remains a tedious process, requiring that developers repeatedly rediscover and reapply the same set of optimizations, while current techniques for providing isolation between NFs (using VMs or containers) incur high performance overheads. In this paper we describe NetBricks, a new NFV framework that tackles both these problems. For building NFs we take inspiration from modern data analytics frameworks (e.g., Spark and Dryad) and build a small set of customizable network processing elements. We also embrace type checking and safe runtimes to provide isolation in software, rather than rely on hardware isolation. NetBricks provides the same memory isolation as containers and VMs, without incurring the same performance penalties. To improve I/O efficiency, we introduce a novel technique called zero-copy software isolation.",
+          "award": null
+        },
+        {
+          "title": "Efficient Network Reachability Analysis Using a Succinct Control Plane Representation",
+          "authors": [
+            "Seyed K. Fayaz and Tushar Sharma",
+            "Ari Fogel",
+            "Ratul Mahajan",
+            "Todd Millstein",
+            "Vyas Sekar",
+            "George Varghese"
+          ],
+          "abstract": "To guarantee network availability and security, operators must ensure that their reachability policies (e.g., A can or cannot talk to B) are correctly implemented. This is a difficult task due to the complexity of network configuration and the constant churn in a network’s environment, e.g., new route announcements arrive and links fail. Current network reachability analysis techniques are limited as they can only reason about the current “incarnation” of the network, cannot analyze all configuration features, or are too slow to enable exploration of many environments. We build ERA, a tool for efficient reasoning about network reachability. Instead of reasoning about individual incarnations of the network, ERA directly reasons about the network “control plane” that generates these incarnations. We address key expressiveness and scalability challenges by building (i) a succinct model for the network control plane (i.e., various routing protocols and their interactions), and (ii) a repertoire of techniques for scalable (taking a few seconds for a network with > 1000 routers) exploration of this model. We have used ERA to successfully find both known and new violations of a range of common intended polices.",
+          "award": null
+        },
+        {
+          "title": "Simplifying Datacenter Network Debugging with PathDump",
+          "authors": [
+            "Praveen Tammana",
+            "Rachit Agarwal",
+            "Myungjin Lee"
+          ],
+          "abstract": "Datacenter networks continue to grow complex due to larger scales, higher speeds and higher link utilization. Existing tools to manage and debug these networks are even more complex, requiring in-network techniques like collecting per-packet per-switch logs, dynamic switch rule updates, periodically collecting data plane snapshots, packet mirroring, packet sampling, traffic replay, etc. This paper calls for a radically different approach to network management and debugging: in contrast to implementing the functionality entirely in-network, we should carefully partition the debugging tasks between the edge devices and the network elements. We present the design, implementation and evaluation of PathDump, a minimalistic tool that utilizes resources at edge devices for network debugging. PathDump currently runs over a real network comprising only of commodity hardware, and yet, can support a surprisingly large class of network debugging problems. Evaluation results show that Path- Dump requires minimal switch and edge resources, while enabling network debugging at fine-grained time scales.",
+          "award": null
+        },
+        {
+          "title": "Network Requirements for Resource Disaggregation",
+          "authors": [
+            "Peter X. Gao",
+            "Rachit Agarwal",
+            "Sylvia Ratnasamy",
+            "Scott Shenker"
+          ],
+          "abstract": "Traditional datacenters are designed as a collection of servers, each of which tightly couples the resources required for computing tasks. Recent industry trends suggest a paradigm shift to a disaggregated datacenter (DDC) architecture containing a pool of resources, each built as a standalone resource blade and interconnected using a network fabric. A key enabling (or blocking) factor for disaggregation will be the network—to support good application-level performance it becomes critical that the network fabric provide low latency communication even under the increased traffic load that disaggregation introduces. In this paper, we use a workload-driven approach to derive the minimum latency and bandwidth requirements that the network in disaggregated datacenters must provide to avoid degrading application-level performance and explore the feasibility of meeting these requirements with existing system designs and commodity networking technology.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Graph Processing and Machine Learning",
+      "chair": null,
+      "papers": [
+        {
+          "title": "TensorFlow: A System for Large-Scale Machine Learning",
+          "authors": [
+            "Martín Abadi"
+          ],
+          "abstract": "TensorFlow is a machine learning system that operates at large scale and in heterogeneous environments. Tensor- Flow uses dataflow graphs to represent computation, shared state, and the operations that mutate that state. It maps the nodes of a dataflow graph across many machines in a cluster, and within a machine across multiple computational devices, including multicore CPUs, general-purpose GPUs, and custom-designed ASICs known as Tensor Processing Units (TPUs). This architecture gives flexibility to the application developer: whereas in previous “parameter server” designs the management of shared state is built into the system, TensorFlow enables developers to experiment with novel optimizations and training algorithms. TensorFlow supports a variety of applications, with a focus on training and inference on deep neural networks. Several Google services use TensorFlow in production, we have released it as an open-source project, and it has become widely used for machine learning research. In this paper, we describe the TensorFlow dataflow model and demonstrate the compelling performance that Tensor- Flow achieves for several real-world applications.",
+          "award": null
+        },
+        {
+          "title": "Exploring the Hidden Dimension in Graph Processing",
+          "authors": [
+            "Mingxing Zhang",
+            "Xuehai Qian",
+            "Xue Li and Weimin Zheng"
+          ],
+          "abstract": "Task partitioning of a graph-parallel system is traditionally considered equivalent to the graph partition problem. Such equivalence exists because the properties associated with each vertex/edge are normally considered indivisible. However, this assumption is not true for many Machine Learning and Data Mining (MLDM) problems: instead of a single value, a vector of data elements is defined as the property for each vertex/edge. This feature opens a new dimension for task partitioning because a vertex could be divided and assigned to different nodes. To explore this new opportunity, this paper presents 3D partitioning, a novel category of task partition algorithms that significantly reduces network traffic for certain MLDM applications. Based on 3D partitioning, we build a distributed graph engine CUBE. Our evaluation results show that CUBE outperforms state-of-the-art graph-parallel system PowerLyra by up to 4:7x (up to 7:3x speedup against PowerGraph).",
+          "award": null
+        },
+        {
+          "title": "Gemini: A Computation-Centric Distributed Graph Processing System",
+          "authors": [
+            "Xiaowei Zhu",
+            "Xiaosong Ma"
+          ],
+          "abstract": "Traditionally distributed graph processing systems have largely focused on scalability through the optimizations of inter-node communication and load balance. However, they often deliver unsatisfactory overall processing efficiency compared with shared-memory graph computing frameworks. We analyze the behavior of several graph-parallel systems and find that the added overhead for achieving scalability becomes a major limiting factor for efficiency, especially with modern multi-core processors and high-speed interconnection networks. Based on our observations, we present Gemini, a distributed graph processing system that applies multiple optimizations targeting computation performance to build scalability on top of efficiency. Gemini adopts (1) a sparse-dense signal-slot abstraction to extend the hybrid push-pull computation model from shared-memory to distributed scenarios, (2) a chunk-based partitioning scheme enabling low-overhead scaling out designs and locality-preserving vertex accesses, (3) a dual representation scheme to compress accesses to vertex indices, (4) NUMA-aware sub-partitioning for efficient intra-node memory accesses, plus (5) locality-aware chunking and fine-grained work-stealing for improving both inter-node and intra-node load balance, respectively. Our evaluation on an 8-node high-performance cluster (using five widely used graph applications and five real-world graphs) shows that Gemini significantly outperforms all well-known existing distributed graph processing systems, delivering up to 39.8x (from 8.91x) improvement over the fastest among them.",
+          "award": null
+        },
+        {
+          "title": "Fast and Concurrent RDF Queries with RDMA-Based Distributed Graph Exploration",
+          "authors": [
+            "Jiaxin Shi",
+            "Feifei Li"
+          ],
+          "abstract": "Many public knowledge bases are represented and stored as RDF graphs, where users can issue structured queries on such graphs using SPARQL. With massive queries over large and constantly growing RDF data, it is imperative that an RDF graph store should provide low latency and high throughput for concurrent query processing. However, prior systems still experience high perquery latency over large datasets and most prior designs have poor resource utilization such that each query is processed in sequence. We present Wukong, a distributed graph-based RDF store that leverages RDMA-based graph exploration to provide highly concurrent and low-latency queries over large data sets. Wukong is novel in three ways. First, Wukong provides an RDMA-friendly distributed key/- value store that provides differentiated encoding and fine-grained partitioning of graph data to reduce RDMA transfers. Second, Wukong leverages full-history pruning to avoid the cost of expensive final join operations, based on the observation that the cost of one-sided RDMA operations is largely oblivious to the payload size to a certain extent. Third, countering conventional wisdom of preferring migration of execution over data, Wukong seamlessly combines data migration for low latency and execution distribution for high throughput by leveraging the low latency and high throughput of onesided RDMA operations, and proposes a worker-obliger model for efficient load balancing. Evaluation on a 6-node RDMA-capable cluster shows that Wukong significantly outperforms state-of-the-art systems like TriAD and Trinity.RDF for both latency and throughput, usually at the scale of orders of magnitude.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Languages and Software Engineering",
+      "chair": null,
+      "papers": [
+        {
+          "title": "REX: A Development Platform and Online Learning Approach for Runtime Emergent Software Systems",
+          "authors": [
+            "Barry Porter"
+          ],
+          "abstract": "Conventional approaches to self-adaptive software architectures require human experts to specify models, policies and processes by which software can adapt to its environment. We present REX, a complete platform and online learning approach for runtime emergent software systems, in which all decisions about the assembly and adaptation of software are machine-derived. REX is built with three major, integrated layers: (i) a novel component-based programming language called Dana, enabling discovered assembly of systems and very low cost adaptation of those systems for dynamic re-assembly; (ii) a perception, assembly and learning framework (PAL) built on Dana, which abstracts emergent software into configurations and perception streams; and (iii) an online learning implementation based on a linear bandit model, which helps solve the search space explosion problem inherent in runtime emergent software. Using an emergent web server as a case study, we show how software can be autonomously self-assembled from discovered parts, and continually optimized over time (by using alternative parts) as it is subjected to different deployment conditions. Our system begins with no knowledge that it is specifically assembling a web server, nor with knowledge of the deployment conditions that may occur at runtime.",
+          "award": null
+        },
+        {
+          "title": "Yak: A High-Performance Big-Data-Friendly Garbage Collector",
+          "authors": [
+            "Khanh Nguyen",
+            "University of California",
+            "Shan Lu",
+            "Sanazsadat Alamian",
+            "Onur Mutlu"
+          ],
+          "abstract": "Most “Big Data” systems are written in managed languages, such as Java, C#, or Scala. These systems suffer from severe memory problems due to the massive volume of objects created to process input data. Allocating and deallocating a sea of data objects puts a severe strain on existing garbage collectors (GC), leading to high memory management overheads and reduced performance. This paper describes the design and implementation of Yak, a “Big Data” friendly garbage collector that provides high throughput and low latency for all JVM-based languages. Yak divides the managed heap into a control space (CS) and a data space (DS), based on the observation that a typical data-intensive system has a clear distinction between a control path and a data path. Objects created in the control path are allocated in the CS and subject to regular tracing GC. The lifetimes of objects in the data path often align with epochs creating them. They are thus allocated in the DS and subject to region-based memory management. Our evaluation with three large systems shows very positive results.",
+          "award": null
+        },
+        {
+          "title": "Shuffler: Fast and Deployable Continuous Code Re-Randomization",
+          "authors": [
+            "David Williams-King and Graham Gobieski",
+            "Kent Williams-King",
+            "James P. Blake and Xinhao Yuan",
+            "Patrick Colp",
+            "Michelle Zheng",
+            "Vasileios P. Kemerlis",
+            "Junfeng Yang",
+            "William Aiello"
+          ],
+          "abstract": "While code injection attacks have been virtually eliminated on modern systems, programs today remain vulnerable to code reuse attacks. Particularly pernicious are Just-In-Time ROP (JIT-ROP) techniques, where an attacker uses a memory disclosure vulnerability to discover code gadgets at runtime. We designed a code-reuse defense, called Shuffler, which continuously re-randomizes code locations on the order of milliseconds, introducing a real-time deadline on the attacker. This deadline makes it extremely difficult to form a complete exploit, particularly against server programs that often sit tens of milliseconds away from attacker machines. Shuffler focuses on being fast, self-hosting, and nonintrusive to the end user. Specifically, for speed, Shuffler randomizes code asynchronously in a separate thread and atomically switches from one code copy to the next. For security, Shuffler adopts an “egalitarian” principle and randomizes itself the same way it does the target. Lastly, to deploy Shuffler, no source, kernel, compiler, or hardware modifications are necessary. Evaluation shows that Shuffler defends against all known forms of code reuse, including ROP, direct JITROP, indirect JIT-ROP, and Blind ROP. We observed 14.9% overhead on SPEC CPU when shuffling every 50 ms, and ran Shuffler on real-world applications such as Nginx. We showed that the shuffled Nginx scales up to 24 worker processes on 12 cores.",
+          "award": null
+        },
+        {
+          "title": "Don’t Get Caught in the Cold, Warm-up Your JVM: Understand and Eliminate JVM Warm-up Overhead in Data-Parallel Systems",
+          "authors": [
+            "David Lion and Adrian Chiu",
+            "Hailong Sun",
+            "Xin Zhuang",
+            "Nikola Grcevski",
+            "Ding Yuan"
+          ],
+          "abstract": "Many widely used, latency sensitive, data-parallel distributed systems, such as HDFS, Hive, and Spark choose to use the Java Virtual Machine (JVM), despite debate on the overhead of doing so. This paper analyzes the extent and causes of the JVM performance overhead in the above mentioned systems. Surprisingly, we find that the warm-up overhead, i.e., class loading and interpretation of bytecode, is frequently the bottleneck. For example, even an I/O intensive, 1GB read on HDFS spends 33% of its execution time in JVM warm-up, and Spark queries spend an average of 21 seconds in warm-up. The findings on JVM warm-up overhead reveal a contradiction between the principle of parallelization, i.e., speeding up long running jobs by parallelizing them into short tasks, and amortizing JVM warm-up overhead through long tasks. We solve this problem by designing HotTub, a new JVM that amortizes the warm-up overhead over the lifetime of a cluster node instead of over a single job by reusing a pool of already warm JVMs across multiple applications. The speed-up is significant. For example, using HotTub results in up to 1.8X speedups for Spark queries, despite not adhering to the JVM specification in edge cases.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Potpourri",
+      "chair": null,
+      "papers": [
+        {
+          "title": "EC-Cache: Load-Balanced, Low-Latency Cluster Caching with Online Erasure Coding",
+          "authors": [
+            "K. V. Rashmi",
+            "Mosharaf Chowdhury and Jack Kosaian",
+            "Ion Stoica and Kannan Ramchandran"
+          ],
+          "abstract": "Data-intensive clusters and object stores are increasingly relying on in-memory object caching to meet the I/O performance demands. These systems routinely face the challenges of popularity skew, background load imbalance, and server failures, which result in severe load imbalance across servers and degraded I/O performance. Selective replication is a commonly used technique to tackle these challenges, where the number of cached replicas of an object is proportional to its popularity. In this paper, we explore an alternative approach using erasure coding. EC-Cache is a load-balanced, low latency cluster cache that uses online erasure coding to overcome the limitations of selective replication. EC-Cache employs erasure coding by: (i) splitting and erasure coding individual objects during writes, and (ii) late binding, wherein obtaining any k out of (k + r) splits of an object are sufficient, during reads. As compared to selective replication, EC-Cache improves load balancing by more than 3x and reduces the median and tail read latencies by more than 2x, while using the same amount of memory. EC-Cache does so using 10% additional bandwidth and a small increase in the amount of stored metadata. The benefits offered by EC-Cache are further amplified in the presence of background network load imbalance and server failures.",
+          "award": null
+        },
+        {
+          "title": "To Waffinity and Beyond: A Scalable Architecture for Incremental Parallelization of File System Code",
+          "authors": [
+            "Matthew Curtis-Maury"
+          ],
+          "abstract": "In order to achieve higher I/O throughput and better overall system performance, it is necessary for commercial storage systems to fully exploit the increasing core counts on modern systems. At the same time, legacy systems with millions of lines of code cannot simply be rewritten for improved scalability. In this paper, we describe the evolution of the multiprocessor software architecture (MP model) employed by the Netapp® Data ONTAP® WAFL® file system as a case study in incrementally scaling a production storage system. The initial model is based on small-scale data partitioning, whereby user-file reads and writes to disjoint file regions are parallelized. This model is then extended with hierarchical data partitioning to manage concurrent accesses to important file system objects, thus benefiting additional workloads. Finally, we discuss a fine-grained lock-based MP model within the existing data-partitioned architecture to support workloads where data accesses do not map neatly to the predefined partitions. In these data partitioning and lock-based MP models, we have facilitated incremental advances in parallelism without a large-scale code rewrite, a major advantage in the multi-million line WAFL codebase. Our results show that we are able to increase CPU utilization by as much as 104% on a 20-core system, resulting in throughput gains of up to 130%. These results demonstrate the success of the proposed MP models in delivering scalable performance while balancing time-to-market requirements. The models presented can also inform scalable system redesign in other domains.",
+          "award": null
+        },
+        {
+          "title": "CLARINET: WAN-Aware Optimization for Analytics Queries",
+          "authors": [
+            "Raajay Viswanathan",
+            "Ganesh Ananthanarayanan",
+            "Aditya Akella"
+          ],
+          "abstract": "Recent work has made the case for geo-distributed analytics, where data collected and stored at multiple datacenters and edge sites world-wide is analyzed in situ to drive operational and management decisions. A key issue in such systems is ensuring low response times for analytics queries issued against geo-distributed data. A central determinant of response time is the query execution plan (QEP). Current query optimizers do not consider the network when deriving QEPs, which is a key drawback as the geo-distributed sites are connected via WAN links with heterogeneous and modest bandwidths, unlike intra-datacenter networks. We propose CLARINET, a novel WAN-aware query optimizer. Deriving a WAN-aware QEP requires working jointly with the execution layer of analytics frameworks that places tasks to sites and performs scheduling. We design efficient heuristic solutions in CLARINET to make such a joint decision on the QEP. Our experiments with a real prototype deployed across EC2 datacenters, and large-scale simulations using production workloads show that CLARINET improves query response times by ≥ 50% compared to state-of-the-art WAN-aware task placement and scheduling.",
+          "award": null
+        },
+        {
+          "title": "JetStream: Cluster-Scale Parallelization of Information Flow Queries",
+          "authors": [
+            "Andi Quinn"
+          ],
+          "abstract": "Dynamic information flow tracking (DIFT) is an important tool in many domains, such as security, debugging, forensics, provenance, configuration troubleshooting, and privacy tracking. However, the usability of DIFT is currently limited by its high overhead; complex information flow queries can take up to two orders of magnitude longer to execute than the original execution of the program. This precludes interactive uses in which users iteratively refine queries to narrow down bugs, leaks of private data, or performance anomalies. JetStream applies cluster computing to parallelize and accelerate information flow queries over past executions. It uses deterministic record and replay to time slice executions into distinct contiguous chunks of execution called epochs, and it tracks information flow for each epoch on a separate core in the cluster. It structures the aggregation of information flow data from each epoch as a streaming computation. Epochs are arranged in a sequential chain from the beginning to the end of program execution; relationships to program inputs (sources) are streamed forward along the chain, and relationships to program outputs (sinks) are streamed backward. Jet- Stream is the first system to parallelize DIFT across a cluster. Our results show that JetStream queries scale to at least 128 cores over a wide range of applications. JetStream accelerates DIFT queries to run 12–48 times faster than sequential queries; in most cases, queries run faster than the original execution of the program.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Fault Tolerance and Consensus",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Just Say NO to Paxos Overhead: Replacing Consensus with Network Ordering",
+          "authors": [
+            "Jialin Li"
+          ],
+          "abstract": "Distributed applications use replication, implemented by protocols like Paxos, to ensure data availability and transparently mask server failures. This paper presents a new approach to achieving replication in the data center without the performance cost of traditional methods. Our work carefully divides replication responsibility between the network and protocol layers. The network orders requests but does not ensure reliable delivery – using a new primitive we call ordered unreliable multicast (OUM). Implementing this primitive can be achieved with near-zero-cost in the data center. Our new replication protocol, Network- Ordered Paxos (NOPaxos), exploits network ordering to provide strongly consistent replication without coordination. The resulting system not only outperforms both latency- and throughput-optimized protocols on their respective metrics, but also yields throughput within 2% and latency within 16 μs of an unreplicated system – providing replication without the performance cost.",
+          "award": null
+        },
+        {
+          "title": "XFT: Practical Fault Tolerance beyond Crashes",
+          "authors": [
+            "Shengyun Liu",
+            "Paolo Viotti",
+            "Christian Cachin",
+            "Vivien Quéma",
+            "Marko Vukolić"
+          ],
+          "abstract": "Despite years of intensive research, Byzantine faulttolerant (BFT) systems have not yet been adopted in practice. This is due to additional cost of BFT in terms of resources, protocol complexity and performance, compared with crash fault-tolerance (CFT). This overhead of BFT comes from the assumption of a powerful adversary that can fully control not only the Byzantine faulty machines, but at the same time also the message delivery schedule across the entire network, effectively inducing communication asynchrony and partitioning otherwise correct machines at will. To many practitioners, however, such strong attacks appear irrelevant. In this paper, we introduce cross fault tolerance or XFT, a novel approach to building reliable and secure distributed systems and apply it to the classical state-machine replication (SMR) problem. In short, an XFT SMR protocol provides the reliability guarantees of widely used asynchronous CFT SMR protocols such as Paxos and Raft, but also tolerates Byzantine faults in combination with network asynchrony, as long as a majority of replicas are correct and communicate synchronously. This allows the development of XFT systems at the price of CFT (already paid for in practice), yet with strictly stronger resilience than CFT — sometimes even stronger than BFT itself. As a showcase for XFT, we present XPaxos, the first XFT SMR protocol, and deploy it in a geo-replicated setting. Although it offers much stronger resilience than CFT SMR at no extra resource cost, the performance of XPaxos matches that of the state-of-the-art CFT protocols.",
+          "award": null
+        },
+        {
+          "title": "Realizing the Fault-Tolerance Promise of Cloud Storage Using Locks with Intent",
+          "authors": [
+            "Srinath Setty",
+            "Chunzhi Su",
+            "Jacob R. Lorch and Lidong Zhou",
+            "Hao Chen",
+            "Parveen Patel and Jinglei Ren"
+          ],
+          "abstract": "Cloud computing promises easy development and deployment of large-scale, fault tolerant, and highly available applications. Cloud storage services are a key enabler of this, because they provide reliability, availability, and fault tolerance via internal mechanisms that developers need not reason about. Despite this, challenges remain for distributed cloud applications developers. They still need to make their code robust against failures of the machines running the code, and to reason about concurrent access to cloud storage by multiple machines. We address this problem with a new abstraction, called locks with intent, which we implement in a client library called Olive. Olive makes minimal assumptions about the underlying cloud storage, enabling it to operate on a variety of platforms including Amazon DynamoDB and Microsoft Azure Storage. Leveraging the underlying cloud storage, Olive’s locks with intent offer strong exactly-once semantics for a snippet of code despite failures and concurrent duplicate executions. To ensure exactly-once semantics, Olive incurs the unavoidable overhead of additional logging writes. However, by decoupling isolation from atomicity, it supports consistency levels ranging from eventual to transactional. This flexibility allows applications to avoid costly transactional mechanisms when weaker semantics suffice. We apply Olive’s locks with intent to build several advanced storage functionalities, including snapshots, transactions via optimistic concurrency control, secondary indices, and live table re-partitioning. Our experience demonstrates that Olive eases the burden of creating correct, fault-tolerant distributed cloud applications.",
+          "award": null
+        },
+        {
+          "title": "Consolidating Concurrency Control and Consensus for Commits under Conflicts",
+          "authors": [
+            "Shuai Mu and Lamont Nelson",
+            "Wyatt Lloyd",
+            "Jinyang Li"
+          ],
+          "abstract": "Conventional fault-tolerant distributed transactions layer a traditional concurrency control protocol on top of the Paxos consensus protocol. This approach provides scalability, availability, and strong consistency. When used for wide-area storage, however, this approach incurs crossdata- center coordination twice, in serial: once for concurrency control, and then once for consensus. In this paper, we make the key observation that the coordination required for concurrency control and consensus is highly similar. Specifically, each tries to ensure the serialization graph of transactions is acyclic. We exploit this insight in the design of Janus, a unified concurrency control and consensus protocol. Janus targets one-shot transactions written as stored procedures, a common, but restricted, class of transactions. Like MDCC and TAPIR, Janus can commit unconflicted transactions in this class in one round-trip. Unlike MDCC and TAPIR, Janus avoids aborts due to contention: it commits conflicted transactions in this class in at most two round-trips as long as the network is well behaved and a majority of each server replica is alive. We compare Janus with layered designs and TAPIR under a variety of workloads in this class. Our evaluation shows that Janus achieves ~5x the throughput of a layered system and 90% of the throughput of TAPIR under a contention-free microbenchmark. When the workloads become contended, Janus provides much lower latency and higher throughput (up to 6:8x) than the baselines.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Security",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Ryoan: A Distributed Sandbox for Untrusted Computation on Secret Data",
+          "authors": [
+            "Tyler Hunt"
+          ],
+          "abstract": "Users of modern data-processing services such as tax preparation or genomic screening are forced to trust them with data that the users wish to keep secret. Ryoan protects secret data while it is processed by services that the data owner does not trust. Accomplishing this goal in a distributed setting is difficult because the user has no control over the service providers or the computational platform. Confining code to prevent it from leaking secrets is notoriously difficult, but Ryoan benefits from new hardware and a request-oriented data model. Ryoan provides a distributed sandbox, leveraging hardware enclaves (e.g., Intel’s software guard extensions (SGX) to protect sandbox instances from potentially malicious computing platforms. The protected sandbox instances confine untrusted data-processing modules to prevent leakage of the user’s input data. Ryoan is designed for a request-oriented data model, where confined modules only process input once and do not persist state about the input. We present the design and prototype implementation of Ryoan and evaluate it on a series of challenging problems including email filtering, heath analysis, image processing and machine translation.",
+          "award": null
+        },
+        {
+          "title": "Unobservable Communication over Fully Untrusted Infrastructure",
+          "authors": [
+            "Sebastian Angel",
+            "Srinath Setty"
+          ],
+          "abstract": "Keeping communication private has become increasingly important in an era of mass surveillance and state-sponsored attacks. While hiding the contents of a conversation has well-known solutions, hiding the associated metadata (participants, duration, etc.) remains a challenge, especially if one cannot trust ISPs or proxy servers. This paper describes a communication system called Pung that provably hides all content and metadata while withstanding global adversaries. Pung is a key-value store where clients deposit and retrieve messages without anyone— including Pung’s servers—learning of the existence of a conversation. Pung is based on private information retrieval, which we make more practical for our setting with new techniques. These include a private multi-retrieval scheme, an application of the power of two choices, and batch codes. These extensions allow Pung to handle 103× more users than prior systems with a similar threat model.",
+          "award": null
+        },
+        {
+          "title": "Alpenhorn: Bootstrapping Secure Communication without Leaking Metadata",
+          "authors": [
+            "David Lazar and Nickolai Zeldovich"
+          ],
+          "abstract": "Alpenhorn is the first system for initiating an encrypted connection between two users that provides strong privacy and forward secrecy guarantees for metadata (i.e., information about which users connected to each other) and that does not require out-of-band communication other than knowing the other user’s Alpenhorn username (email address). This resolves a significant shortcoming in all prior works on private messaging, which assume an out-of-band key distribution mechanism. Alpenhorn’s design builds on three ideas. First, Alpenhorn provides each user with an address book of friends that the user can call. Second, when a user adds a friend for the first time, Alpenhorn ensures the adversary does not learn the friend’s identity, by using identity-based encryption in a novel way to privately determine the friend’s public key. Finally, when calling a friend, Alpenhorn ensures forward secrecy of metadata by storing pairwise shared secrets in friends’ address books, and evolving them over time, using a new keywheel construction. Alpenhorn relies on a number of servers, but operates in an anytrust model, requiring just one of the servers to be honest. We implemented a prototype of Alpenhorn, and integrated it into the Vuvuzela private messaging system (which did not previously provide privacy or forward secrecy of metadata when initiating conversations). Experimental results show that Alpenhorn can scale to many users, supporting 10 million users on three Alpenhorn servers with an average dial latency of 150 seconds and a client bandwidth overhead of 3.7 KB/sec.",
+          "award": null
+        },
+        {
+          "title": "Big Data Analytics over Encrypted Datasets with Seabed",
+          "authors": [
+            "Antonis Papadimitriou",
+            "Ranjita Bhagwan",
+            "Andreas Haeberlen",
+            "Harmeet Singh and Abhishek Modi",
+            "Saikrishna Badrinarayanan"
+          ],
+          "abstract": "Today, enterprises collect large amounts of data and leverage the cloud to perform analytics over this data. Since the data is often sensitive, enterprises would prefer to keep it confidential and to hide it even from the cloud operator. Systems such as CryptDB and Monomi can accomplish this by operating mostly on encrypted data; however, these systems rely on expensive cryptographic techniques that limit performance in true “big data” scenarios that involve terabytes of data or more. This paper presents Seabed, a system that enables efficient analytics over large encrypted datasets. In contrast to previous systems, which rely on asymmetric encryption schemes, Seabed uses a novel, additively symmetric homomorphic encryption scheme (ASHE) to perform large-scale aggregations efficiently. Additionally, Seabed introduces a novel randomized encryption scheme called Splayed ASHE, or SPLASHE, that can, in certain cases, prevent frequency attacks based on auxiliary data.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Troubleshooting",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Non-Intrusive Performance Profiling for Entire Software Stacks Based on the Flow Reconstruction Principle",
+          "authors": [
+            "Xu Zhao"
+          ],
+          "abstract": "Understanding the performance behavior of distributed server stacks at scale is non-trivial. The servicing of just a single request can trigger numerous sub-requests across heterogeneous software components; and many similar requests are serviced concurrently and in parallel. When a user experiences poor performance, it is extremely difficult to identify the root cause, as well as the software components and machines that are the culprits. This paper describes Stitch, a non-intrusive tool capable of profiling the performance of an entire distributed software stack solely using the unstructured logs output by heterogeneous software components. Stitch is substantially different from all prior related tools in that it is capable of constructing a system model of an entire software stack without building any domain knowledge into Stitch. Instead, it automatically reconstructs the extensive domain knowledge of the programmers who wrote the code; it does this by relying on the Flow Reconstruction Principle which states that programmers log events such that one can reliably reconstruct the execution flow a posteriori.",
+          "award": null
+        },
+        {
+          "title": "Early Detection of Configuration Errors to Reduce Failure Damage",
+          "authors": [
+            "Tianyin Xu",
+            "Shan Lu",
+            "Long Jin",
+            "Shankar Pasupathy"
+          ],
+          "abstract": "Early detection is the key to minimizing failure damage induced by configuration errors, especially those errors in configurations that control failure handling and fault tolerance. Since such configurations are not needed for initialization, many systems do not check their settings early (e.g., at startup time). Consequently, the errors become latent until their manifestations cause severe damage, such as breaking the failure handling. Such latent errors are likely to escape from sysadmins’ observation and testing, and be deployed to production at scale. Our study shows that many of today’s mature, widely-used software systems are subject to latent configuration errors (referred to as LC errors) in their critically important configurations—those related to the system’s reliability, availability, and serviceability. One root cause is that many (14.0%–93.2%) of these configurations do not have any special code for checking the correctness of their settings at the system’s initialization time. To help software systems detect LC errors early, we present a tool named PCHECK that analyzes the source code and automatically generates configuration checking code (called checkers). The checkers emulate the late execution that uses configuration values, and detect LC errors if the error manifestations are captured during the emulated execution. Our results show that PCHECK can help systems detect 75+% of real-world LC errors at the initialization phase, including 37 new LC errors that have not been exposed before. Compared with existing detection tools, it can detect 31% more LC errors.",
+          "award": null
+        },
+        {
+          "title": "Kraken: Leveraging Live Traffic Tests to Identify and Resolve Resource Utilization Bottlenecks in Large Scale Web Services",
+          "authors": [
+            "Kaushik Veeraraghavan"
+          ],
+          "abstract": "Modern web services such as Facebook are made up of hundreds of systems running in geographically-distributed data centers. Each system needs to be allocated capacity, configured, and tuned to use data center resources efficiently. Keeping a model of capacity allocation current is challenging given that user behavior and software components evolve constantly. Three insights motivate our work: (1) the live user traffic accessing a web service provides the most current target workload possible, (2) we can empirically test the system to identify its scalability limits, and (3) the user impact and operational overhead of empirical testing can be largely eliminated by building automation which adjusts live traffic based on feedback. We build on these insights in Kraken, a new system that runs load tests by continually shifting live user traffic to one or more data centers. Kraken enables empirical testing by monitoring user experience (e.g., latency) and system health (e.g., error rate) in a feedback loop between traffic shifts. We analyze the behavior of individual systems and groups of systems to identify resource utilization bottlenecks such as capacity, load balancing, software regressions, performance tuning, and so on, which can be iteratively fixed and verified in subsequent load tests. Kraken, which manages the traffic generated by 1.7 billion users, has been in production at Facebook for three years and has allowed us to improve our hardware utilization by over 20%.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Operating Systems II",
+      "chair": null,
+      "papers": [
+        {
+          "title": "CertiKOS: An Extensible Architecture for Building Certified Concurrent OS Kernels",
+          "authors": [
+            "Ronghui Gu",
+            "Yale University"
+          ],
+          "abstract": "Complete formal verification of a non-trivial concurrent OS kernel is widely considered a grand challenge. We present a novel compositional approach for building certified concurrent OS kernels. Concurrency allows interleaved execution of kernel/user modules across different layers of abstraction. Each such layer can have a different set of observable events. We insist on formally specifying these layers and their observable events, and then verifying each kernel module at its proper abstraction level. To support certified linking with other CPUs or threads, we prove a strong contextual refinement property for every kernel function, which states that the implementation of each such function will behave like its specification under any kernel/user context with any valid interleaving. We have successfully developed a practical concurrent OS kernel and verified its (contextual) functional correctness in Coq. Our certified kernel is written in 6500 lines of C and x86 assembly and runs on stock x86 multicore machines. To our knowledge, this is the first proof of functional correctness of a complete, general-purpose concurrent OS kernel with fine-grained locking.",
+          "award": null
+        },
+        {
+          "title": "EbbRT: A Framework for Building Per-Application Library Operating Systems",
+          "authors": [
+            "Dan Schatzberg"
+          ],
+          "abstract": "General purpose operating systems sacrifice per-application performance in order to preserve generality. On the other hand, substantial effort is required to customize or construct an operating system to meet the needs of an application. This paper describes the design and implementation of the Elastic Building Block Runtime (EbbRT), a framework for building per-application library operating systems. EbbRT reduces the effort required to construct and maintain library operating systems without hindering the degree of specialization required for high performance. We combine several techniques in order to achieve this, including a distributed OS architecture, a low-overhead component model, a lightweight event-driven runtime, and many language-level primitives. EbbRT is able to simultaneously enable performance specialization, support for a broad range of applications, and ease the burden of systems development. An EbbRT prototype demonstrates the degree of customization made possible by our framework approach. In an evaluation of memcached, EbbRT and is able to attain 2:08x higher throughput than Linux. The node.js runtime, ported to EbbRT, demonstrates the broad applicability and ease of development enabled by our approach.",
+          "award": null
+        },
+        {
+          "title": "SCONE: Secure Linux Containers with Intel SGX",
+          "authors": [
+            "Sergei Arnautov",
+            "Christian Priebe",
+            "David Goltzsche",
+            "Dave Eyers",
+            "Rüdiger Kapitza",
+            "Peter Pietzuch",
+            "Christof Fetzer"
+          ],
+          "abstract": "In multi-tenant environments, Linux containers managed by Docker or Kubernetes have a lower resource footprint, faster startup times, and higher I/O performance compared to virtual machines (VMs) on hypervisors. Yet their weaker isolation guarantees, enforced through software kernel mechanisms, make it easier for attackers to compromise the confidentiality and integrity of application data within containers. We describe SCONE, a secure container mechanism for Docker that uses the SGX trusted execution support of Intel CPUs to protect container processes from outside attacks. The design of SCONE leads to (i) a small trusted computing base (TCB) and (ii) a low performance overhead: SCONE offers a secure C standard library interface that transparently encrypts/decrypts I/O data; to reduce the performance impact of thread synchronization and system calls within SGX enclaves, SCONE supports user-level threading and asynchronous system calls. Our evaluation shows that it protects unmodified applications with SGX, achieving 0.6x–1.2x of native throughput.",
+          "award": null
+        },
+        {
+          "title": "Coordinated and Efficient Huge Page Management with Ingens",
+          "authors": [
+            "Youngjin Kwon",
+            "Christopher J. Rossbach",
+            "Emmett Witchel"
+          ],
+          "abstract": "Modern computing is hungry for RAM, with today’s enormous capacities eagerly consumed by diverse workloads. Hardware address translation overheads have grown with memory capacity, motivating hardware manufacturers to provide TLBs with thousands of entries for large page sizes (called huge pages). Operating systems and hypervisors support huge pages with a hodge-podge of best-effort algorithms and spot fixes that made sense for architectures with limited huge page support, but the time has come for a more fundamental redesign. Ingens is a framework for huge page support that relies on a handful of basic primitives to provide transparent huge page support in a principled, coordinated way. By managing contiguity as a first-class resource and by tracking utilization and access frequency of memory pages, Ingens is able to eliminate a number of fairness and performance pathologies that plague current systems. Experiments with our prototype demonstrate fairness improvements, performance improvements (up to 18%), tail-latency reduction (up to 41%), and reduction of memory bloat from 69% to less than 1% for important applications like Web services (e.g., the Cloudstone benchmark) and the Redis key-value store.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Cloud Systems II",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Diamond: Automating Data Management and Storage for Wide-Area, Reactive Applications",
+          "authors": [
+            "Irene Zhang"
+          ],
+          "abstract": "Users of today’s popular wide-area apps (e.g., Twitter, Google Docs, and Words with Friends) must no longer save and reload when updating shared data; instead, these applications are reactive, providing the illusion of continuous synchronization across mobile devices and the cloud. Achieving this illusion poses a complex distributed data management problem for programmers. This paper presents the first reactive data management service, called Diamond, which provides persistent cloud storage, reliable synchronization between storage and mobile devices, and automated execution of application code in response to shared data updates. We demonstrate that Diamond greatly simplifies the design of reactive applications, strengthens distributed data sharing guarantees, and supports automated reactivity with low performance overhead.",
+          "award": null
+        },
+        {
+          "title": "Slicer: Auto-Sharding for Datacenter Applications",
+          "authors": [
+            "Atul Adya",
+            "Kfir Lev-Ari"
+          ],
+          "abstract": "Sharding is a fundamental building block of large-scale applications, but most have their own custom, ad-hoc implementations. Our goal is to make sharding as easily reusable as a filesystem or lock manager. Slicer is Google’s general purpose sharding service. It monitors signals such as load hotspots and server health to dynamically shard work over a set of servers. Its goals are to maintain high availability and reduce load imbalance while minimizing churn from moved work. In this paper, we describe Slicer’s design and implementation. Slicer has the consistency and global optimization of a centralized sharder while approaching the high availability, scalability, and low latency of systems that make local decisions. It achieves this by separating concerns: a reliable data plane forwards requests, and a smart control plane makes load-balancing decisions off the critical path. Slicer’s small but powerful API has proven useful and easy to adopt in dozens of Google applications. It is used to allocate resources for web service front-ends, coalesce writes to increase storage bandwidth, and increase the efficiency of a web cache. It currently handles 2-7M req/s of production traffic. The median production Slicer-managed workload uses 63% fewer resources than it would with static sharding.",
+          "award": null
+        },
+        {
+          "title": "History-Based Harvesting of Spare Cycles and Storage in Large-Scale Datacenters",
+          "authors": [
+            "Yunqi Zhang",
+            "George Prekas",
+            "Giovanni Matteo Fumarola and Marcus Fontoura",
+            "Inigo Goiri and Ricardo Bianchini"
+          ],
+          "abstract": "An effective way to increase utilization and reduce costs in datacenters is to co-locate their latency-critical services and batch workloads. In this paper, we describe systems that harvest spare compute cycles and storage space for co-location purposes. The main challenge is minimizing the performance impact on the services, while accounting for their utilization and management patterns. To overcome this challenge, we propose techniques for giving the services priority over the resources, and leveraging historical information about them. Based on this information, we schedule related batch tasks on servers that exhibit similar patterns and will likely have enough available resources for the tasks’ durations, and place data replicas at servers that exhibit diverse patterns. We characterize the dynamics of how services are utilized and managed in ten large-scale production datacenters. Using real experiments and simulations, we show that our techniques eliminate data loss and unavailability in many scenarios, while protecting the co-located services and improving batch job execution time.",
+          "award": null
+        },
+        {
+          "title": "DQBarge: Improving Data-Quality Tradeoffs in Large-Scale Internet Services",
+          "authors": [
+            "Michael Chow",
+            "Kaushik Veeraraghavan",
+            "Michael Cafarella and Jason Flinn"
+          ],
+          "abstract": "Modern Internet services often involve hundreds of distinct software components cooperating to handle a single user request. Each component must balance the competing goals of minimizing service response time and maximizing the quality of the service provided. This leads to low-level components making data-quality tradeoffs, which we define to be explicit decisions to return lowerfidelity data in order to improve response time or minimize resource usage. We first perform a comprehensive study of low-level data-quality tradeoffs at Facebook. We find that such tradeoffs are widespread. We also find that existing data-quality tradeoffs are often suboptimal because the low-level components making the tradeoffs lack global knowledge that could enable better decisions. Finally, we find that most tradeoffs are reactive, rather than proactive, and so waste resources and fail to mitigate system overload. Next, we develop DQBarge, a system that enables better data-quality tradeoffs by propagating critical information along the causal path of request processing. This information includes data provenance, load metrics, and critical path predictions. DQBarge generates performance and quality models that help low-level components make better, more proactive, tradeoffs. Our evaluation shows that DQBarge helps Internet services mitigate load spikes, improve utilization of spare resources, and implement dynamic capacity planning.",
+          "award": null
+        }
+      ]
+    }
+  ]
+}

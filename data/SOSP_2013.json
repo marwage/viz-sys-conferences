@@ -1,0 +1,416 @@
+{
+  "conference": "SOSP",
+  "year": 2013,
+  "url": "https://sigops.org/s/conferences/sosp/2013/program.html",
+  "crawled_at": "2026-04-21",
+  "sessions": [
+    {
+      "title": "Session 1: Juggling Chainsaws",
+      "chair": "Rebecca Isaacs Monday",
+      "papers": [
+        {
+          "title": "The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors",
+          "authors": [
+            "Austin T. Clements",
+            "M. Frans Kaashoek",
+            "Nickolai Zeldovich",
+            "Robert Morris",
+            "Eddie Kohler"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Speedy Transactions in Multicore In-Memory Databases",
+          "authors": [
+            "Stephen Tu",
+            "Wenting Zheng",
+            "Eddie Kohler",
+            "Barbara Liskov",
+            "Samuel Madden"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Everything You Always Wanted to Know about Synchronization but Were Afraid to Ask",
+          "authors": [
+            "Tudor David",
+            "Rachid Guerraoui",
+            "Vasileios Trigonakis"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Session 2: Time is of the Essence",
+      "chair": "Eddie Kohler Monday",
+      "papers": [
+        {
+          "title": "Dandelion: A Compiler and Runtime for Heterogeneous Systems",
+          "authors": [
+            "Christopher J Rossbach",
+            "Yuan Yu",
+            "Jon Currey",
+            "Jean-Philippe Martin",
+            "Dennis Fetterly"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Sparrow: Distributed, Low Latency Scheduling",
+          "authors": [
+            "Kay Ousterhout",
+            "Patrick Wendell",
+            "Matei Zaharia",
+            "Ion Stoica"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Timecard: Controlling User-Perceived Delays in Server-Based Mobile Applications",
+          "authors": [
+            "Lenin Ravindranath",
+            "Jitendra Padhye",
+            "Ratul Mahajan",
+            "Hari Balakrishnan"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Session 3: Seed Corn",
+      "chair": "Robert Morris Monday",
+      "papers": [
+        {
+          "title": "Fast Dynamic Binary Translation for the Kernel",
+          "authors": [
+            "Piyus Kedia",
+            "Sorav Bansal"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "VirtuOS: An Operating System with Kernel Virtualization",
+          "authors": [
+            "Ruslan Nikolaev",
+            "Godmar Back"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "From L3 to seL4: What Have We Learnt in 20 Years of L4 Microkernels?",
+          "authors": [
+            "Kevin Elphinstone",
+            "Gernot Heiser"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Session 4: Everything in its Place",
+      "chair": "James Mickens Monday",
+      "papers": [
+        {
+          "title": "Replication, History, and Grafting in the Ori File System",
+          "authors": [
+            "Ali Mashtizadeh",
+            "Andrea Bittau",
+            "Yifeng Frank Huang",
+            "David Mazières"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "An Analysis of Facebook Photo Caching",
+          "authors": [
+            "Qi Huang",
+            "Ken Birman",
+            "Robbert van Renesse",
+            "Wyatt Lloyd",
+            "Sanjeev Kumar",
+            "Harry C. Li"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "IOFlow: A Software-Defined Storage Architecture",
+          "authors": [
+            "Eno Thereska",
+            "Hitesh Ballani",
+            "Greg O'Shea",
+            "Thomas Karagiannis",
+            "Antony Rowstron",
+            "Tom Talpey",
+            "Richard Black",
+            "Timothy Zhu"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "From ARIES to MARS: Transaction Support for Next-Generation, Solid-State Drives",
+          "authors": [
+            "Joel Coburn",
+            "Trevor Bunker",
+            "Meir Schwarz",
+            "Rajesh K. Gupta",
+            "Steven Swanson"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Session 5: Whoops",
+      "chair": "Robbert van Renesse Tuesday",
+      "papers": [
+        {
+          "title": "Asynchronous Intrusion Recovery for Interconnected Web Services",
+          "authors": [
+            "Ramesh Chandra",
+            "Taesoo Kim",
+            "Nickolai Zeldovich"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Optimistic Crash Consistency",
+          "authors": [
+            "Vijay Chidambaram",
+            "Thanumalayan Sankaranarayana Pillai",
+            "Andrea C. Arpaci-Dusseau",
+            "Remzi H. Arpaci-Dusseau"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Do Not Blame Users for Misconfigurations",
+          "authors": [
+            "Tianyin Xu",
+            "Jiaqi Zhang",
+            "Peng Huang",
+            "Jing Zheng",
+            "Tianwei Sheng",
+            "Ding Yuan",
+            "Yuanyuan Zhou",
+            "Shankar Pasupathy"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Towards Optimization-Safe Systems: Analyzing the Impact of Undefined Behavior",
+          "authors": [
+            "Xi Wang",
+            "Nickolai Zeldovich",
+            "M. Frans Kaashoek",
+            "Armando Solar-Lezama"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Session 6: Data, Data, Everywhere",
+      "chair": "John Ousterhout Tuesday",
+      "papers": [
+        {
+          "title": "Transaction Chains: Achieving Serializability with Low Latency in Geo-Distributed Storage Systems",
+          "authors": [
+            "Yang Zhang",
+            "Russell Power",
+            "Siyuan Zhou",
+            "Yair Sovran",
+            "Marcos K. Aguilera",
+            "Jinyang Li"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "SPANStore: Cost-Effective Geo-Replicated Storage Spanning Multiple Cloud Services",
+          "authors": [
+            "Zhe Wu",
+            "Michael Butkiewicz",
+            "Dorian Perkins",
+            "Ethan Katz-Bassett",
+            "Harsha V. Madhyastha"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Consistency-Based Service Level Agreements for Cloud Storage",
+          "authors": [
+            "Douglas B. Terry",
+            "Vijayan Prabhakaran",
+            "Ramakrishna Kotla",
+            "Mahesh Balakrishnan",
+            "Marcos K. Aguilera",
+            "Hussam Abu-Libdeh"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Session 7: Right Makes Might",
+      "chair": "YY Zhou Tuesday",
+      "papers": [
+        {
+          "title": "Tango: Distributed Data Structures over a Shared Log",
+          "authors": [
+            "Mahesh Balakrishnan",
+            "Dahlia Malkhi",
+            "Ted Wobber",
+            "Ming Wu",
+            "Vijayan Prabhakaran",
+            "Michael Wei",
+            "John D. Davis",
+            "Sriram Rao",
+            "Tao Zou",
+            "Aviad Zuck"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Verifying Computations with State",
+          "authors": [
+            "Benjamin Braun",
+            "Ariel J. Feldman",
+            "Zuocheng Ren",
+            "Srinath Setty",
+            "Andrew J. Blumberg",
+            "Michael Walfish"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "There Is More Consensus In Egalitarian Parliaments",
+          "authors": [
+            "Iulian Moraru",
+            "David G. Andersen",
+            "Michael Kaminsky"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Session 8: N' Sync",
+      "chair": "Michael Walfish Wednesday",
+      "papers": [
+        {
+          "title": "ROOT: Replaying Multithreaded Traces with Resource-Oriented Ordering",
+          "authors": [
+            "Zev Weiss",
+            "Tyler Harter",
+            "Andrea C. Arpaci-Dusseau",
+            "Remzi H. Arpaci-Dusseau"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "PARROT: A Practical Runtime for Deterministic, Stable, and Reliable Threads",
+          "authors": [
+            "Heming Cui",
+            "Jiri Simsa",
+            "Yi-Hong Lin",
+            "Hao Li",
+            "Ben Blum",
+            "Xinan Xu",
+            "Junfeng Yang",
+            "Garth A. Gibson",
+            "Randal E. Bryant"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "RaceMob: Crowdsourced Data Race Detection",
+          "authors": [
+            "Baris Kasikci",
+            "Cristian Zamfir",
+            "George Candea"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Session 9: Data into Information",
+      "chair": "George Candea Wednesday",
+      "papers": [
+        {
+          "title": "Discretized Streams: Fault-Tolerant Streaming Computation at Scale",
+          "authors": [
+            "Matei Zaharia",
+            "Tathagata Das",
+            "Haoyuan Li",
+            "Timothy Hunter",
+            "Scott Shenker",
+            "Ion Stoica"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Naiad: A Timely Dataflow System",
+          "authors": [
+            "Derek G. Murray",
+            "Frank McSherry",
+            "Rebecca Isaacs",
+            "Michael Isard",
+            "Paul Barham",
+            "Martin Abadi"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "A Lightweight Infrastructure for Graph Analytics",
+          "authors": [
+            "Donald Nguyen",
+            "Andrew Lenharth",
+            "Keshav Pingali"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "X-Stream: Edge-Centric Graph Processing using Streaming Partitions",
+          "authors": [
+            "Amitabha Roy",
+            "Ivo Mihailovic",
+            "Willy Zwaenepoel"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    }
+  ]
+}

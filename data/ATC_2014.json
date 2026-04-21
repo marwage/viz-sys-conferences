@@ -1,0 +1,575 @@
+{
+  "conference": "ATC",
+  "year": 2014,
+  "url": "https://www.usenix.org/conference/atc14/technical-sessions",
+  "crawled_at": "2026-04-21",
+  "sessions": [
+    {
+      "title": "Big Data",
+      "chair": null,
+      "papers": [
+        {
+          "title": "ShuffleWatcher: Shuffle-aware Scheduling in Multi-tenant MapReduce Clusters",
+          "authors": [
+            "Faraz Ahmad",
+            "Srimat T. Chakradhar",
+            "Anand Raghunathan and T. N. Vijaykumar"
+          ],
+          "abstract": "MapReduce clusters are usually multi-tenant (i.e., shared among multiple users and jobs) for improving cost and utilization. The performance of jobs in a multi-tenant MapReduce cluster is greatly impacted by the all-Map-to-all-Reduce communication, or Shuffle, which saturates the cluster's hard-to-scale network bisection bandwidth. Previous schedulers optimize Map input locality but do not consider the Shuffle, which is often the dominant source of traffic in MapReduce clusters. We propose ShuffleWatcher, a new multi-tenant MapReduce scheduler that shapes and reduces Shuffle traffic to improve cluster performance (throughput and job turn-around times), while operating within specified fairness constraints. ShuffleWatcher employs three key techniques. First, it curbs intra-job Map-Shuffle concurrency to shape Shuffle traffic by delaying or elongating a job's Shuffle based on the network load. Second, it exploits the reduced intra-job concurrency and the flexibility engendered by the replication of Map input data for fault tolerance to preferentially assign a job's Map tasks to localize the Map output to as few nodes as possible. Third, it exploits localized Map output and delayed Shuffle to reduce the Shuffle traffic by preferentially assigning a job's Reduce tasks to the nodes containing its Map output. ShuffleWatcher leverages opportunities that are unique to multi-tenancy, such overlapping Map with Shuffle across jobs rather than within a job, and trading-off intra-job concurrency for reduced Shuffle traffic. On a 100-node Amazon EC2 cluster running Hadoop, ShuffleWatcher improves cluster throughput by 39-46% and job turn-around times by 27-32% over three state-of-the-art schedulers.",
+          "award": null
+        },
+        {
+          "title": "Violet: A Storage Stack for IOPS/Capacity Bifurcated Storage Environments",
+          "authors": [
+            "Douglas Santry and Kaladhar Voruganti"
+          ],
+          "abstract": "In this paper we describe a storage system called Violet that efficiently marries fine-grained host side data management with capacity optimized backend disk systems. Currently, for efficiency reasons, real-time analytics applications are forced to map their in-memory graph like data structures on to columnar databases or other intermediate disk friendly data structures when they are persisting these data structures to protect them from node failures. Violet provides efficient fine-grained end-to-end data management functionality that obviates the need to perform this intermediate mapping. Violet presents the following two key innovations that allow us to efficiently do this mapping between the fine-grained host side data structures and capacity optimized backend disk system: 1) efficient identification of updates on the host that leverages hardware in-memory transaction mechanisms and 2) efficient streaming of fine-grained updates on to a disk using a new data structure called Fibonacci Array.",
+          "award": null
+        },
+        {
+          "title": "ELF: Efﬁcient Lightweight Fast Stream Processing at Scale",
+          "authors": [
+            "Liting Hu"
+          ],
+          "abstract": "Stream processing has become a key means for gaining rapid insights from webserver-captured data. Challenges include how to scale to numerous, concurrently running streaming jobs, to coordinate across those jobs to share insights, to make online changes to job functions to adapt to new requirements or data characteristics, and for each job, to efficiently operate over different time windows. The ELF stream processing system addresses these new challenges. Implemented over a set of agents enriching the web tier of datacenter systems, ELF obtains scalability by using a decentralized \"many masters\" architecture where for each job, live data is extracted directly from webservers, and placed into memory-efficient compressed buffer trees (CBTs) for local parsing and temporary storage, followed by subsequent aggregation using shared reducer trees (SRTs) mapped to sets of worker processes. Job masters at the roots of SRTs can dynamically customize worker actions, obtain aggregated results for end user delivery and/or coordinate with other jobs. An ELF prototype implemented and evaluated for a larger scale configuration demonstrates scalability, high per-node throughput, sub-second job latency, and sub-second ability to adjust the actions of jobs being run.",
+          "award": null
+        },
+        {
+          "title": "Exploiting Bounded Staleness to Speed Up Big Data Analytics",
+          "authors": [
+            "Henggang Cui",
+            "Phillip B. Gibbons",
+            "Garth A. Gibson and Eric P. Xing"
+          ],
+          "abstract": "Many modern machine learning (ML) algorithms are iterative, converging on a final solution via many iterations over the input data. This paper explores approaches to exploiting these algorithms' convergent nature to improve performance, by allowing parallel and distributed threads to use loose consistency models for shared algorithm state. Specifically, we focus on bounded staleness, in which each thread can see a view of the current intermediate solution that may be a limited number of iterations out-of-date. Allowing staleness reduces communication costs (batched updates and cached reads) and synchronization (less waiting for locks or straggling threads). One approach is to increase the number of iterations between barriers in the oft-used Bulk Synchronous Parallel (BSP) model of parallelizing, which mitigates these costs when all threads proceed at the same speed. A more flexible approach, called Stale Synchronous Parallel (SSP), avoids barriers and allows threads to be a bounded number of iterations ahead of the current slowest thread. Extensive experiments with ML algorithms for topic modeling, collaborative filtering, and PageRank show that both approaches significantly increase convergence speeds, behaving similarly when there are no stragglers, but SSP outperforms BSP in the presence of stragglers.",
+          "award": null
+        },
+        {
+          "title": "Making State Explicit for Imperative Big Data Processing",
+          "authors": [
+            "Raul Castro Fernandez",
+            "Matteo Migliavacca",
+            "Evangelia Kalyvianaki",
+            "Peter Pietzuch"
+          ],
+          "abstract": "Data scientists often implement machine learning algorithms in imperative languages such as Java, Matlab and R. Yet such implementations fail to achieve the performance and scalability of specialised data-parallel processing frameworks. Our goal is to execute imperative Java programs in a data-parallel fashion with high throughput and low latency. This raises two challenges: how to support the arbitrary mutable state of Java programs without compromising scalability, and how to recover that state after failure with low overhead. Our idea is to infer the dataflow and the types of state accesses from a Java program and use this information to generate a stateful dataflow graph (SDG). By explicitly separating data from mutable state, SDGs have specific features to enable this translation: to ensure scalability, distributed state can be partitioned across nodes if computation can occur entirely in parallel; if this is not possible, partial state gives nodes local instances for independent computation, which are reconciled according to application semantics. For fault tolerance, large inmemory state is checkpointed asynchronously without global coordination. We show that the performance of SDGs for several imperative online applications matches that of existing data-parallel processing frameworks.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Virtualization",
+      "chair": null,
+      "papers": [
+        {
+          "title": "OSv—Optimizing the Operating System for Virtual Machines",
+          "authors": [
+            "Avi Kivity"
+          ],
+          "abstract": "Virtual machines in the cloud typically run existing general-purpose operating systems such as Linux. We notice that the cloud’s hypervisor already provides some features, such as isolation and hardware abstraction, which are duplicated by traditional operating systems, and that this duplication comes at a cost. We present the design and implementation of OSv, a new guest operating system designed specifically for running a single application on a virtual machine in the cloud. It addresses the duplication issues by using a low-overhead library-OS-like design. It runs existing applications written for Linux, as well as new applications written for OSv. We demonstrate that OSv is able to efficiently run a variety of existing applications. We demonstrate its sub-second boot time, small OS image and how it makes more memory available to the application. For unmodified network-intensive applications, we demonstrate up to 25% increase in throughput and 47% decrease in latency. By using non-POSIX network APIs, we can further improve performance and demonstrate a 290% increase in Memcached throughput.",
+          "award": null
+        },
+        {
+          "title": "Gleaner: Mitigating the Blocked-Waiter Wakeup Problem for Virtualized Multicore Applications",
+          "authors": [
+            "Xiaoning Ding",
+            "Phillip B. Gibbons and Michael A. Kozuch",
+            "Jianchen Shan"
+          ],
+          "abstract": "As the number of cores in a multicore node increases in accordance with Moore’s law, the question arises as to what are the costs of virtualized environments when scaling applications to take advantage of larger core counts. While a widely-known cost due to preempted spin-lock holders has been extensively studied, this paper studies another cost, which has received little attention. The cost is caused by the intervention from the VMM during synchronization-induced idling in the application, guest OS, or supporting libraries—we call this the blocked-waiter wakeup (BWW) problem. The paper systematically analyzes the cause of the BWW problem and studies its performance issues, including increased execution times, reduced system throughput, and performance unpredictability. To deal with these issues, the paper proposes a solution, Gleaner, which integrates idling operations and imbalanced scheduling as a mitigation to this problem. We show how Gleaner can be implemented without intrusive modification to the guest OS. Extensive experiments show that Gleaner can effectively reduce the virtualization cost incurred by blocking synchronization and improve the performance of individual applications by 16x and system throughput by 3x.",
+          "award": null
+        },
+        {
+          "title": "HYPERSHELL: A Practical Hypervisor Layer Guest OS Shell for Automated In-VM Management",
+          "authors": [
+            "Yangchun Fu"
+          ],
+          "abstract": "To direct the operation of a computer, we often use a shell, a user interface that provides accesses to the OS kernel services. Traditionally, shells are designed atop an OS kernel. In this paper, we show that a shell can also be designed below an OS. More specifically, we present HYPERSHELL, a practical hypervisor layer guest OS shell that has all of the functionality of a traditional shell, but offers better automation, uniformity and centralized management. This will be particularly useful for cloud and data center providers to manage the running VMs in a large scale. To overcome the semantic gap challenge, we introduce a reverse system call abstraction, and we show that this abstraction can significantly relieve the painful process of developing software below an OS. More importantly, we also show that this abstraction can be implemented transparently. As such, many of the legacy guest OS management utilities can be directly reused in HYPERSHELL without any modification. Our evaluation with over one hundred management utilities demonstrates that HYPERSHELL has 2:73X slowdown on average compared to their native in-VM execution, and has less than 5% overhead to the guest OS kernel.",
+          "award": null
+        },
+        {
+          "title": "XvMotion: Uniﬁed Virtual Machine Migration over Long Distance",
+          "authors": [
+            "Ali José Mashtizadeh",
+            "Min Cai",
+            "Tal Garfinkel",
+            "Sreekanth Setty"
+          ],
+          "abstract": "Live virtual machine migration allows the movement of a running VM from one physical host to another with negligible disruption in service. This enables many compelling features including zero downtime hardware upgrades, dynamic resource management, and test to production service migration. Historically, live migration worked only between machines that shared a common local subnet and storage system. As network speed and flexibility has increased and virtualization has become more pervasive, wide area migration is increasingly viable and compelling. Ad-hoc solutions for wide area migration have been built, combining existing mechanisms for memory migration with techniques for sharing storage including network file systems, proprietary storage array replication or software replicated block devices. Unfortunately, these solutions are complex, inflexible, unreliable and perform poorly compared to local migration, thus are rarely deployed. We have built and deployed a live migration system called XvMotion that overcomes these limitations. Xv- Motion integrates support for memory and storage migration over the local and wide area. It is robust to the variable storage and network performance encountered when migrating long distances across heterogeneous systems, while yielding reliability, migration times and downtimes similar to local migration. Our system has been in active use by customers for over a year within metro area networks.",
+          "award": null
+        },
+        {
+          "title": "GPUvm: Why Not Virtualizing GPUs at the Hypervisor?",
+          "authors": [
+            "Yusuke Suzuki",
+            "Shinpei Kato",
+            "Hiroshi Yamada",
+            "Kenji Kono"
+          ],
+          "abstract": "Graphics processing units (GPUs) provide orders-of-magnitude speedup for compute-intensive data-parallel applications. However, enterprise and cloud computing domains, where resource isolation of multiple clients is required, have poor access to GPU technology. This is due to lack of operating system (OS) support for virtualizing GPUs in a reliable manner. To make GPUs more mature system citizens, we present an open architecture of GPU virtualization with a particular emphasis on the Xen hypervisor. We provide design and implementation of full- and para-virtualization, including optimization techniques to reduce overhead of GPU virtualization. Our detailed experiments using a relevant commodity GPU show that the optimized performance of GPU para-virtualization is yet two or three times slower than that of pass-through and native approaches, whereas full-virtualization exhibits a different scale of overhead due to increased memory-mapped I/O operations. We also demonstrate that coarse-grained fairness on GPU resources among multiple virtual machines can be achieved by GPU scheduling; finer-grained fairness needs further architectural support by the nature of non-preemptive GPU workload.",
+          "award": null
+        },
+        {
+          "title": "A Full GPU Virtualization Solution with Mediated Pass-Through",
+          "authors": [
+            "Kun Tian"
+          ],
+          "abstract": "Graphics Processing Unit (GPU) virtualization is an enabling technology in emerging virtualization scenarios. Unfortunately, existing GPU virtualization approaches are still suboptimal in performance and full feature support. This paper introduces gVirt, a product level GPU virtualization implementation with: 1) full GPU virtualization running native graphics driver in guest, and 2) mediated pass-through that achieves both good performance and scalability, and also secure isolation among guests. gVirt presents a virtual full-fledged GPU to each VM. VMs can directly access performance-critical resources, without intervention from the hypervisor in most cases, while privileged operations from guest are trap-and-emulated at minimal cost. Experiments demonstrate that gVirt can achieve up to 95% native performance for GPU intensive workloads, and scale well up to 7 VMs.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Best of the Rest I",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Naiad: A Timely Dataflow System",
+          "authors": [
+            "Derek G. Murray"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Towards Optimization-Safe Systems: Analyzing the Impact of Undefined Behavior",
+          "authors": [
+            "Xi Wang"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Storage",
+      "chair": null,
+      "papers": [
+        {
+          "title": "vCacheShare: Automated Server Flash Cache Space Management in a Virtualization Environment",
+          "authors": [
+            "Fei Meng",
+            "Li Zhou",
+            "Xiaosong Ma",
+            "Sandeep Uttamchandani",
+            "Deng Liu"
+          ],
+          "abstract": "Server Flash Cache (SFC) is increasingly adopted in virtualization environments for IO acceleration. Deciding the optimal SFC allocation among VMs or VM disks is a major pain-point, dominantly handled manually by administrators. In this paper, we present vCacheShare, a dynamic, workload-aware, policy-driven framework for continuous and automated optimization of SFC space partitioning. Its decision-making is based on multiple IO access characteristics. In particular, vCacheShare adopts a cache utility model that captures both longer-term locality behavior and transient locality spikes. This paper validates the growing applicability of analytical programming techniques to solve real-time resource management problems, traditionally addressed using heuristics. We designed vCacheShare to coordinate with typical VM mobility events and implemented it within the widely used ESXi hypervisor. We performed extensive evaluation using 13 representative enterprise IO workloads, one IO benchmark, and two end-to-end deployment test cases targeting Virtual Desktop Infrastructure (VDI) and data warehousing scenarios respectively. Our results verified the advantage of vCacheShare over implicit management schemes such as global LRU, and confirmed its self-adaptive capability.",
+          "award": null
+        },
+        {
+          "title": "Missive: Fast Application Launch From an Untrusted Buffer Cache",
+          "authors": [
+            "Jon Howell"
+          ],
+          "abstract": "Embassies system turns the web browser model inside out: the client is ultra-minimal, and hence strongly isolates pages and apps; every app carries its own libraries and provides itself OS-like services. A typical Embassies app is 100 MiB of binary code. We have found that the first reaction most people have upon learning of this design is: how can big apps start quickly in such a harsh, mutually-untrusting environment' The key is the observation that, with appropriate system organization, the performance enhancements of a shared buffer cache can be supplied by an untrusted component. The benefits of sharing depend on availability of commonality; this paper measures a hundred diverse applications to show that applications indeed exhibit sufficient commonality to enable fast start, reducing startup data from 64MiB to 1MiB. Exploiting that commonality requires careful packaging and appropriate application of conventional deduplication and incremental start techniques. These enable an untrusted client-side cache to rapidly assemble an app image and transfer it—via IP—to the bootstrapping process. The result is proof that big apps really can start in a few hundred milliseconds from a shared but untrusted buffer cache.",
+          "award": null
+        },
+        {
+          "title": "A Modular and Efficient Past State System for Berkeley DB",
+          "authors": [
+            "Ross Shaull",
+            "Liuba Shrira",
+            "Barbara Liskov"
+          ],
+          "abstract": "Applications often need to analyze past states to predict trends and support audits. Adding efficient and nondisruptive support for consistent past-state analysis requires after-the-fact modification of the data store, a significant challenge for today’s systems. This paper describes Retro, a new system for supporting consistent past state analysis in Berkeley DB. The key novelty of Retro is an efficient yet simple and robust implementation method, imposing 4% worst-case overhead. Unlike prior approaches, Retro protocols, backed by a formal specification, extend standard transaction protocols in a modular way, requiring minimal data store modification (about 250 lines of BDB code).",
+          "award": null
+        },
+        {
+          "title": "SCFS: A Shared Cloud-backed File System",
+          "authors": [
+            "Alysson Bessani",
+            "Miguel Correia",
+            "Marcelo Pasin",
+            "Paulo Verissimo"
+          ],
+          "abstract": "Despite of their rising popularity, current cloud storage services and cloud-backed storage systems still have some limitations related to reliability, durability assurances and inefficient file sharing. We present SCFS, a cloud-backed file system that addresses these issues and provides strong consistency and near-POSIX semantics on top of eventually-consistent cloud storage services. SCFS provides a pluggable backplane that allows it to work with various storage clouds or a cloud-of-clouds (for added dependability). It also exploits some design opportunities inherent in the current cloud services through a set of novel ideas for cloud-backed file systems: always write and avoid reading, modular coordination, private name spaces and consistency anchors.",
+          "award": null
+        },
+        {
+          "title": "Accelerating Restore and Garbage Collection in Deduplication-based Backup Systems via Exploiting Historical Information",
+          "authors": [
+            "Min Fu",
+            "Xubin He",
+            "Zuoning Chen",
+            "Wen Xia"
+          ],
+          "abstract": "In deduplication-based backup systems, the chunks of each backup are physically scattered after deduplication, which causes a challenging fragmentation problem. The fragmentation decreases restore performance, and results in invalid chunks becoming physically scattered in different containers after users delete backups. Existing solutions attempt to rewrite duplicate but fragmented chunks to improve the restore performance, and reclaim invalid chunks by identifying and merging valid but fragmented chunks into new containers. However, they cannot accurately identify fragmented chunks due to their limited rewrite buffer. Moreover, the identification of valid chunks is cumbersome and the merging operation is the most time-consuming phase in garbage collection. Our key observation that fragmented chunks remain fragmented in subsequent backups motivates us to pro- pose a History-Aware Rewriting algorithm (HAR). HAR exploits historical information of backup systems to more accurately identify and rewrite fragmented chunks. Since the valid chunks are aggregated in compact containers by HAR, the merging operation is no longer required. To reduce the metadata overhead of the garbage collection, we further propose a Container-Marker Algorithm (CMA) to identify valid containers instead of valid chunks. Our extensive experimental results from real-world datasets show HAR significantly improves the restore performance by 2:6X–17X at a cost of only rewriting 0:45–1:99% data. CMA reduces the metadata overhead for the garbage collection by about 90X.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Best of the Rest II",
+      "chair": null,
+      "papers": [
+        {
+          "title": "mTCP: a Highly Scalable User-level TCP Stack for Multicore Systems",
+          "authors": [
+            "EunYoung Jeong",
+            "Sunghwan Ihm",
+            "Dongsu Han and KyoungSoo Park"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors",
+          "authors": [
+            "Austin T. Clements",
+            "Eddie Kohler"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Hardware and Low-level Techniques",
+      "chair": null,
+      "papers": [
+        {
+          "title": "The TURBO Diaries: Application-controlled Frequency Scaling Explained",
+          "authors": [
+            "Jons-Tobias Wamhoff",
+            "Patrick Marlier and Pascal Felber",
+            "Dave Dice"
+          ],
+          "abstract": "Most multi-core architectures nowadays support dynamic voltage and frequency scaling (DVFS) to adapt their speed to the system’s load and save energy. Some recent architectures additionally allow cores to operate at boosted speeds exceeding the nominal base frequency but within their thermal design power. In this paper, we propose a general-purpose library that allows selective control of DVFS from user space to accelerate multi-threaded applications and expose the potential of heterogeneous frequencies. We analyze the performance and energy trade-offs using different DVFS configuration strategies on several benchmarks and real-world workloads. With the focus on performance, we compare the latency of traditional strategies that halt or busy-wait on contended locks and show the power implications of boosting of the lock owner. We propose new strategies that assign heterogeneous and possibly boosted frequencies while all cores remain fully operational. This allows us to leverage performance gains at the application level while all threads continuously execute at different speeds. We also derive a model to help developers decide on the optimal DVFS configuration strategy, e.g, for lock implementations. Our in-depth analysis and experimental evaluation of current hardware provides insightful guidelines for the design of future hardware power management and its operating system interface.",
+          "award": null
+        },
+        {
+          "title": "Implementing a Leading Loads Performance Predictor on Commodity Processors",
+          "authors": [
+            "Bo Su",
+            "Joseph L. Greathouse",
+            "Li Shen and Zhiying Wang"
+          ],
+          "abstract": "Modern CPUs employ Dynamic Voltage and Frequency Scaling (DVFS) to boost performance, lower power, and improve energy efficiency. Good DVFS decisions require accurate performance predictions across frequencies. A new hardware structure for measuring leading load cycles was recently proposed and demonstrated promising performance prediction abilities in simulation. This paper proposes a method of leveraging existing hardware performance monitors to emulate a leading loads predictor. Our proposal, LL-MAB, uses existing miss status handling register occupancy information to estimate leading load cycles. We implement and validate LL-MAB on a collection of commercial AMD CPUs. Experiments demonstrate that it can accurately predict performance with an average error of 2.7% using an AMD OpteronTM4386 processor over a 2.2x change in frequency. LL-MAB requires no hardware- or application-specific training, and it is more accurate and requires fewer counters than similar approaches.",
+          "award": null
+        },
+        {
+          "title": "HaPPy: Hyperthread-aware Power Profiling Dynamically",
+          "authors": [
+            "Yan Zhai",
+            "Xiao Zhang and Stephane Eranian",
+            "Lingjia Tang and Jason Mars"
+          ],
+          "abstract": "Quantifying the power consumption of individual applications co-running on a single server is a critical component for software-based power capping, scheduling, and provisioning techniques in modern datacenters. However, with the proliferation of hyperthreading in the last few generations of server-grade processor designs, the challenge of accurately and dynamically performing this power attribution to individual threads has been significantly exacerbated. Due to the sharing of core-level resources such as functional units, prior techniques are not suitable to attribute the power consumption between hyperthreads sharing a physical core. In this paper, we present a runtime mechanism that quantifies and attributes power consumption to individual jobs at fine granularity. Specifically, we introduce a hyperthread-aware power model that differentiates between the states when both hardware threads of a core are in use, and when only one thread is in use. By capturing these two different states, we are able to accurately attribute power to each logical CPU in modern servers. We conducted experiments with several Google production workloads on an Intel Sandy Bridge server. Compared to prior hyperthread-oblivious model, HaPPy is substantially more accurate, reducing the prediction error from 20.5% to 7.5% on average and from 31.5% to 9.4% in the worst case.",
+          "award": null
+        },
+        {
+          "title": "Scalable Read-mostly Synchronization Using Passive Reader-Writer Locks",
+          "authors": [
+            "Ran Liu",
+            "Heng Zhang and Haibo Chen"
+          ],
+          "abstract": "Reader-writer locks (rwlocks) aim to maximize parallelism among readers, but many existing rwlocks either cause readers to contend, or significantly extend writer latency, or both. Further, some scalable rwlocks cannot cope with OS semantics like sleeping inside critical sections, preemption and conditional wait. Though truly scalable rwlocks exist, some of them cannot handle preemption, sleeping inside critical sections, or other important functions required inside OS kernels. This paper describes a new rwlock called the passive reader-writer lock (prwlock) that provides scalable read-side performance as well as small writer latency for TSO architectures. The key of prwlock is a version-based consensus protocol between multiple non-communicating readers and a pending writer. Prwlock leverages bounded staleness of memory consistency to avoid atomic instructions and memory barriers in readers' common paths, and uses message-passing (e.g., IPI) for straggling readers so that writer lock acquisition latency can be bounded. Evaluation on a 64-core machine shows that prwlock significantly boosts the performance of the Linux virtual memory subsystem, a concurrent hashtable and an in-memory database.",
+          "award": null
+        },
+        {
+          "title": "Large Pages May Be Harmful on NUMA Systems",
+          "authors": [
+            "Fabien Gaud",
+            "Baptiste Lepers",
+            "Jeremie Decouchant",
+            "Justin Funston and Alexandra Fedorova",
+            "Vivien Quéma"
+          ],
+          "abstract": "Application virtual address space is divided into pages, each requiring a virtual-to-physical translation in the page table and the TLB. Large working sets, common among modern applications, necessitate a lot of translations, which increases memory consumption and leads to high TLB and page fault rates. To address this problem, recent hardware introduced support for large pages. Large pages require fewer translations to cover the same address space, so the associated problems diminish. We discover, however, that on systems with nonuniform memory access times (NUMA) large pages may fail to deliver benefits or even cause performance degradation. On NUMA systems the memory is spread across several physical nodes; using large pages may contribute to the imbalance in the distribution of memory controller requests and reduced locality of accesses, both of which can drive up memory latencies. Our analysis concluded that: (a) on NUMA systems with large pages it is more crucial than ever to use memory placement algorithms that balance the load across memory controllers and maintain locality; (b) there are cases when NUMA-aware memory placement is not sufficient for optimal performance, and the only resort is to split the offending large pages. To address these challenges, we extend an existing NUMA page placement algorithm with support for large pages. We demonstrate that it recovers the performance lost due to the use of large pages and makes their benefits accessible to applications.",
+          "award": null
+        },
+        {
+          "title": "Efficient Tracing of Cold Code via Bias-Free Sampling",
+          "authors": [
+            "Baris Kasikci",
+            "Thomas Ball",
+            "George Candea",
+            "John Erickson and Madanlal Musuvathi"
+          ],
+          "abstract": "Bugs often lurk in code that is infrequently executed (i.e., cold code), so testing and debugging requires tracing such code. Alas, the location of cold code is generally not known a priori and, by definition, cold code is elusive during execution. Thus, programs either incur unnecessary runtime overhead to “catch” cold code, or they must employ sampling, in which case many executions are required to sample the cold code even once. We introduce a technique called bias-free sampling (BfS), in which the machine instructions of a dynamic execution are sampled independently of their execution frequency by using breakpoints. The BfS overhead is therefore independent of a program’s runtime behavior and is fully predictable: it is merely a function of program size. BfS operates directly on binaries. We present the theory and implementation of BfS for both managed and unmanaged code, as well as both kernel and user mode. We ran BfS on a total of 679 programs (all Windows system binaries, Z3, SPECint suite, and on several C# benchmarks), and BfS incurred performance overheads of just 1–6%.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Distributed Systems",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Gestalt: Fast, Uniﬁed Fault Localization for Networked Systems",
+          "authors": [
+            "Radhika Niranjan Mysore",
+            "Ratul Mahajan",
+            "Amin Vahdat",
+            "George Varghese"
+          ],
+          "abstract": "We show that the performance of existing fault localization algorithms differs markedly for different networks; and no algorithm simultaneously provides high localization accuracy and low computational overhead. We develop a framework to explain these behaviors by anatomizing the algorithms with respect to six important characteristics of real networks, such as uncertain dependencies, noise, and covering relationships. We use this analysis to develop Gestalt, a new algorithm that combines the best elements of existing ones and includes a new technique to explore the space of fault hypotheses. We run experiments on three real, diverse networks. For each, Gestalt has either significantly higher localization accuracy or an order of magnitude lower running time. For example, when applied to the Lync messaging system that is used widely within corporations, Gestalt localizes faults with the same accuracy as Sherlock, while reducing fault localization time from days to 23 seconds",
+          "award": null
+        },
+        {
+          "title": "Insight: In-situ Online Service Failure Path Inference in Production Computing Infrastructures",
+          "authors": [
+            "Hiep Nguyen"
+          ],
+          "abstract": "Online service failures in production computing environments are notoriously difficult to debug. When those failures occur, the software developer often has little information for debugging. In this paper, we present Insight, a system that reproduces the execution path of a failed service request onsite immediately after a failure is detected. Upon a request failure is detected, Insight dynamically creates a shadow copy of the production server and performs guided binary execution exploration in the shadow node to gain useful knowledge on how the failure occurs. Insight leverages both environment data (e.g., input logs, configuration files, states of interacting components) and runtime outputs (e.g., console logs, system calls) to guide the failure path finding. Insight does not require source code access or any special system recording during normal production run. We have implemented Insight and evaluated it using 13 failures from a production cloud management system and 8 open source software systems. The experimental results show that Insight can successfully find high fidelity failure paths within a few minutes. Insight is light-weight and unobtrusive,making it practical for online service failure inference in the production computing environment.",
+          "award": null
+        },
+        {
+          "title": "Automating the Choice of Consistency Levels in Replicated Systems",
+          "authors": [
+            "Cheng Li",
+            "Joao Leitão",
+            "Allen Clement",
+            "Nuno Preguiça and Rodrigo Rodrigues",
+            "Viktor Vafeiadis"
+          ],
+          "abstract": "Online services often use replication for improving the performance of user-facing services. However, using replication for performance comes at a price of weakening the consistency levels of the replicated service. To address this tension, recent proposals from academia and industry allow operations to run at different consistency levels. In these systems, the programmer has to decide which level to use for each operation. We present SIEVE, a tool that relieves Java programmers from this error-prone decision process, allowing applications to automatically extract good performance when possible, while resorting to strong consistency whenever required by the target semantics. Taking as input a set of application-specific invariants and a few annotations about merge semantics, SIEVE performs a combination of static and dynamic analysis, offline and at runtime, to determine when it is necessary to use strong consistency to preserve these invariants and when it is safe to use causally consistent commutative replicated data types (CRDTs). We evaluate SIEVE on two web applications and show that the automatic classification overhead is low.",
+          "award": null
+        },
+        {
+          "title": "Sirius: Distributing and Coordinating Application Reference Data",
+          "authors": [
+            "Michael Bevilacqua-Linn"
+          ],
+          "abstract": "The main memory of a typical application server is now large enough to hold many interesting reference datasets which the application must access frequently but for which it is not the system of record. However, application architectures have not evolved to take proper advantage. Common solutions based on caching data from a separate persistence tier lead to error-prone I/O code that is still subject to cache miss latencies. We present an alternative library-based architecture that provides developers access to in-memory, native data structures they control while neatly handling replication and persistence. Our open-source library Sirius can thus give developers access to their reference data in single-node programming style while enjoying the scaling and robustness of a distributed system.",
+          "award": null
+        },
+        {
+          "title": "In Search of an Understandable Consensus Algorithm",
+          "authors": [
+            "Diego Ongaro and John Ousterhout"
+          ],
+          "abstract": "Raft is a consensus algorithm for managing a replicated log. It produces a result equivalent to (multi-)Paxos, and it is as efficient as Paxos, but its structure is different from Paxos; this makes Raft more understandable than Paxos and also provides a better foundation for building practical systems. In order to enhance understandability, Raft separates the key elements of consensus, such as leader election, log replication, and safety, and it enforces a stronger degree of coherency to reduce the number of states that must be considered. Results from a user study demonstrate that Raft is easier for students to learn than Paxos. Raft also includes a new mechanism for changing the cluster membership, which uses overlapping majorities to guarantee safety.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Networking",
+      "chair": null,
+      "papers": [
+        {
+          "title": "GASPP: A GPU-Accelerated Stateful Packet Processing Framework",
+          "authors": [
+            "Giorgos Vasiliadis and Lazaros Koromilas",
+            "Michalis Polychronakis",
+            "Sotiris Ioannidis"
+          ],
+          "abstract": "Graphics processing units (GPUs) are a powerful platform for building high-speed network traffic processing applications using low-cost hardware. Existing systems tap the massively parallel architecture of GPUs to speed up certain computationally intensive tasks, such as cryptographic operations and pattern matching. However, they still suffer fromsignificant overheads due to criticalpath operations that are still being carried out on the CPU, and redundant inter-device data transfers. In this paper we present GASPP, a programmable network traffic processing framework tailored to modern graphics processors. GASPP integrates optimized GPUbased implementations of a broad range of operations commonly used in network traffic processing applications, including the first purely GPU-based implementation of network flow tracking and TCP stream reassembly. GASPP also employs novelmechanisms for tackling control flow irregularities across SIMT threads, and sharing memory context between the network interface and the GPU. Our evaluation shows that GASPP can achieve multi-gigabit traffic forwarding rates even for computationally intensive and complex network operations such as stateful traffic classification, intrusion detection, and packet encryption. Especially when consolidating multiple network applications on the same device, GASPP achieves up to 16.2× speedup compared to standalone GPU-based implementations of the same applications.",
+          "award": null
+        },
+        {
+          "title": "Panopticon: Reaping the Beneﬁts of Incremental SDN Deployment in Enterprise Networks",
+          "authors": [
+            "Dan Levin",
+            "Marco Canini",
+            "Stefan Schmid",
+            "Fabian Schaffert and Anja Feldmann"
+          ],
+          "abstract": "The operational challenges posed in enterprise networks present an appealing opportunity for automated orchestration by way of Software-Defined Networking (SDN). The primary challenge to SDN adoption in the enterprise is the deployment problem: How to deploy and operate a network consisting of both legacy and SDN switches, while benefiting from simplified management and enhanced flexibility of SDN. This paper presents the design and implementation of Panopticon, an architecture for operating networks that combine legacy and SDN switches. Panopticon exposes an abstraction of a logical SDN in a partially upgraded legacy network, where SDN benefits can extend over the entire network. We demonstrate the feasibility and evaluate the efficiency of our approach through both testbed experiments with hardware switches and through simulation on real enterprise campus network topologies entailing over 1500 devices. Our results suggest that when as few as 10% of distribution switches support SDN, most of an enterprise network can be operated as a single SDN while meeting key resource constraints.",
+          "award": null
+        },
+        {
+          "title": "Pythia: Diagnosing Performance Problems in Wide Area Providers",
+          "authors": [
+            "Partha Kanuparthy",
+            "Constantine Dovrolis"
+          ],
+          "abstract": "Performance problem diagnosis is a critical part of network operations in ISPs. Service providers typically deploy monitoring nodes at several vantage points in their network, to record end-to-end measurements of network performance. Network operators use these measurements offline; for example, to troubleshoot customer complaints. In this work, we leverage such monitoring infrastructure deployments in ISPs to build a system for near real time performance problem detection and root cause diagnosis. Our system works with wide area interdomain monitoring, unlike approaches that require data sources from network devices (SNMP, Netflow, router logs, table dumps, etc.). Operators can input operational and domain knowledge of performance problems to the system to add diagnosis functionality. We have deployed the system on existing monitoring infrastructure in the US, diagnosing over 300 inter-domain paths. We study the extent and nature of performance problems that manifest in edge and core networks on the Internet.",
+          "award": null
+        },
+        {
+          "title": "BISmark: A Testbed for Deploying Measurements and Applications in Broadband Access Networks",
+          "authors": [
+            "Srikanth Sundaresan",
+            "Walter de Donato"
+          ],
+          "abstract": "BISmark (Broadband Internet Service Benchmark) is a deployment of home routers running custom software, and backend infrastructure to manage experiments and collect measurements. The project began in 2010 as an attempt to better understand the characteristics of broadband access networks. We have since deployed BISmark routers in hundreds of home networks in about thirty countries. BISmark is currently used and shared by researchers at nine institutions, including commercial Internet service providers, and has enabled studies of access link performance, network connectivity, Web page load times, and user behavior and activity. Research using BISmark and its data has informed both technical and policy research. This paper describes and revisits design choices we made during the platform’s evolution and lessons we have learned from the deployment effort thus far. We also explain how BISmark enables experimentation, and our efforts to make it available to the networking community. We encourage researchers to contact us if they are interested in running experiments on BISmark.",
+          "award": null
+        },
+        {
+          "title": "Programmatic Orchestration of WiFi Networks",
+          "authors": [
+            "Julius Schulz-Zander",
+            "Thomas Hühn",
+            "Ruben Merz"
+          ],
+          "abstract": "With wireless technologies becoming prevalent at the last hop, today’s network operators need to manage WiFi access networks in unison with their wired counterparts. However, the non-uniformity of feature sets in existing solutions and the lack of programmability makes this a challenging task. This paper proposes Odin, an SDN-based solution to bridge this gap. With Odin, we make the following contributions: (i) Light Virtual Access Points (LVAPs), a novel programming abstraction for addressing the IEEE 802.11 protocol stack complexity, (ii) a design and implementation for a software-defined WiFi network architecture based on LVAPs, and (iii) a prototype implementation on top of commodity access point hardware without modifications to the IEEE 802.11 client, making it practical for today’s deployments. To highlight the effectiveness of the approach we demonstrate six WiFi network services on top of Odin including load-balancing, mobility management, jammer detection, automatic channel-selection, energy management, and guest policy enforcement. To further foster the development of our framework, the Odin prototype is made publicly available.",
+          "award": null
+        },
+        {
+          "title": "HACK: Hierarchical ACKs for Efﬁcient Wireless Medium Utilization",
+          "authors": [
+            "Lynne Salameh"
+          ],
+          "abstract": "WiFi's physical layer has increased in speed from 802.11b's 11 Mbps to the Gbps rates of emerging 802.11ac. Despite these gains, WiFi's inefficient MAC layer limits achievable end-to-end throughput. The culprit is 802.11's mandatory idle period before each medium acquisition, which has come to dwarf the duration of a packet's transmission. This overhead is especially punishing for TCP traffic, whose every two data packets elicit a short TCP ACK. Even frame aggregation and block link-layer ACKs (introduced in 802.11n) leave significant medium acquisition overhead for TCP ACKs. In this paper, we propose TCP/HACK (Hierarchical ACKnowledgment), a system that applies cross-layer optimization to TCP traffic on WiFi networks by carrying TCP ACKs within WiFi's link-layer acknowledgments. By eliminating all medium acquisitions for TCP ACKs in unidirectional TCP flows, TCP/HACK significantly improves medium utilization, and thus significantly increases achievable capacity for TCP workloads. Our measurements of a real-time, line-speed implementation for 802.11a on the SoRa software-defined radio platform and simulations of 802.11n networks at scale demonstrate that TCP/HACK significantly improves TCP throughput on WiFi networks.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Best of the Rest III",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Securing Computer Hardware Using 3D Integrated Circuit (IC) Technology and Split Manufacturing for Obfuscation",
+          "authors": [
+            "Frank Imeson"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Control Flow Integrity for COTS Binaries",
+          "authors": [
+            "Mingwei Zhang and R. Sekar"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Security and Correctness",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Application-Deﬁned Decentralized Access Control",
+          "authors": [
+            "Yuanzhong Xu and Alan M. Dunn",
+            "Owen S. Hofmann",
+            "Michael Z. Lee"
+          ],
+          "abstract": "DCAC is a practical OS-level access control system that supports application-defined principals. It allows normal users to perform administrative operations within their privilege, enabling isolation and privilege separation for applications. It does not require centralized policy specification or management, giving applications freedom to manage their principals while the policies are still enforced by the OS. DCAC uses hierarchically-named attributes as a generic framework for user-defined policies such as groups defined by normal users. For both local and networked file systems, its execution time overhead is between 0%–9% on file system microbenchmarks, and under 1% on applications. This paper shows the design and implementation of DCAC, as well as several real-world use cases, including sandboxing applications, enforcing server applications’ security policies, supporting NFS, and authenticating user-defined sub-principals in SSH, all with minimal code changes.",
+          "award": null
+        },
+        {
+          "title": "MiniBox: A Two-Way Sandbox for x86 Native Code",
+          "authors": [
+            "Yanlin Li",
+            "Jonathan McCune and James Newsome",
+            "Adrian Perrig",
+            "Brandon Baker and Will Drewry"
+          ],
+          "abstract": "This paper presents MiniBox, the first two-way sandbox for x86 native code, that not only protects a benign OS from a misbehaving application, but also protects an application from a malicious OS. MiniBox can be applied in Platform-as-a-Service cloud computing to provide two-way protection between a customer’s application and the cloud platform OS. We implement a Mini- Box prototype running on recent x86 multi-core systems from Intel or AMD, and we port several applications to MiniBox. Evaluation results show that MiniBox is efficient and practical.",
+          "award": null
+        },
+        {
+          "title": "Static Analysis of Variability in System Software: The 90,000 #ifdefs Issue",
+          "authors": [
+            "Reinhard Tartler"
+          ],
+          "abstract": "System software can be configured at compile time to tailor it with respect to a broad range of supported hardware architectures and application domains. The Linux v3.2 kernel, for instance, provides more than 12;000 configurable features, which control the configuration-dependent inclusion of 31;000 source files with 89;000 #ifdef blocks. Tools for static analyses can greatly assist with ensuring the quality of code-bases of this size. Unfortunately, static configurability limits the success of automated software testing and bug hunting. For proper type checking, the tools need to be invoked on a concrete configuration, so programmers have to manually derive many configurations to ensure that the configuration-conditional parts of their code are checked. This tedious and error-prone process leaves many easy to find bugs undetected. We propose an approach and tooling to systematically increase the configuration coverage (CC) in compile-time configurable system software. Our VAMPYR tool derives the required configurations and can be combined with existing static checkers to improve their results. With GCC as static checker, we thereby have found hundreds of issues in Linux v3.2, BUSYBOX, and L4/FIASCO, many of which went unnoticed for several years and have to be classified as serious bugs. Our resulting patches were accepted by the respective upstream developers",
+          "award": null
+        },
+        {
+          "title": "Yat: A Validation Framework for Persistent Memory Software",
+          "authors": [
+            "Philip Lantz"
+          ],
+          "abstract": "This paper describes the design and implementation of Yat. Yat is a hypervisor-based framework that supports testing of applications that use Persistent Memory (PM)—byte-addressable, non-volatile memory attached directly to the memory controller. PM has implications on both system architecture and software. The PM architecture extends the memory ordering model to add software-visible support for durability of stores to PM. By simulating the characteristics of PM, and integrating an application-specific checker in the framework, Yat enables validation, correctness testing, and debugging of PM software in the presence of power failures and crashes. We discuss the use of Yat in development and testing of the Persistent Memory File System (PMFS), describing the effectiveness of Yat in catching and debugging several hard-to-find bugs in PMFS.",
+          "award": null
+        },
+        {
+          "title": "Medusa: Managing Concurrency and Communication in Embedded Systems",
+          "authors": [
+            "Thomas W. Barr and Scott Rixner"
+          ],
+          "abstract": "Microcontroller systems are almost always concurrent, event-driven systems. They monitor external events and control actuators. Typically, these systems are written in C with very little support from system software. The concurrency in these applications is implemented with hand-coded interrupt routines. Race conditions and other classic pitfalls of implementing parallel systems in shared-state programming languages have caused catastrophic, and sometimes lethal, failures in the past. We have designed and implemented Medusa, a programming environment for microcontrollers using the actor model. This paper presents three key contributions. First, the Medusa language, which is derived from Python and Erlang. Second, an implementation that runs on systems several orders of magnitude smaller than any other actor-model system previously described. Finally, a novel bridging mechanism to extend the domain of the actor-model to hardware. Combined, these innovations make it far easier to build complex, reliable and safe embedded systems.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Best of the Rest IV",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Back to the Future: Fault-tolerant Live Update with Time-traveling State Transfer",
+          "authors": [
+            "Cristiano Giuffrida"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "dsync: Efficient Block-wise Synchronization of Multi-Gigabyte Binary Data",
+          "authors": [
+            "Thomas Knauth and Christof Fetzer"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Self-Tuning Intel Transactional Synchronization Extensions",
+          "authors": [
+            "Nuno Diegues and Paolo Romano"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Flash",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Reliable Writeback for Client-side Flash Caches",
+          "authors": [
+            "Dai Qin"
+          ],
+          "abstract": "Modern data centers are increasingly using shared storage solutions for ease of management. Data is cached on the client side on inexpensive and high-capacity flash devices, helping improve performance and reduce contention on the storage side. Currently, write-through caching is used because it ensures consistency and durability under client failures, but it offers poor performance for write-heavy workloads. In this work, we propose two write-back based caching policies, called write-back flush and write-back persist, that provide strong reliability guarantees, under two different client failure models. These policies rely on storage applications, such as file systems and databases, issuing write barriers to persist their data reliably on storage media. Our evaluation shows that these policies perform close to write-back caching, significantly outperforming write-through caching, for both read-heavy and write-heavy workloads.",
+          "award": null
+        },
+        {
+          "title": "Flash on Rails: Consistent Flash Performance through Redundancy",
+          "authors": [
+            "Dimitris Skourtis"
+          ],
+          "abstract": "Modern applications and virtualization require fast and predictable storage. Hard-drives have low and unpredictable performance, while keeping everything in DRAM is still prohibitively expensive or unnecessary in many cases. Solid-state drives offer a balance between performance and cost and are becoming increasingly popular in storage systems, playing the role of large caches and permanent storage. Although their read performance is high and predictable, SSDs frequently block in the presence of writes, exceeding hard-drive latency and leading to unpredictable performance. Many systems with mixed workloads have low latency requirements or require predictable performance and guarantees. In such cases the performance variance of SSDs becomes a problem for both predictability and raw performance. In this paper, we propose Rails, a design based on redundancy, which provides predictable performance and low latency for reads under read/write workloads by physically separating reads from writes. More specifically, reads achieve read-only performance while writes perform at least as well as before. We evaluate our design using micro-benchmarks and real traces, illustrating the performance benefits of Rails and read/write separation in solid-state drives.",
+          "award": null
+        },
+        {
+          "title": "I/O Speculation for the Microsecond Era",
+          "authors": [
+            "Michael Wei",
+            "Matias Bjørling and Philippe Bonnet",
+            "Steven Swanson"
+          ],
+          "abstract": "Microsecond latencies and access times will soon dominate most datacenter I/O workloads, thanks to improvements in both storage and networking technologies. Current techniques for dealing with I/O latency are targeted for either very fast (nanosecond) or slow (millisecond) devices. These techniques are suboptimal for microsecond devices - they either block the processor for tens of microseconds or yield the processor only to be ready again microseconds later. Speculation is an alternative technique that resolves the issues of yielding and blocking by enabling an application to continue running until the application produces an externally visible side effect. State-of-the-art techniques for speculating on I/O requests involve checkpointing, which can take up to a millisecond, squandering any of the performance benefits microsecond scale devices have to offer. In this paper, we survey how speculation can address the challenges that microsecond scale devices will bring. We measure applications for the potential benefit to be gained from speculation and examine several classes of speculation techniques. In addition, we propose two new techniques, hardware checkpoint and checkpoint-free speculation. Our exploration suggests that speculation will enable systems to extract the maximum performance of I/O devices in the microsecond era.",
+          "award": null
+        },
+        {
+          "title": "OS I/O Path Optimizations for Flash Solid-state Drives",
+          "authors": [
+            "Woong Shin"
+          ],
+          "abstract": "In this paper, we present OS I/O path optimizations for NAND flash solid-state drives, aimed to minimize scheduling delays caused by additional contexts such as interrupt bottom halves and background queue runs. With our optimizations, these contexts are eliminated and merged into hardware interrupts or I/O participating threads without introducing side effects. This was achieved by pipelining fine grained host controller operations with the cooperation of I/O participating threads. To safely expose fine grained host controller operations to upper layers, we present a low level hardware abstraction layer interface. Evaluations with micro-benchmarks showed that our optimizations were capable of accommodating up to five, AHCI controller attached, SATA 3.0 SSD devices at 671k IOPS, while current Linux SCSI based I/O path was limited at 354k IOPS failing to accommodate more than three devices. Evaluation on an SSD backed key value system also showed IOPS improvement using our I/O optimizations.",
+          "award": null
+        },
+        {
+          "title": "FlexECC: Partially Relaxing ECC of MLC SSD for Better Cache Performance",
+          "authors": [
+            "Ping Huang",
+            "Pradeep Subedi",
+            "Xubin He",
+            "Shuang He and Ke Zhou"
+          ],
+          "abstract": "The ever-growing capacity and continuously-dropping price have enabled flash-based MLC SSDs to be widely deployed as large non-volatile cache for storage systems. As MLC SSDs become increasingly denser and largercapacity, more complex and complicated Error Correction Code (ECC) schemes are required to fight against the decreasing raw reliability associated with shrinking cells. However, sophisticated ECCs could impose excessive overhead on page decoding latency and thus hurt performance. In fact, we could avoid employing expensive ECC schemes inside SSDs which are utilized at the cache layer. We propose FlexECC, a specifically designed MLC SSD architecture for the purpose of better cache performance without compromising system reliability and consistency. With the help of an upper-layer cache manager classifying and passing down block access hints, FlexECC chooses to apply either regular ECC or lightweight Error Detection Code (EDC) for blocks. To reduce performance penalty caused by retrieving backend copies for corrupted blocks from the next-level store, FlexECC periodically schedules a scrubbing process to verify the integrity of blocks protected by EDC and replenish corrupted ones into the cache in advance. Experimental results of a proof-of-concept FlexECC implementation show that compared to SSDs armed with regular ECC schemes, FlexECC improves cache performance by up to 30.8% for representative workloads and 63.5% for read-intensive workloads due to reduced read latency and garbage collection overhead. In addition, FlexECC also retains its performance advantages even under various faulty conditions without sacrificing system resiliency.",
+          "award": null
+        },
+        {
+          "title": "Nitro: A Capacity-Optimized SSD Cache for Primary Storage",
+          "authors": [
+            "Cheng Li",
+            "Philip Shilane"
+          ],
+          "abstract": "For many primary storage customers, storage must balance the requirements for large capacity, high performance, and low cost. A well studied technique is to place a solid state drive (SSD) cache in front of hard disk drive (HDD) storage, which can achieve much of the performance benefit of SSDs and the cost per gigabyte efficiency of HDDs. To further lower the cost of SSD caches and increase effective capacity, we propose the addition of data reduction techniques. Our cache architecture, called Nitro, has three main contributions: (1) an SSD cache design with adjustable deduplication, compression, and large replacement units, (2) an evaluation of the trade-offs between data reduction, RAM requirements, SSD writes (reduced up to 53%, which improves lifespan), and storage performance, and (3) acceleration of two prototype storage systems with an increase in IOPS (up to 120%) and reduction of read response time (up to 55%) compared to an SSD cache without Nitro. Additional benefits of Nitro include improved random read performance, faster snapshot restore, and reduced writes to SSDs.",
+          "award": null
+        }
+      ]
+    }
+  ]
+}

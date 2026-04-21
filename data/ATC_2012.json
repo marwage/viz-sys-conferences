@@ -1,0 +1,481 @@
+{
+  "conference": "ATC",
+  "year": 2012,
+  "url": "https://www.usenix.org/conference/atc12/technical-sessions",
+  "crawled_at": "2026-04-21",
+  "sessions": [
+    {
+      "title": "Multicore",
+      "chair": "Alexandra Fedorova",
+      "papers": [
+        {
+          "title": "Managing Large Graphs on Multi-Cores with Graph Awareness",
+          "authors": [
+            "Vijayan Prabhakaran"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "MemProf: A Memory Proﬁler for NUMA Multicore Systems",
+          "authors": [
+            "Renaud Lachaize",
+            "Baptiste Lepers",
+            "Vivien Quéma"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Remote Core Locking: Migrating Critical-Section Execution to Improve the Performance of Multithreaded Applications",
+          "authors": [
+            "Jean-Pierre Lozi"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "FCW Luncheon",
+          "authors": [
+            "Back Bay CD"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Packet Processing",
+      "chair": "Eddie Kohler",
+      "papers": [
+        {
+          "title": "The Click2NetFPGA Toolchain",
+          "authors": [
+            "Teemu Rinta-aho",
+            "Mika Karlstedt",
+            "Madhav P. Desai"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Building a Power-Proportional Software Router",
+          "authors": [
+            "Luca Niccolini",
+            "Gianluca Iannaccone",
+            "Sylvia Ratnasamy",
+            "Jaideep Chandrashekar",
+            "Luigi Rizzo"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "netmap: A Novel Framework for Fast Packet I/O",
+          "authors": [
+            "Luigi Rizzo",
+            "system call overheads",
+            "and memory copies"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Toward Efﬁcient Querying of Compressed Network Payloads",
+          "authors": [
+            "Teryl Taylor",
+            "Scott E. Coull",
+            "Fabian Monrose",
+            "John McHugh"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Plenary Session",
+          "authors": [
+            "Build a Linux-Based Mobile Robotics Platform (for Less than $500) Mark Woodward"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Joint USENIX ATC '12 and HotStorage '12 Poster Session and Happy Hour",
+          "authors": [
+            "Grand Ballroom Session Chair: Emil Sit"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Security",
+      "chair": "Andreas Haeberlen",
+      "papers": [
+        {
+          "title": "Body Armor for Binaries: Preventing Buffer Overflows Without Recompilation",
+          "authors": [
+            "Asia Slowinska",
+            "Traian Stancescu",
+            "Herbert Bos"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Abstractions for Usable Information Flow Control in Aeolus",
+          "authors": [
+            "Winnie Cheng",
+            "Dan R.K. Ports",
+            "David Schultz",
+            "Victoria Popic",
+            "Aaron Blankstein",
+            "James Cowling",
+            "Dorothy Curtis",
+            "Liuba Shrira",
+            "Barbara Liskov"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Treehouse: Javascript Sandboxes to Help Web Developers Help Themselves",
+          "authors": [
+            "Lon Ingram",
+            "Michael Walﬁsh",
+            "and (b) is deployable today"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Cloud Terminal: Secure Access to Sensitive Applications from Untrusted Systems",
+          "authors": [
+            "Lorenzo Martignoni",
+            "Pongsin Poosankam",
+            "Matei Zaharia",
+            "Jun Han",
+            "Stephen McCamant",
+            "Adrian Perrig",
+            "Scott Shenker",
+            "Ion Stoica"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Short Papers: Tools and Networking",
+      "chair": "Gernot Heiser",
+      "papers": [
+        {
+          "title": "Mosh: An Interactive Remote Shell for Mobile Clients",
+          "authors": [
+            "Keith Winstein",
+            "Hari Balakrishnan"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "TROPIC: Transactional Resource Orchestration Platform in the Cloud",
+          "authors": [
+            "Changbin Liu",
+            "Yun Mao",
+            "Boon Thau Loo",
+            "Jacobus E. Van der Merwe"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Trickle: Rate Limiting YouTube Video Streaming",
+          "authors": [
+            "Monia Ghobadi",
+            "Yuchung Cheng"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Tolerating Overload Attacks Against Packet Capturing Systems",
+          "authors": [
+            "Antonis Papadogiannakis",
+            "Michalis Polychronakis",
+            "Evangelos P. Markatos"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Enforcing Murphy’s Law for Advance Identification of Run-time Failures",
+          "authors": [
+            "Zach Miller"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "FCW Luncheon",
+          "authors": [
+            "Back Bay CD"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Distributed Systems",
+      "chair": "Jon Howell",
+      "papers": [
+        {
+          "title": "A Scalable Server for 3D Metaverses",
+          "authors": [
+            "Ewen Cheslack-Postava",
+            "Jeff Terrace",
+            "Philip Levis",
+            "Michael J. Freedman"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Granola: Low-Overhead Distributed Transaction Coordination",
+          "authors": [
+            "James Cowling",
+            "Barbara Liskov"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "High Performance Vehicular Connectivity with Opportunistic Erasure Coding",
+          "authors": [
+            "Ratul Mahajan"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Server-assisted Latency Management for Wide-area Distributed Systems",
+          "authors": [
+            "Wonho Kim",
+            "KyoungSoo Park",
+            "Vivek S. Pai"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Deduplication",
+      "chair": "Haibo Chen",
+      "papers": [
+        {
+          "title": "Generating Realistic Datasets for Deduplication Analysis",
+          "authors": [
+            "Vasily Tarasov",
+            "Amar Mudrankit",
+            "Will Buik",
+            "Philip Shilane",
+            "Geoff Kuenning",
+            "Erez Zadok"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "An Empirical Study of Memory Sharing in Virtual Machines",
+          "authors": [
+            "Sean Barker",
+            "Timothy Wood",
+            "Prashant Shenoy",
+            "Ramesh Sitaraman"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Primary Data Deduplication—Large Scale Study and System Design",
+          "authors": [
+            "Ahmed El-Shimi"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Languages and Tools",
+      "chair": "Angela Demke Brown",
+      "papers": [
+        {
+          "title": "Design and Implementation of an Embedded Python Run-Time System",
+          "authors": [
+            "Thomas W. Barr"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "AddressSanitizer: A Fast Address Sanity Checker",
+          "authors": [
+            "Konstantin Serebryany"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Software Persistent Memory",
+          "authors": [
+            "Jorge Guerra"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Rivet: Browser-agnostic Remote Debugging for Web Applications",
+          "authors": [
+            "James Mickens",
+            "in turn"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Short Papers: Performance",
+      "chair": "Wilson Hsieh",
+      "papers": [
+        {
+          "title": "Wimpy Nodes with 10GbE: Leveraging One-Sided Operations in Soft-RDMA to Boost Memcached",
+          "authors": [
+            "Patrick Stuedi"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Revisiting Software Zero-Copy for Web-caching Applications with Twin Memory Allocation",
+          "authors": [
+            "Xiang Song",
+            "Jicheng Shi",
+            "Haibo Chen",
+            "Binyu Zang"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Seagull: Intelligent Cloud Bursting for Enterprise Applications",
+          "authors": [
+            "Tian Guo",
+            "Upendra Sharma",
+            "Timothy Wood",
+            "Sambit Sahu",
+            "Prashant Shenoy"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "The Forgotten ‘Uncore’: On the Energy-Efﬁciency of Heterogeneous Cores",
+          "authors": [
+            "Vishal Gupta",
+            "Paul Brett",
+            "Karsten Schwan",
+            "Ganapati Srinivasa"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "FCW Luncheon",
+          "authors": [
+            "Back Bay CD"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "OS",
+      "chair": "Emil Sit",
+      "papers": [
+        {
+          "title": "Software Techniques for Avoiding Hardware Virtualization Exits",
+          "authors": [
+            "Ole Agesen"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "AppScope: Application Energy Metering Framework for Android Smartphone Using Kernel Activity Monitoring",
+          "authors": [
+            "Chanmin Yoon"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Gdev: First-Class GPU Resource Management in the Operating System",
+          "authors": [
+            "Shinpei Kato"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Replication",
+      "chair": "Andrew Birrell",
+      "papers": [
+        {
+          "title": "Gnothi: Separating Data and Metadata for Efficient and Available Storage Replication",
+          "authors": [
+            "Yang Wang"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Dynamic Reconﬁguration of Primary/Backup Clusters",
+          "authors": [
+            "Alexander Shraer",
+            "Benjamin Reed",
+            "Dahlia Malkhi",
+            "Flavio Junqueira"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Surviving Congestion in Geo-Distributed Storage Systems",
+          "authors": [
+            "Brian Cho",
+            "Marcos K. Aguilera"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Practical Hardening of Crash-Tolerant Systems",
+          "authors": [
+            "Miguel Correia",
+            "Daniel Gómez Ferro"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    }
+  ]
+}

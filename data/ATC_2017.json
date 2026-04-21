@@ -1,0 +1,769 @@
+{
+  "conference": "ATC",
+  "year": 2017,
+  "url": "https://www.usenix.org/conference/atc17/technical-sessions",
+  "crawled_at": "2026-04-21",
+  "sessions": [
+    {
+      "title": "Keynote Address",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Computer Systems Research in the Post-Virtualization Era",
+          "authors": [],
+          "abstract": "The evolution of computing technology has led to the centralization into mega-computing resources, the disruption of entire industries through software services, substantial concerns around security, privacy, and surveillance, and enabled the recent explosion of data science and deep learning. In all cases, computer systems (and computer systems research) provides a technical foundation to reason about challenges and trends. This talk will rely on examples from past and current research and put them in the context of the challenges of the day. It will revisit virtualization from a historical perspective and extend to my recent focus on microsecond-scale computing.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Kernel",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Lock-in-Pop: Securing Privileged Operating System Kernels by Keeping on the Beaten Path",
+          "authors": [
+            "Yiwen Li"
+          ],
+          "abstract": "Virtual machines (VMs) that try to isolate untrusted code are widely used in practice. However, it is often possible to trigger zero-day flaws in the host Operating System (OS) from inside of such virtualized systems. In this paper, we propose a new security metric showing strong correlation between “popular paths” and kernel vulnerabilities. We verify that the OS kernel paths accessed by popular applications in everyday use contain significantly fewer security bugs than less-used paths. We then demonstrate that this observation is useful in practice by building a prototype system which locks an application into using only popular OS kernel paths. By doing so, we demonstrate that we can prevent the triggering of zero-day kernel bugs significantly better than three other competing approaches, and argue that this is a practical approach to secure system design.",
+          "award": null
+        },
+        {
+          "title": "Fast and Precise Retrieval of Forward and Back Porting Information for Linux Device Drivers",
+          "authors": [
+            "Julia Lawall"
+          ],
+          "abstract": "Porting Linux device drivers to target more recent and older Linux kernel versions to compensate for the everchanging kernel interface is a continual problem for Linux device driver developers. Acquiring information about interface changes is a necessary, but tedious and error prone, part of this task. In this paper, we propose two tools, Prequel and gcc-reduce, to help the developer collect the needed information. Prequel provides language support for querying git commit histories, while gcc-reduce translates error messages produced by compiling a driver with a target kernel into appropriate Prequel queries. We have used our approach in porting 33 device driver files over up to 3 years of Linux kernel history, amounting to hundreds of thousands of commits. In these experiments, for 3/4 of the porting issues, our approach highlighted commits that enabled solving the porting task. For many porting issues, our approach retrieves relevant commits in 30 seconds or less.",
+          "award": null
+        },
+        {
+          "title": "Optimizing the TLB Shootdown Algorithm with Page Access Tracking",
+          "authors": [
+            "Nadav Amit"
+          ],
+          "abstract": "The operating system is tasked with maintaining the coherency of per-core TLBs, necessitating costly synchronization operations, notably to invalidate stale mappings. As core-counts increase, the overhead of TLB synchronization likewise increases and hinders scalability, whereas existing software optimizations that attempt to alleviate the problem (like batching) are lacking. We address this problem by revising the TLB synchronization subsystem. We introduce several techniques that detect cases whereby soon-to-be invalidated mappings are cached by only one TLB or not cached at all, allowing us to entirely avoid the cost of synchronization. In contrast to existing optimizations, our approach leverages hardware page access tracking. We implement our techniques in Linux and find that they reduce the number of TLB invalidations by up to 98% on average and thus improve performance by up to 78%. Evaluations show that while our techniques may introduce overheads of up to 9% when memory mappings are never removed, these overheads can be avoided by simple hardware enhancements.",
+          "award": null
+        },
+        {
+          "title": "Falcon: Scaling IO Performance in Multi-SSD Volumes",
+          "authors": [
+            "Pradeep Kumar and H. Howie Huang"
+          ],
+          "abstract": "With the high throughput offered by solid-state drives (SSDs), multi-SSD volumes have become an attractive storage solution for big data applications. Unfortunately, the IO stack in current operating systems imposes a number of volume-level limitations, such as per-volume based IO processing in the block layer, single flush thread per volume for buffer cache management, locks for parallel IOs on a file, all of which lower the performance that could otherwise be achieved on multi- SSD volumes. To address this problem, we propose a new design of per-drive IO processing that separates two key functionalities of IO batching and IO serving in the IO stack. Specifically, we design and develop Falcon that consists of two major components: Falcon IO Management Layer that batches the incoming IOs at the volume level, and Falcon Block Layer that parallelizes IO serving on the SSD level in a new block layer. Compared to the current practice, Falcon significantly speeds up direct random file read and write on an 8-SSD volume by 1.77× and 1.59× respectively, and also shows strong scalability across different numbers of drives and various storage controllers. In addition, Falcon improves the performance of a variety of applications by 1.69×.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Datacenters",
+      "chair": null,
+      "papers": [
+        {
+          "title": "deTector: a Topology-aware Monitoring System for Data Center Networks",
+          "authors": [
+            "Yanghua Peng",
+            "Ji Yang",
+            "Chuan Wu",
+            "Chuanxiong Guo",
+            "Chengchen Hu",
+            "Zongpeng Li"
+          ],
+          "abstract": "Troubleshooting network performance issues is a challenging task especially in large-scale data center networks. This paper presents deTector, a network monitoring system that is able to detect and localize network failures (manifested mainly by packet losses) accurately in near real time while minimizing the monitoring overhead. deTector achieves this goal by tightly coupling detection and localization and carefully selecting probe paths so that packet losses can be localized only according to end-to-end observations without the help of additional tools (e.g., tracert). In particular, we quantify the desirable properties of the matrix of probe paths, i.e., coverage and identifiability, and leverage an efficient greedy algorithm with a good approximation ratio and fast speed to select probe paths. We also propose a loss localization method according to loss patterns in a data center network. Our algorithm analysis, experimental evaluation on a Fattree testbed and supplementary large-scale simulation validate the scalability, feasibility and effectiveness of deTector.",
+          "award": null
+        },
+        {
+          "title": "Pricing Intra-Datacenter Networks with Over-Committed Bandwidth Guarantee",
+          "authors": [
+            "Jian Guo",
+            "John C.S. Lui"
+          ],
+          "abstract": "Current IaaS clouds provide performance guarantee on CPU and memory but no quantitative network performance for VM instances. Our measurements from three production IaaS clouds show that for the VMs with same CPU and memory, or similar pricing, the difference in bandwidth performance can be as much as 16×, which reveals a severe price-performance anomaly due to a lack of pricing for bandwidth guarantee. Considering the low network utilization in cloud-scale datacenters, we address this by presenting SoftBW, a system that enables pricing bandwidth with over commitment on bandwidth guarantee. SoftBW leverages usage-based charging to guarantee price-performance consistency among tenants, and implements a fulfillment based scheduling to provide bandwidth/fairness guarantee under bandwidth over commitment. Both testbed experiments and large-scale simulation results validate SoftBW’s ability of providing efficient bandwidth guarantee, and show that by using bandwidth over commitment, SoftBW increases 3.9× network utilization while incurring less than 5% guarantee failure.",
+          "award": null
+        },
+        {
+          "title": "Unobtrusive Deferred Update Stabilization for Efficient Geo-Replication",
+          "authors": [
+            "Chathuri Gunawardhana"
+          ],
+          "abstract": "In this paper, we propose a novel approach to manage the throughput vs visibility latency tradeoff that emerges when enforcing causal consistency in geo-replicated systems. Our approach consists in allowing full concurrency when processing local updates and using a deferred local serialisation procedure before shipping updates to remote datacenters. This strategy allows to implement inexpensive mechanisms to ensure system consistency requirements while avoiding intrusive effects on update operations, a major performance limitation of previous systems. We have implemented our approach as a variant of Riak KV. Our evaluation shows that we outperform sequencer-based approaches by almost an order of magnitude in the maximum achievable throughput. Furthermore, unlike previous sequencer-free solutions, our approach reaches nearly optimal remote update visibility latencies without limiting throughput.",
+          "award": null
+        },
+        {
+          "title": "Don't cry over spilled records: Memory elasticity of data-parallel applications and its application to cluster scheduling",
+          "authors": [
+            "Călin Iorgulescu and Florin Dinu",
+            "Aunn Raza",
+            "Wajih Ul Hassan",
+            "Willy Zwaenepoel"
+          ],
+          "abstract": "Understanding the performance of data-parallel workloads when resource-constrained has significant practical importance but unfortunately has received only limited attention. This paper identifies, quantifies and demonstrates memory elasticity, an intrinsic property of data-parallel tasks. Memory elasticity allows tasks to run with significantly less memory than they would ideally need while only paying a moderate performance penalty. For example, we find that given as little as 10% of ideal memory, PageRank and NutchIndexing Hadoop reducers become only 1.2x/1.75x and 1.08x slower. We show that memory elasticity is prevalent in the Hadoop, Spark, Tez and Flink frameworks. We also show that memory elasticity is predictable in nature by building simple models for Hadoop and extending them to Tez and Spark. To demonstrate the potential benefits of leveraging memory elasticity, this paper further explores its application to cluster scheduling. In this setting, we observe that the resource vs. time trade-off enabled by memory elasticity becomes a task queuing time vs. task runtime trade-off. Tasks may complete faster when scheduled with less memory because their waiting time is reduced. We show that a scheduler can turn this task-level tradeoff into improved job completion time and cluster-wide memory utilization. We have integrated memory elasticity into Apache YARN. We show gains of up to 60% in average job completion time on a 50-node Hadoop cluster. Extensive simulations show similar improvements over a large number of scenarios.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Pursuing Efficiency",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Popularity Prediction of Facebook Videos for Higher Quality Streaming",
+          "authors": [
+            "Linpeng Tang",
+            "Qi Huang and Amit Puntambekar",
+            "Ymir Vigfusson",
+            "Wyatt Lloyd",
+            "Kai Li"
+          ],
+          "abstract": "Streaming video algorithms dynamically select between different versions of a video to deliver the highest quality version that can be viewed without buffering over the client’s connection. To improve the quality for viewers, the backing video service can generate more and/or better versions, but at a significant computational overhead. Processing all videos uploaded to Facebook in the most intensive way would require a prohibitively large cluster. Facebook’s video popularity distribution is highly skewed, however, with analysis on sampled videos showing 1% of them accounting for 83% of the total watch time by users. Thus, if we can predict the future popularity of videos, we can focus the intensive processing on those videos that improve the quality of the most watch time. To address this challenge, we designed CHESS, the first popularity prediction algorithm that is both scalable and accurate. CHESS is scalable because, unlike the state-ofthe- art approaches, it requires only constant space per video, enabling it to handle Facebook’s video workload. CHESS is accurate because it delivers superior predictions using a combination of historical access patterns with social signals in a unified online learning framework. We have built a video prediction service, CHESSVPS, using our new algorithm that can handle Facebook’s workload with only four machines. We find that re-encoding popular videos predicted by CHESSVPS enables a higher percentage of total user watch time to benefit from intensive encoding, with less overhead than a recent production heuristic, e.g., 80% of watch time with one-third as much overhead.",
+          "award": null
+        },
+        {
+          "title": "Squeezing out All the Value of Loaded Data: An Out-of-core Graph Processing System with Reduced Disk I/O",
+          "authors": [
+            "Zhiyuan Ai",
+            "Xuehai Qian",
+            "Kang Chen and Weimin Zheng"
+          ],
+          "abstract": "The current primary concern of out-of-core graph processing systems is improving disk I/O locality, which leads to certain restrictions on their programming and execution models. Although improving the locality, these constraints also restrict the expressiveness. As a result, only sub-optimal algorithms are supported for many kinds of applications. When compared with the optimal algorithms, these supported algorithms typically incur sequential, but much larger, amount of disk I/O. In this paper, we explore a fundamentally different tradeoff: less total amount of I/O rather than better locality. We show that out-of-core graph processing systems uniquely provide the opportunities to lift the restrictions of the programming and execution model (e.g., process each loaded block at most once, neighborhood constraint) in a feasible manner, which enable efficient algorithms that require drastically less number of iterations. To demonstrate the ideas, we build CLIP, a novel out-ofcore graph processing system designed with the principle of “squeezing out all the value of loaded data”. With the more expressive programming model and more flexible execution, CLIP enables more efficient algorithms that require much less amount of total disk I/O. Our experiments show that the algorithms that can be only implemented in CLIP are much faster than the original disk-locality-optimized algorithms in many real-world cases (up to tens or even thousands of times speedup).",
+          "award": null
+        },
+        {
+          "title": "Ending the Anomaly: Achieving Low Latency and Airtime Fairness in WiFi",
+          "authors": [
+            "Toke Høiland-Jørgensen",
+            "Michał Kazior",
+            "Dave Täht",
+            "Per Hurtig and Anna Brunstrom"
+          ],
+          "abstract": "With more devices connected, delays and jitter at the WiFi hop become more prevalent, and correct functioning during network congestion becomes more important. However, two important performance issues prevent modern WiFi from reaching its potential: increased latency under load caused by excessive queueing (i.e. bufferbloat) and the 802.11 performance anomaly. To remedy these issues, we present a novel two-part solution. We design a new queueing scheme that eliminates bufferbloat in the wireless setting. Leveraging this queueing scheme, we then design an airtime fairness scheduler that operates at the access point and doesn’t require any changes to clients. We evaluate our solution using both a theoretical model and experiments in a testbed environment, formulating a suitable analytical model in the process. We show that our solution achieves an order of magnitude reduction in latency under load, large improvements in multi-station throughput, and nearly perfect airtime fairness for both TCP and downstream UDP traffic. Further experiments with application traffic confirm that the solution provides significant performance gains for real-world traffic.We develop a production quality implementation of our solution in the Linux kernel, the platform powering most access points outside of the managed enterprise setting. The implementation has been accepted into the mainline kernel distribution, making it available for deployment on billions of devices running Linux today.",
+          "award": null
+        },
+        {
+          "title": "Persona: A High-Performance Bioinformatics Framework",
+          "authors": [
+            "Stuart Byma and Sam Whitlock",
+            "Laura Flueratoru",
+            "Ethan Tseng",
+            "Christos Kozyrakis",
+            "Edouard Bugnion and James Larus"
+          ],
+          "abstract": "Next-generation genome sequencing technology has reached a point at which it is becoming cost-effective to sequence all patients. Biobanks and researchers are faced with an oncoming deluge of genomic data, whose processing requires new and scalable bioinformatics architectures and systems. Processing raw genetic sequence data is computationally expensive and datasets are large. Current software systems can require many hours to process a single genome and generally run only on a single computer. Common file formats are monolithic and row-oriented, a barrier to distributed computation. To address these challenges, we built Persona, a cluster-scale, high-throughput bioinformatics framework. Persona currently supports paired-read alignment, sorting, and duplicate marking using well-known algorithms and techniques. Persona can significantly reduce end-to-end processing times for bioinformatics computations. A new Aggregate Genomic Data (AGD) format unifies sample data and analysis results, while enabling efficient distributed computation and I/O. In a case study on sequence alignment, Persona sustains 1.353 gigabases aligned per second with 101 base pair reads on a 32-node cluster and can align a full genome in ~16.7 seconds using the SNAP algorithm. Our results demonstrate that: (1) alignment computation with Persona scales linearly across servers with no measurable completion-time imbalance and negligible framework overheads; (2) on a single server, sorting with Persona and AGD is up to 2.3× faster than commonly used tools, while duplicate marking is 3× faster; (3) with AGD, a 7 node COTS network storage system can service up to 60 alignment compute nodes; (4) server cost dominates for a balanced system running Persona, while long-term data storage dwarfs the cost of computation.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Let's Talk about GPUs",
+      "chair": null,
+      "papers": [
+        {
+          "title": "SPIN: Seamless Operating System Integration of Peer-to-Peer DMA Between SSDs and GPUs",
+          "authors": [
+            "Shai Bergman and Tanya Brokhman",
+            "Tzachi Cohen",
+            "Mark Silberstein"
+          ],
+          "abstract": "Recent GPUs enable Peer-to-Peer Direct Memory Access (P2P) from fast peripheral devices like NVMe SSDs to exclude the CPU from the data path between them for efficiency. Unfortunately, using P2P to access files is challenging because of the subtleties of low-level nonstandard interfaces, which bypass the OS file I/O layers and may hurt system performance. SPIN integrates P2P into the standard OS file I/O stack, dynamically activating P2P where appropriate, transparently to the user. It combines P2P with page cache accesses, re-enables read-ahead for sequential reads, all while maintaining standard POSIX FS consistency, portability across GPUs and SSDs, and compatibility with virtual block devices such as software RAID. We evaluate SPIN on NVIDIA and AMD GPUs using standard file I/O benchmarks, application traces and end-to-end experiments. SPIN achieves significant performance speedups across a wide range of workloads, exceeding P2P throughput by up to an order of magnitude. It also boosts the performance of an aerial imagery rendering application by 2:6× by dynamically adapting to its input-dependent file access pattern, and enables 3:3× higher throughput for a GPU-accelerated log server.",
+          "award": null
+        },
+        {
+          "title": "Poseidon: An Efficient Communication Architecture for Distributed Deep Learning on GPU Clusters",
+          "authors": [
+            "Hao Zhang",
+            "Zeyu Zheng",
+            "Shizhen Xu and Wei Dai",
+            "Qirong Ho",
+            "Xiaodan Liang",
+            "Eric P. Xing"
+          ],
+          "abstract": "Deep learning models can take weeks to train on a single GPU-equipped machine, necessitating scaling out DL training to a GPU-cluster. However, current distributed DL implementations can scale poorly due to substantial parameter synchronization over the network, because the high throughput of GPUs allows more data batches to be processed per unit time than CPUs, leading to more frequent network synchronization. We present Poseidon, an efficient communication architecture for distributed DL on GPUs. Poseidon exploits the layered model structures in DL programs to overlap communication and computation, reducing bursty network communication. Moreover, Poseidon uses a hybrid communication scheme that optimizes the number of bytes required to synchronize each layer, according to layer properties and the number of machines. We show that Poseidon is applicable to different DL frameworks by plugging Poseidon into Caffe and TensorFlow. We show that Poseidon enables Caffe and TensorFlow to achieve 15.5x speed-up on 16 single-GPU machines, even with limited bandwidth (10GbE) and the challenging VGG19-22K network for image classification. Moreover, Poseidon-enabled TensorFlow achieves 31.5x speed-up with 32 single-GPU machines on Inception-V3, a 50% improvement over the open-source TensorFlow (20x speed-up).",
+          "award": null
+        },
+        {
+          "title": "Garaph: Efficient GPU-accelerated Graph Processing on a Single Machine with Balanced Replication",
+          "authors": [
+            "Lingxiao Ma",
+            "Jilong Xue",
+            "Yafei Dai"
+          ],
+          "abstract": "Recent advances in storage (e.g., DDR4, SSD, NVM) and accelerators (e.g., GPU, Xeon-Phi, FPGA) provide the opportunity to efficiently process large-scale graphs on a single machine. In this paper, we present Garaph, a GPU-accelerated graph processing system on a single machine with secondary storage as memory extension. Garaph is novel in three ways. First, Garaph proposes a vertex replication degree customization scheme that maximizes the GPU utilization given vertices’ degrees and space constraints. Second, Garaph adopts a balanced edge-based partition ensuring work balance over CPU threads, and also a hybrid of notify-pull and pull computation models optimized for fast graph processing on the CPU. Third, Garaph uses a dynamic workload assignment scheme which takes into account both characteristics of processing elements and graph algorithms. Our evaluation with six widely used graph applications on seven real-world graphs shows that Garaph significantly outperforms existing state-of-art CPU-based and GPU-based graph processing systems, getting up to 5.36x speedup over the fastest among them.",
+          "award": null
+        },
+        {
+          "title": "GPU Taint Tracking",
+          "authors": [
+            "Ari B. Hayes",
+            "Lingda Li",
+            "Mohammad Hedayati",
+            "Jiahuan He and Eddy Z. Zhang",
+            "Kai Shen"
+          ],
+          "abstract": "Dynamic tainting tracks the influence of certain inputs (taint sources) through execution and it is a powerful tool for information flow analysis and security. Taint tracking has primarily targeted CPU program executions. Motivated by recent recognition of information leaking in GPU memory and GPU-resident malware, this paper presents the first design and prototype implementation of a taint tracking system on GPUs. Our design combines a static binary instrumentation with dynamic tainting at runtime. We present new performance optimizations by exploiting unique GPU characteristics—a large portion of instructions on GPU runtime parameters and constant memory can be safely eliminated from taint tracking; large GPU register file allows fast maintenance of a hot portion of the taint map. Experiments show that these techniques improved the GPU taint tracking performance by 5 to 20 times for a range of image processing, data encryption, and deep learning applications. We further demonstrate that GPU taint tracking can enable zeroing sensitive data to minimize information leaking as well as identifying and countering GPU-resident malware.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Virtualization",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Optimizing the Design and Implementation of the Linux ARM Hypervisor",
+          "authors": [
+            "Christoffer Dall"
+          ],
+          "abstract": "Modern hypervisor designs for both ARM and x86 virtualization rely on running an operating system kernel, the hypervisor OS kernel, to support hypervisor functionality. While x86 hypervisors effectively leverage architectural support to run the kernel, existing ARM hypervisors map poorly to the virtualization features of the ARM architecture, resulting in worse performance. We identify the key reason for this problem is the need to multiplex kernel mode state between the hypervisor and virtual machines, which each run their own kernel. To address this problem, we take a fundamentally different approach to hypervisor design that runs the hypervisor together with its OS kernel in a separate CPU mode from kernel mode. Using this approach, we redesign KVM/ARM to leverage a separate ARM CPU mode for running both the hypervisor and its OS kernel. We show what changes are required in Linux to implement this on current ARM hardware as well as how newer ARM architectural support can be used to support this approach without any changes to Linux other than to KVM/ARM itself. We show that our redesign and optimizations can result in an order of magnitude performance improvement for KVM/ARM, and can provide faster performance than x86 on key hypervisor operations. As a result, many aspects of our design have been successfully merged into mainline Linux.",
+          "award": null
+        },
+        {
+          "title": "Multi-Hypervisor Virtual Machines: Enabling an Ecosystem of Hypervisor-level Services",
+          "authors": [
+            "Kartik Gopalan",
+            "Daniel Williams and Nilton Bila"
+          ],
+          "abstract": "Public cloud software marketplaces already offer users a wealth of choice in operating systems, database management systems, financial software, and virtual networking, all deployable and configurable at the click of a button. Unfortunately, this level of customization has not extended to emerging hypervisor-level services, partly because traditional virtual machines (VMs) are fully controlled by only one hypervisor at a time. Currently, a VM in a cloud platform cannot concurrently use hypervisor-level services from multiple third-parties in a compartmentalized manner. We propose the notion of a multi-hypervisor VM, which is an unmodified guest that can simultaneously use services from multiple coresident, but isolated, hypervisors. We present a new virtualization architecture, called Span virtualization, that leverages nesting to allow multiple hypervisors to concurrently control a guest’s memory, virtual CPU, and I/O resources. Our prototype of Span virtualization on the KVM/QEMU platform enables a guest to use services such as introspection, network monitoring, guest mirroring, and hypervisor refresh, with performance comparable to traditional nested VMs.",
+          "award": null
+        },
+        {
+          "title": "Preemptive, Low Latency Datacenter Scheduling via Lightweight Virtualization",
+          "authors": [
+            "Wei Chen",
+            "Jia Rao",
+            "Xiaobo Zhou"
+          ],
+          "abstract": "Data centers are evolving to host heterogeneous workloads on shared clusters to reduce the operational cost and achieve higher resource utilization. However, it is challenging to schedule heterogeneous workloads with diverse resource requirements and QoS constraints. On the one hand, latency-critical jobs need to be scheduled as soon as they are submitted to avoid any queuing delays. On the other hand, best-effort long jobs should be allowed to occupy the cluster when there are idle resources to improve cluster utilization. The challenge lies in how to minimize the queuing delays of short jobs while maximizing cluster utilization. Existing solutions either forcibly kill long jobs to guarantee low latency for short jobs or disable preemption to optimize utilization. Hybrid approaches with resource reservations have been proposed but need to be tuned for specific workloads. In this paper, we propose and develop BIG-C, a container-based resource management framework for Big Data cluster computing. The key design is to leverage lightweight virtualization, a.k.a, containers to make tasks preemptable in cluster scheduling. We devise two types of preemption strategies: immediate and graceful preemptions and show their effectiveness and tradeoffs with loosely-coupled MapReduce workloads as well as iterative, in-memory Spark workloads. Based on the mechanisms for task preemption, we further develop a preemptive fair share cluster scheduler. We have implemented BIG-C in YARN. Our evaluation with synthetic and production workloads shows that low-latency and high utilization can be both attained when scheduling heterogeneous workloads on a contended cluster.",
+          "award": null
+        },
+        {
+          "title": "The RCU-Reader Preemption Problem in VMs",
+          "authors": [
+            "Aravinda Prasad and K Gopinath",
+            "Paul E. McKenney"
+          ],
+          "abstract": "When synchronization primitives such as locking and read-copy update (RCU) execute within virtual machines (VMs), preemption can cause multi-second latency spikes, increasing peak memory footprint and fragmentation inside VMs, which in turn may trigger swapping or VM ballooning. The resulting CPU utilization and memory footprint increases can negate the server-consolidation benefits of virtualization. Although preemption of lock holders in VMs has been well-studied, the corresponding solutions do not apply to RCU due to its exceedingly lightweight read-side primitives. This paper presents the first evaluation of RCU-reader preemption in a virtualized environment. Our evaluation shows 50% increase in the peak memory footprint and 155% increase in fragmentation for a microbenchmark, 23.71% increase in average kernel CPU utilization, 2.9× increase in the CPU time to compute a grace period and 2.18× increase in the average grace period duration for the Postmark benchmark.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Security and Privacy I",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Bunshin: Compositing Security Mechanisms through Diversification",
+          "authors": [
+            "Meng Xu"
+          ],
+          "abstract": "A number of security mechanisms have been proposed to harden programs written in unsafe languages, each of which mitigates a specific type of memory error. Intuitively, enforcing multiple security mechanisms on a target program will improve its overall security. However, this is not yet a viable approach in practice because the execution slowdown caused by various security mechanisms is often non-linearly accumulated, making the combined protection prohibitively expensive; further, most security mechanisms are designed for independent or isolated uses and thus are often in conflict with each other, making it impossible to fuse them in a straightforward way. In this paper, we present BUNSHIN, an N-version-based system that enables different and even conflicting security mechanisms to be combined to secure a program while at the same time reducing the execution slowdown. In particular, we propose an automated mechanism to distribute runtime security checks in multiple program variants in such a way that conflicts between security checks are inherently eliminated and execution slowdown is minimized with parallel execution. We also present an N-version execution engine to seamlessly synchronize these variants so that all distributed security checks work together to guarantee the security of a target program.",
+          "award": null
+        },
+        {
+          "title": "Glamdring: Automatic Application Partitioning for Intel SGX",
+          "authors": [
+            "Joshua Lind",
+            "Tobias Reiher",
+            "David Goltzsche",
+            "David Eyers",
+            "Rudiger Kapitza",
+            "Christof Fetzer",
+            "Peter Pietzuch"
+          ],
+          "abstract": "Trusted execution support in modern CPUs, as offered by Intel SGX enclaves, can protect applications in untrusted environments. While prior work has shown that legacy applications can run in their entirety inside enclaves, this results in a large trusted computing base (TCB). Instead, we explore an approach in which we partition an application and use an enclave to protect only security-sensitive data and functions, thus obtaining a smaller TCB. We describe Glamdring, the first source-level partitioning framework that secures applications written in C using Intel SGX. A developer first annotates security-sensitive application data. Glamdring then automatically partitions the application into untrusted and enclave parts: (i) to preserve data confidentiality, Glamdring uses dataflow analysis to identify functions that may be exposed to sensitive data; (ii) for data integrity, it uses backward slicing to identify functions that may affect sensitive data. Glamdring then places security-sensitive functions inside the enclave, and adds runtime checks and cryptographic operations at the enclave boundary to protect it from attack. Our evaluation of Glamdring with the Memcached store, the LibreSSL library, and the Digital Bitbox bitcoin wallet shows that it achieves small TCB sizes and has acceptable performance overheads.",
+          "award": null
+        },
+        {
+          "title": "High-Resolution Side Channels for Untrusted Operating Systems",
+          "authors": [
+            "Marcus Hähnel",
+            "Weidong Cui and Marcus Peinado"
+          ],
+          "abstract": "Feature-rich mass-market operating systems have large trusted computing bases (TCBs) and a long history of vulnerabilities. Systems like Overshadow, InkTag or Haven attempt to remove the operating system (OS) from the TCB of applications while retaining its functionality. However, the untrusted OS’s control of most physical resources puts it in a much better position to launch side-channel attacks than traditional unprivileged side-channel attackers. Initial attacks focused on the page-fault channel, demonstrating significant information leakage for three legacy applications. We present two new side channels for an untrusted OS which use timer interrupts and cache misses to achieve higher temporal and spatial resolution than the page-fault channel. We leverage the untrusted OS’s control over hardware to reduce noise in the side channels to enable successful attacks in just a single run of the target. We demonstrate that our side channels enable attacks against new SGX applications such as VC3 that were designed not to trust the OS. We also show a new attack against libjpeg that extracts images with two orders of magnitude more information than the page-fault channel attack.",
+          "award": null
+        },
+        {
+          "title": "Understanding Security Implications of Using Containers in the Cloud",
+          "authors": [
+            "Byungchul Tak",
+            "Canturk Isci"
+          ],
+          "abstract": "Container technology is being adopted as a mainstream platform for IT solutions because of high degree of agility, reusability and portability it offers. However, there are challenges to be addressed for successful adoption. First, it is difficult to establish the full pedigree of images downloaded from public registries. Some might have vulnerabilities introduced unintentionally through rounds of updates by different users. Second, non-conformance to the immutable software deployment policies, such as those promoted by the DevOps principles, introduces vulnerabilities and the loss of control over deployed software. In this study, we investigate containers deployed in a production cloud to derive a set of recommended approaches to address these challenges. Our analysis reveals evidences that (i), images of unresolved pedigree have introduced vulnerabilities to containers belonging to third parties; (ii), updates to live public containers are common, defying the tenet that deployed software is immutable; and (iii), scanning containers or images alone is insufficient to eradicate vulnerabilities from public containers. We advocate for better systems support for tracking image provenance and resolving disruptive changes to containers, and propose practices that container users should adopt to limit the vulnerability of their containers.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Key-Value Stores and Databases",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Memshare: a Dynamic Multi-tenant Key-value Cache",
+          "authors": [
+            "Asaf Cidon",
+            "Daniel Rushton",
+            "Stephen M. Rumble",
+            "Ryan Stutsman"
+          ],
+          "abstract": "Web application performance heavily relies on the hit rate of DRAM key-value caches. Current DRAM caches statically partition memory across applications that share the cache. This results in under utilization and limits cache hit rates. We present Memshare, a DRAM key-value cache that dynamically manages memory across applications. Memshare provides a resource sharing model that guarantees reserved memory to different applications while dynamically pooling and sharing the remaining memory to optimize overall hit rate. Key-value caches are typically memory capacity bound, which leaves cache server CPU and memory bandwidth idle. Memshare leverages these resources with a log-structured design that allows it to provide better hit rates than conventional caches by dynamically re-partitioning memory among applications. We implemented Memshare and ran it on a week-long trace from a commercial memcached provider. Memshare increases the combined hit rate of the applications in the trace from 84.7% to 90.8%, and it reduces the total number of misses by 39.7% without significantly affecting cache throughput or latency. Even for single-tenant applications, Memshare increases the average hit rate of the state-of-the-art key-value cache by an additional 2.7%.",
+          "award": null
+        },
+        {
+          "title": "Replication-driven Live Reconfiguration for Fast Distributed Transaction Processing",
+          "authors": [
+            "Xingda Wei"
+          ],
+          "abstract": "Recent in-memory database systems leverage advanced hardware features like RDMA to provide transactional processing at millions of transactions per second. Distributed transaction processing systems can scale to even higher rates, especially for partitionable workloads. Unfortunately, these high rates are challenging to sustain during partition reconfiguration events. In this paper, we first show that state-of-the-art approaches would cause notable performance disruption under fast transaction processing. To this end, this paper presents DrTM+B, a live reconfiguration approach that seamlessly repartitions data while causing little performance disruption to running transactions. DrTM+B uses a pre-copy based mechanism, where excessive data transfer is avoided by leveraging properties commonly found in recent transactional systems. DrTM+B’s reconfiguration plans reduce data movement by preferring existing data replicas, while data is asynchronously copied from multiple replicas in parallel. It further reuses the log forwarding mechanism in primary-backup replication to seamlessly track and forward dirty database tuples, avoiding iterative copying costs. To commit a reconfiguration plan in a transactionally safe way, DrTM+B designs a cooperative commit protocol to perform data and state synchronizations among replicas. Evaluation on a working system based on DrTM+R with 3-way replication using typical OLTP workloads like TPC-C and SmallBank shows that DrTM+B incurs only very small performance degradation during live reconfiguration. Both the reconfiguration time and the downtime are also minimal.",
+          "award": null
+        },
+        {
+          "title": "HiKV: A Hybrid Index Key-Value Store for DRAM-NVM Memory Systems",
+          "authors": [
+            "Fei Xia",
+            "University of Chinese Academy of Sciences",
+            "Dejun Jiang"
+          ],
+          "abstract": "Hybrid memory systems consisting of DRAM and Non-Volatile Memory are promising to persist data fast. The index design of existing key-value stores for hybrid memory fails to utilize its specific performance characteristics: fast writes in DRAM, slow writes in NVM, and similar reads in DRAM and NVM. This paper presents HiKV, a persistent key-value store with the central idea of constructing a hybrid index in hybrid memory. To support rich key-value operations efficiently, HiKV exploits the distinct merits of hash index and B+-Tree index. HiKV builds and persists the hash index in NVM to retain its inherent ability of fast index searching. HiKV builds the B+-Tree index in DRAM to support range scan and avoids long NVM writes for maintaining consistency of the two indexes. Furthermore, HiKV applies differential concurrency schemes to hybrid index and adopts ordered-write consistency to ensure crash consistency. For single-threaded performance, HiKV outperforms the state-of-the-art NVM-based key-value stores by reducing latency up to 86.6%, and for multi-threaded performance, HiKV increases the throughput by up to 6.4x under YCSB workloads.",
+          "award": null
+        },
+        {
+          "title": "TRIAD: Creating Synergies Between Memory, Disk and Log in Log Structured Key-Value Stores",
+          "authors": [
+            "Oana Balmau",
+            "Huapeng Yuan"
+          ],
+          "abstract": "We present TRIAD, a new persistent key-value (KV) store based on Log-Structured Merge (LSM) trees. TRIAD improves LSM KV throughput by reducing the write amplification arising in the maintenance of the LSM tree structure. Although occurring in the background, write amplification consumes significant CPU and I/O resources. By reducing write amplification, TRIAD allows these resources to be used instead to improve user-facing throughput. TRIAD uses a holistic combination of three techniques. At the LSM memory component level, TRIAD leverages skew in data popularity to avoid frequent I/O operations on the most popular keys. At the storage level, TRIAD amortizes management costs by deferring and batching multiple I/O operations. At the commit log level, TRIAD avoids duplicate writes to storage. We implement TRIAD as an extension of Facebook’s RocksDB and evaluate it with production and synthetic workloads. With these workloads, TRIAD yields up to 193% improvement in throughput. It reduces write amplification by a factor of up to 4x, and decreases the amount of I/O by an order of magnitude.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Invited Talks",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Visualizing Performance with Flame Graphs",
+          "authors": [],
+          "abstract": "Flame graphs are a simple stack trace visualization that helps answer an everyday problem: how is software consuming resources, especially CPUs, and how did this change since the last software version? Flame graphs have been adopted by many languages, products, and companies, including Netflix, and have become a standard tool for performance analysis. They were published in \"The Flame Graph\" article in the June 2016 issue of Communications of the ACM, by their creator, Brendan Gregg. This talk describes the background for this work, and the challenges encountered when profiling stack traces and resolving symbols for different languages, including for just-in-time compiler runtimes. Instructions will be included generating mixed-mode flame graphs on Linux, and examples from our use at Netflix with Java. Advanced flame graph types will be described, including differential, off-CPU, chain graphs, memory, and TCP events. Finally, future work and unsolved problems in this area will be discussed.",
+          "award": null
+        },
+        {
+          "title": "Performance Superpowers with Enhanced BPF",
+          "authors": [],
+          "abstract": "The Berkeley Packet Filter (BPF) in Linux has been enhanced in very recent versions to do much more than just filter packets, and has become a hot area of operating systems innovation, with much more yet to be discovered. BPF is a sandboxed virtual machine that runs user-level defined programs in kernel context, and is part of many kernels. The Linux enhancements allow it to run custom programs on other events, including kernel- and user-level dynamic tracing (kprobes and uprobes), static tracing (tracepoints), and hardware events. This is finding uses for the generation of new performance analysis tools, network acceleration technologies, and security intrusion detection systems. This talk will explain the BPF enhancements, then discuss the new performance observability tools that are in use and being created, especially from the BPF compiler collection (bcc) open source project. These tools provide new insights for file system and storage performance, CPU scheduler performance, TCP performance, and much more. This is a major turning point for Linux systems engineering, as custom advanced performance instrumentation can be used safely in production environments, powering a new generation of tools and visualizations. Because these BPF enhancements are only in very recent Linux (such as Linux 4.9), most companies are not yet running new enough kernels to be exploring BPF yet. This will change in the next year or two, as companies including Netflix upgrade their kernels. This talk will give you a head start on this growing technology, and also discuss areas of future work and unsolved problems.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Help Me Debug",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Engineering Record and Replay for Deployability",
+          "authors": [
+            "Robert O’Callahan and Chris Jones",
+            "Nathan Froyd",
+            "Kyle Huey",
+            "Albert Noll",
+            "Nimrod Partush"
+          ],
+          "abstract": "The ability to record and replay program executions with low overhead enables many applications, such as reverse-execution debugging, debugging of hard-to reproduce test failures, and “black box” forensic analysis of failures in deployed systems. Existing record-and replay approaches limit deployability by recording an entire virtual machine (heavyweight), modifying the OS kernel (adding deployment and maintenance costs), requiring pervasive code instrumentation (imposing significant performance and complexity overhead), or modifying compilers and runtime systems (limiting generality). We investigated whether it is possible to build a practical record-and-replay system avoiding all these issues. The answer turns out to be yes—if the CPU and operating system meet certain non-obvious constraints. Fortunately modern Intel CPUs, Linux kernels and user-space frameworks do meet these constraints, although this has only become true recently. With some novel optimizations, our system RR records and replays real-world low-parallelism workloads with low overhead, with an entirely user-space implementation, using stock hardware, compilers, runtimes and operating systems. RR forms the basis of an open-source reverse-execution debugger seeing significant use in practice. We present the design and implementation of RR, describe its performance on a variety of workloads, and identify constraints on hardware and operating system design required to support our approach.",
+          "award": null
+        },
+        {
+          "title": "Proactive error prediction to improve storage system reliability",
+          "authors": [
+            "Farzaneh Mahdisoltani",
+            "Ioan Stefanovici",
+            "Bianca Schroeder"
+          ],
+          "abstract": "This paper proposes the use of machine learning techniques to make storage systems more reliable in the face of sector errors. Sector errors are partial drive failures, where individual sectors on a drive become unavailable, and occur at a high rate in both hard disk drives and solid state drives. The data in the affected sectors can only be recovered through redundancy in the system (e.g. another drive in the same RAID) and is lost if the error is encountered while the system operates in degraded mode, e.g. during RAID reconstruction. In this paper, we explore a range of different machine learning techniques and show that sector errors can be predicted ahead of time with high accuracy. Prediction is robust, even when only little training data or only training data for a different drive model is available. We also discuss a number of possible use cases for improving storage system reliability through the use of sector error predictors. We evaluate one such use case in detail: We show that the mean time to detecting errors (and hence the window of vulnerability to data loss) can be greatly reduced by adapting the speed of a scrubber based on error predictions.",
+          "award": null
+        },
+        {
+          "title": "Towards Production-Run Heisenbugs Reproduction on Commercial Hardware",
+          "authors": [
+            "Shiyou Huang"
+          ],
+          "abstract": "We present a new technique, H3, for reproducing Heisenbugs in production runs on commercial hardware. H3 integrates the hardware control flow tracing capability provided in recent Intel processors with symbolic constraint analysis. Compared to a state-of-the-art solution, CLAP, this integration allows H3 to reproduce failures with much lower runtime overhead and much more compact trace. Moreover, it allows us to develop a highly effective core-based constraint reduction technique that significantly reduces the complexity of the generated symbolic constraints. H3 has been implemented for C/C++ and evaluated on both popular benchmarks and real-world applications. It reproduces real-world Heisenbugs with overhead ranging between 1.4%- 23.4%, up to 8X more efficient than CLAP, and incurs only 4.9% runtime overhead on PARSEC benchmarks.",
+          "award": null
+        },
+        {
+          "title": "A DSL Approach to Reconcile Equivalent Divergent Program Executions",
+          "authors": [
+            "Luís Pina"
+          ],
+          "abstract": "Multi-Version Execution (MVE) deploys multiple versions of the same program, typically synchronizing their execution at the level of system calls. By default, MVE requires all deployed versions to issue the same sequence of system calls, which limits the types of versions which can be deployed. In this paper, we propose a Domain-Specific Language (DSL) to reconcile expected divergences between different program versions deployed through MVE. We evaluate the DSL by adding it to an existing MVE system (Varan) and testing it via three scenarios: (1) deploying the same program under different configurations, (2) deploying different releases of the same program, and (3) deploying dynamic analyses in parallel with the native execution. We also present an algorithm to automatically extract DSL rules from pairs of system call traces. Our results show that each scenario requires a small number of simple rules (at most 14 rules in each case) and that writing DSL rules can be partially automated.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Networking",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Titan: Fair Packet Scheduling for Commodity Multiqueue NICs",
+          "authors": [
+            "Brent Stephens"
+          ],
+          "abstract": "The performance of an OS’s networking stack can be measured by its achieved throughput, CPU utilization, latency, and per-flow fairness. To be able to drive increasing line-rates at 10Gbps and beyond, modern OS networking stacks rely on a number of important hardware and software optimizations, including but not limited to using multiple transmit and receive queues and segmentation offloading. Unfortunately, we have observed that these optimizations lead to substantial flow-level unfairness. We describe Titan, an extension to the Linux networking stack that systematically addresses unfairness arising in different operating conditions. Across both fine and coarse timescales and when NIC queues are undersubscribed and oversubscribed, we find that the Titan can reduce unfairness by 58% or more when compared with the best performing Linux configuration. We also find that improving fairness can lead to a reduction in tail flow completion times for flows in an all-to-all shuffle in a cluster of servers.",
+          "award": null
+        },
+        {
+          "title": "MopEye: Opportunistic Monitoring of Per-app Mobile Network Performance",
+          "authors": [
+            "Daoyuan Wu",
+            "Rocky K. C. Chang",
+            "Debin Gao"
+          ],
+          "abstract": "Crowdsourcing mobile user’s network performance has become an effective way of understanding and improving mobile network performance and user quality-of-experience. However, the current measurement method is still based on the landline measurement paradigm in which a measurement app measures the path to fixed (measurement or web) servers. In this work, we introduce a new paradigm of measuring per-app mobile network performance. We design and implement MopEye, an Android app to measure network round-trip delay for each app whenever there is app traffic. This opportunistic measurement can be conducted automatically without user intervention. Therefore, it can facilitate a large-scale and long-term crowdsourcing of mobile network performance. In the course of implementing MopEye, we have overcome a suite of challenges to make the continuous latency monitoring lightweight and accurate. We have deployed MopEye to Google Play for an IRB-approved crowdsourcing study in a period of ten months, which obtains over five million measurements from 6,266 Android apps on 2,351 smartphones. The analysis reveals a number of new findings on the per-app network performance and mobile DNS performance.",
+          "award": null
+        },
+        {
+          "title": "Emu: Rapid Prototyping of Networking Services",
+          "authors": [
+            "Nik Sultana",
+            "Richard Clegg",
+            "Luo Mai",
+            "Pietro Bressana and Robert Soule",
+            "Richard Mortier",
+            "Paolo Costa",
+            "Peter Pietzuch",
+            "Jon Crowcroft"
+          ],
+          "abstract": "Due to their performance and flexibility, FPGAs are an attractive platform for the execution of network functions. It has been a challenge for a long time though to make FPGA programming accessible to a large audience of developers. An appealing solution is to compile code from a general-purpose language to hardware using high-level synthesis. Unfortunately, current approaches to implement rich network functionality are insufficient because they lack: (i) libraries with abstractions for common network operations and data structures, (ii) bindings to the underlying “substrate” on the FPGA, and (iii) debugging and profiling support. This paper describes Emu, a new standard library for an FPGA hardware compiler that enables developers to rapidly create and deploy network functionality. Emu allows for high-performance designs without being bound to particular packet processing paradigms. Furthermore, it supports running the same programs on CPUs, in Mininet, and on FPGAs, providing a better development environment that includes advanced debugging capabilities. We demonstrate that network functions implemented using Emu have only negligible resource and performance overheads compared with natively-written hardware versions.",
+          "award": null
+        },
+        {
+          "title": "Protego: Cloud-Scale Multitenant IPsec Gateway",
+          "authors": [
+            "Jeongseok Son",
+            "Yongqiang Xiong",
+            "Kun Tan",
+            "Paul Wang and Ze Gan",
+            "Sue Moon"
+          ],
+          "abstract": "Virtual cloud network services let users have their own private networks in the public cloud. IPsec gateways are growing in importance accordingly as they provide VPN connections for customers to remotely access these private networks. Major cloud providers offer IPsec gateway functions to tenants using virtual machines (VMs) running a software IPsec gateway inside. However, dedicating individual IPsec gateway VMs to each tenant results in significant resource waste due to the strong isolation mechanism of VMs. In this paper, we design Protego, a distributed IPsec gateway service designed for multitenancy. By separating the control plane and the data plane of an IPsec gateway, Protego achieves high availability with active redundancy. Furthermore, Protego elastically scales in and out by seamlessly migrating IPsec tunnels between the data nodes without compromising their throughput. Our evaluation and simulation based on production data show that Protego together with a simple resource provisioning algorithm saves more than 80% of the resources compared with allocating independent VMs.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Caching along the Way",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Cache Modeling and Optimization using Miniature Simulations",
+          "authors": [
+            "Carl Waldspurger",
+            "Nohhyun Park"
+          ],
+          "abstract": "Recent approximation algorithms (e.g., CounterStacks, SHARDS and AET) make lightweight, continuously-updated miss ratio curves (MRCs) practical for online modeling and control of LRU caches. For more complex cache-replacement policies, scaled-down simulation, introduced with SHARDS, offers a general method for emulating a given cache size by using a miniature cache processing a small spatially-hashed sample of requests. We present the first detailed study evaluating the effectiveness of this approach for modeling non-LRU algorithms, including ARC, LIRS and OPT. Experiments with over a hundred real-world traces demonstrate that scaled-down MRCs are extremely accurate while requiring dramatically less space and time than full simulation. We propose an efficient, generic framework for dynamic optimization using multiple scaled-down simulations to explore candidate cache configurations simultaneously. Experiments demonstrate significant improvements from automatic adaptation of parameters including the stack size limit in LIRS, and queue sizes in 2Q. Finally, we introduce SLIDE, a new approach inspired by Talus that uses scaled-down MRCs to remove performance cliffs automatically. SLIDE performs shadow partitioning transparently within a single unified cache, avoiding the problem of migrating state between distinct caches when partition boundaries change. Experiments demonstrate that SLIDE improves miss ratios for many cache policies, with large gains in the presence of cliffs.",
+          "award": null
+        },
+        {
+          "title": "Hyperbolic Caching: Flexible Caching for Web Applications",
+          "authors": [
+            "Aaron Blankstein",
+            "Siddhartha Sen",
+            "Michael J. Freedman"
+          ],
+          "abstract": "Today’s web applications rely heavily on caching to reduce latency and backend load, using services like Redis or Memcached that employ inflexible caching algorithms. But the needs of each application vary, and significant performance gains can be achieved with a tailored strategy, e.g., incorporating cost of fetching, expiration time, and so forth. Existing strategies are fundamentally limited, however, because they rely on data structures to maintain a total ordering of the cached items. Inspired by Redis’s use of random sampling for eviction (in lieu of a data structure) and recent theoretical justification for this approach, we design a new caching algorithm for web applications called hyperbolic caching. Unlike prior schemes, hyperbolic caching decays item priorities at variable rates and continuously reorders many items at once. By combining random sampling with lazy evaluation of the hyperbolic priority function, we gain complete flexibility in customizing the function. For example, we describe extensions that incorporate item cost, expiration time, and windowing. We also introduce the notion of a cost class in order to measure the costs and manipulate the priorities of all items belonging to a related group. We design a hyperbolic caching variant for several production systems from leading cloud providers. We implement our scheme in Redis and the Django web framework. Using real and simulated traces, we show that hyperbolic caching reduces miss rates by ~10-20% over competitive baselines tailored to the application, and improves end-toend throughput by ~5-10%.",
+          "award": null
+        },
+        {
+          "title": "Execution Templates: Caching Control Plane Decisions for Strong Scaling of Data Analytics",
+          "authors": [
+            "Omid Mashayekhi"
+          ],
+          "abstract": "Control planes of cloud frameworks trade off between scheduling granularity and performance. Centralized systems schedule at task granularity, but only schedule a few thousand tasks per second. Distributed systems schedule hundreds of thousands of tasks per second but changing the schedule is costly. We present execution templates, a control plane abstraction that can schedule hundreds of thousands of tasks per second while supporting fine-grained, per-task scheduling decisions. Execution templates leverage a program’s repetitive control flow to cache blocks of frequently-executed tasks. Executing a task in a template requires sending a single message. Large-scale scheduling changes install new templates, while small changes apply edits to existing templates. Evaluations of execution templates in Nimbus, a data analytics framework, find that they provide the fine-grained scheduling flexibility of centralized control planes while matching the strong scaling of distributed ones. Execution templates support complex, real-world applications, such as a fluid simulation with a triply nested loop and data dependent branches.",
+          "award": null
+        },
+        {
+          "title": "cHash: Detection of Redundant Compilations via AST Hashing",
+          "authors": [
+            "Christian Dietrich and Valentin Rothberg",
+            "Ludwig Füracker and Andreas Ziegler",
+            "Daniel Lohmann"
+          ],
+          "abstract": "Software projects that use a compiled language are built hundreds of thousands of times during their lifespan. Hence, the compiler is invoked over and over again on an incrementally changing source base. As previous work has shown, up to 97 percent of these invocations are redundant and do not lead to an altered compilation result. In order to avoid such redundant builds, many developers use caching tools that are based on textual hashing of the source files. However, these tools fail in the presence of modifications that leave the compilation result unchanged. Especially for C projects, where module-interface definitions are imported textually with the C preprocessor, modifications to header files lead to many redundant compilations. In this paper, we present the cHash approach and compiler extension to quickly detect modifications on the language level that will not lead to a changed compilation result. By calculating a hash over the abstract syntax tree, we achieve a high precision at comparatively low costs. While cHash is light-weight and build system agnostic, it can cancel 80 percent of all compiler invocations early and reduce the build-time of incremental builds by up to 51 percent. In comparison to the state-of-the-art CCache tool, cHash is at least 30 percent more precise in detecting redundant compilations.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Best of the Rest",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Application Crash Consistency and Performance with CCFS",
+          "authors": [
+            "Thanumalayan Sankaranarayana Pillai",
+            "Vijay Chidambaram",
+            "Andrea C. Arpaci-Dusseau and Remzi H. Arpaci-Dusseau"
+          ],
+          "abstract": "Recent research has shown that applications often incorrectly implement crash consistency. We present ccfs, a file system that improves the correctness of application-level crash consistency protocols while maintaining high performance. A key idea in ccfs is the abstraction of a stream. Within a stream, updates are committed in program order, thus helping correctness; across streams, there are no ordering restrictions, thus enabling scheduling flexibility and high performance. We empirically demonstrate that applications running atop ccfs achieve high levels of crash consistency. Further, we show that ccfs performance under standard filesystem benchmarks is excellent, in the worst case on par with the highest performing modes of Linux ext4, and in some cases notably better. Overall, we demonstrate that both application correctness and high performance can be realized in a modern file system.",
+          "award": null
+        },
+        {
+          "title": "Push-Button Verification of File Systems via Crash Refinement",
+          "authors": [
+            "Helgi Sigurbjarnarson"
+          ],
+          "abstract": "The file system is an essential operating system component for persisting data on storage devices. Writing bug-free file systems is non-trivial, as they must correctly implement and maintain complex on-disk data structures even in the presence of system crashes and reorderings of disk operations. This paper presents Yggdrasil, a toolkit for writing file systems with push-button verification: Yggdrasil requires no manual annotations or proofs about the implementation code, and it produces a counterexample if there is a bug. Yggdrasil achieves this automation through a novel definition of file system correctness called crash refinement, which requires the set of possible disk states produced by an implementation (including states produced by crashes) to be a subset of those allowed by the specification. Crash refinement is amenable to fully automated satisfiability modulo theories (SMT) reasoning, and enables developers to implement file systems in a modular way for verification. With Yggdrasil, we have implemented and verified the Yxv6 journaling file system, the Ycp file copy utility, and the Ylog persistent log. Our experience shows that the ease of proof and counterexample-based debugging support make Yggdrasil practical for building reliable storage applications.",
+          "award": null
+        },
+        {
+          "title": "Early Detection of Configuration Errors to Reduce Failure Damage",
+          "authors": [
+            "Tianyin Xu",
+            "Shan Lu",
+            "Long Jin",
+            "Shankar Pasupathy"
+          ],
+          "abstract": "Early detection is the key to minimizing failure damage induced by configuration errors, especially those errors in configurations that control failure handling and fault tolerance. Since such configurations are not needed for initialization, many systems do not check their settings early (e.g., at startup time). Consequently, the errors become latent until their manifestations cause severe damage, such as breaking the failure handling. Such latent errors are likely to escape from sysadmins’ observation and testing, and be deployed to production at scale. Our study shows that many of today’s mature, widely-used software systems are subject to latent configuration errors (referred to as LC errors) in their critically important configurations—those related to the system’s reliability, availability, and serviceability. One root cause is that many (14.0%–93.2%) of these configurations do not have any special code for checking the correctness of their settings at the system’s initialization time. To help software systems detect LC errors early, we present a tool named PCHECK that analyzes the source code and automatically generates configuration checking code (called checkers). The checkers emulate the late execution that uses configuration values, and detect LC errors if the error manifestations are captured during the emulated execution. Our results show that PCHECK can help systems detect 75+% of real-world LC errors at the initialization phase, including 37 new LC errors that have not been exposed before. Compared with existing detection tools, it can detect 31% more LC errors.",
+          "award": null
+        },
+        {
+          "title": "Fast, Lean, and Accurate: Modeling Password Guessability Using Neural Networks",
+          "authors": [
+            "William Melicher"
+          ],
+          "abstract": "Human-chosen text passwords, today’s dominant form of authentication, are vulnerable to guessing attacks. Unfortunately, existing approaches for evaluating password strength by modeling adversarial password guessing are either inaccurate or orders of magnitude too large and too slow for real-time, client-side password checking. We propose using artificial neural networks to model text passwords’ resistance to guessing attacks and explore how different architectures and training methods impact neural networks’ guessing effectiveness. We show that neural networks can often guess passwords more effectively than state-of-the-art approaches, such as probabilistic context-free grammars and Markov models. We also show that our neural networks can be highly compressed—to as little as hundreds of kilobytes— without substantially worsening guessing effectiveness. Building on these results, we implement in JavaScript the first principled client-side model of password guessing, which analyzes a password’s resistance to a guessing attack of arbitrary duration with sub-second latency. Together, our contributions enable more accurate and practical password checking than was previously possible.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Storage",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Giza: Erasure Coding Objects across Global Data Centers",
+          "authors": [
+            "Yu Lin Chen",
+            "Shuai Mu and Jinyang Li",
+            "Cheng Huang"
+          ],
+          "abstract": "Microsoft Azure Storage is a global cloud storage system with a footprint in 38 geographic regions. To protect customer data against catastrophic data center failures, it optionally replicates data to secondary DCs hundreds of miles away. Using Microsoft OneDrive as an example, this paper illustrates the characteristics of typical cloud storage workloads and the opportunity to lower storage cost for geo-redundancy with erasure coding. The paper presents the design, implementation and evaluation of Giza – a strongly consistent, versioned object store that applies erasure coding across global data centers. The key technical challenge Giza addresses is to achieve single cross-DC round trip latency for the common contention-free workload, while also maintaining strong consistency when there are conflicting access. Giza addresses the challenge with a novel implementation of well-known distributed consensus algorithms tailored for restricted cloud storage APIs. Giza is deployed to 11 DCs across 3 continents and experimental results demonstrate that it achieves our design goals.",
+          "award": null
+        },
+        {
+          "title": "SmartCuckoo: A Fast and Cost-Efficient Hashing Index Scheme for Cloud Storage Systems",
+          "authors": [
+            "Yuanyuan Sun and Yu Hua",
+            "Song Jiang",
+            "Qiuyu Li"
+          ],
+          "abstract": "Fast query services are important to improve overall per- formance of large-scale storage systems when handling a large number of files. Open-addressing cuckoo hash schemes have been widely used to support query services due to the salient features of simplicity and ease of use. Conventional schemes are unfortunately inadequate to address the potential problem of having endless loops during item insertion, which degrades the query performance. To address the problem, we propose a cost- efficient cuckoo hashing scheme, named SmartCuckoo. The idea behind SmartCuckoo is to represent the hashing relationship as a directed pseudoforest and use it to track item placements for accurately predetermining the occurrence of endless loop. SmartCuckoo can efficiently predetermine insertion failures without paying a high cost of carrying out step-by-step probing. We have implemented SmartCuckoo in a large-scale cloud storage system. Extensive evaluations using three real- world traces and the YCSB benchmark demonstrate the efficiency and efficacy of SmartCuckoo. We have released the source code of SmartCuckoo for public use.",
+          "award": null
+        },
+        {
+          "title": "Repair Pipelining for Erasure-Coded Storage",
+          "authors": [
+            "Runhui Li"
+          ],
+          "abstract": "We propose repair pipelining, a technique that speeds up the repair performance in general erasure-coded storage. By pipelining the repair of failed data in small-size units across storage nodes, repair pipelining reduces the repair time to approximately the same as the normal read time to the same amount of data in homogeneous environments. We further extend repair pipelining for heterogeneous environments. We implement a repair pipelining prototype called ECPipe and integrate it as a middleware system into two open-source distributed storage systems HDFS and QFS. Experiments on a local testbed and Amazon EC2 show that repair pipelining significantly improves the performance of both degraded reads and full-node recovery over existing repair techniques.",
+          "award": null
+        },
+        {
+          "title": "PARIX: Speculative Partial Writes in Erasure-Coded Systems",
+          "authors": [
+            "Huiba Li",
+            "Yiming Zhang",
+            "Zhiming Zhang",
+            "Shengyun Liu"
+          ],
+          "abstract": "Erasure coding (EC) has been widely used in cloud storage systems because it effectively reduces storage redundancy while providing the same level of durability. However, EC introduces significant overhead to small write operations which perform partial write to an entire EC group. This has been a major barrier for EC to be widely adopted in small-write-intensive systems such as virtual disk service. Parity logging (PL) appends parity changes to a journal to accelerate partial writes. However, since previous PL schemes have to perform a time-consuming write-after-read for each partial write, i.e., read the current value of the data and then compute and write the parity delta, their write performance is still much lower than that of replication-based storage. This paper presents PARIX, a speculative partial write scheme for fast parity logging. We transform the original formula of parity calculation, so as to use the data deltas (between the current/original data values), instead of the parity deltas, to calculate the parities during journal replay. For each partial write, this allows PARIX to speculatively log only the current value of the data. The original value is needed only once in a journal when performing the first write to the data. For a series of n partial writes to the same data, PARIX performs pure write (instead of write-after-read) for the last n−1 ones while only introducing a small penalty of an extra network RTT (round-trip time) to the first one. Evaluation results show that PARIX remarkably outperforms state-of-the-art PL schemes in partial write performance.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Multicore",
+      "chair": null,
+      "papers": [
+        {
+          "title": "E-Team: Practical Energy Accounting for Multi-Core Systems",
+          "authors": [
+            "Till Smejkal and Marcus Hähnel",
+            "Thomas Ilsche",
+            "Michael Roitzsch",
+            "Wolfgang E. Nagel",
+            "Hermann Härtig"
+          ],
+          "abstract": "Energy-based billing as well as energy-efficient software require accurate knowledge of energy consumption. Model-based energy accounting and external measurement hardware are the main methods to obtain energy data, but cost and the need for frequent recalibration have impeded their large-scale adoption. Running Average Power Limit (RAPL) by Intel® enables non-intrusive, off-the-shelf energy monitoring, but only on a per-socket level. To enable apportioning of energy to individual applications we present E-Team, a non-intrusive, scheduler-based, easy-to-use energy-accounting mechanism. By leveraging RAPL, our method can be used on any Intel system built after 2011 without the need for external infrastructure, application modification, or model calibration. E-Team allows starting and stopping measurements at arbitrary points in time while maintaining a low performance overhead. E-Team provides high accuracy, compared to external instrumentation, with an error of less than 3:5 %.",
+          "award": null
+        },
+        {
+          "title": "Scalable NUMA-aware Blocking Synchronization Primitives",
+          "authors": [
+            "Sanidhya Kashyap"
+          ],
+          "abstract": "Application scalability is a critical aspect to efficiently use NUMA machines with many cores. To achieve that, various techniques ranging from task placement to data sharding are used in practice. However, from the perspective of an operating system, these techniques often do not work as expected because various subsystems in the OS interact and share data structures among themselves, resulting in scalability bottlenecks. Although current OSes attempt to tackle this problem by introducing a wide range of synchronization primitives such as spinlock and mutex, the widely used synchronization mechanisms are not designed to handle both under- and over-subscribed scenarios in a scalable fashion. In particular, the current blocking synchronization primitives that are designed to address both scenarios are NUMA oblivious, meaning that they suffer from cache-line contention in an undersubscribed situation, and even worse, inherently spur long scheduler intervention, which leads to sub-optimal performance in an over-subscribed situation. In this work, we present several design choices to implement scalable blocking synchronization primitives that can address both under- and over-subscribed scenarios. Such design decisions include memory-efficient NUMA-aware locks (favorable for deployment) and scheduling-aware, scalable parking and wake-up strategies. To validate our design choices, we implement two new blocking synchronization primitives, which are variants of mutex and read-write semaphore in the Linux kernel. Our evaluation shows that these locks can scale real-world applications by 1.2–1.6× and some of the file system operations up to 4.7× in both under- and over-subscribed scenarios. Moreover, they use 1.5–10× less memory than the state-of- the-art NUMA-aware locks on a 120-core machine.",
+          "award": null
+        },
+        {
+          "title": "StreamBox: Modern Stream Processing on a Multicore Machine",
+          "authors": [
+            "Hongyu Miao and Heejin Park",
+            "Myeongjae Jeon and Gennady Pekhimenko",
+            "Kathryn S. McKinley",
+            "Felix Xiaozhu Lin"
+          ],
+          "abstract": "Stream analytics on real-time events has an insatiable demand for throughput and latency. Its performance on a single machine is central to meeting this demand, even in a distributed system. This paper presents a novel stream processing engine called StreamBox that exploits the parallelism and memory hierarchy of modern multicore hardware. StreamBox executes a pipeline of transforms over records that may arrive out-of-order. As records arrive, it groups the records into ordered epochs delineated by watermarks. A watermark guarantees no subsequent record’s event timestamp will precede it. Our contribution is to produce and manage abundant parallelism by generalizing out-of-order record processing within each epoch to out-of-order epoch processing and by dynamically prioritizing epochs to optimize latency. We introduce a data structure called cascading containers, which dynamically manages concurrency and dependences among epochs in the transform pipeline. StreamBox creates sequential memory layout of records in epochs and steers them to optimize NUMA locality. On a 56-core machine, StreamBox processes records up to 38 GB/sec (38M Records/sec) with 50 ms latency.",
+          "award": null
+        },
+        {
+          "title": "Everything you always wanted to know about multicore graph processing but were afraid to ask",
+          "authors": [
+            "Jasmina Malicevic"
+          ],
+          "abstract": "Graph processing systems are used in a wide variety of fields, ranging from biology to social networks, and a large number of such systems have been described in the recent literature. We perform a systematic comparison of various techniques proposed to speed up in-memory multicore graph processing. In addition, we take an end-to-end view of execution time, including not only algorithm execution time, but also pre-processing time and the time to load the graph input data from storage. More specifically, we study various data structures to represent the graph in memory, various approaches to pre-processing and various ways to structure the graph computation. We also investigate approaches to improve cache locality, synchronization, and NUMA-awareness. In doing so, we take our inspiration from a number of graph processing systems, and implement the techniques they propose in a single system. We then selectively enable different techniques, allowing us to assess their benefits in isolation and independent of unrelated implementation considerations. Our main observation is that the cost of pre-processing in many circumstances dominates the cost of algorithm execution, calling into question the benefits of proposed algorithmic optimizations that rely on extensive preprocessing. Equally surprising, using radix sort turns out to be the most efficient way of pre-processing the graph input data into adjacency lists, when the graph input data is already in memory or is loaded from fast storage. Furthermore, we adapt a technique developed for out-of-core graph processing, and show that it significantly improves cache locality. Finally, we demonstrate that NUMA-awareness and its attendant pre-processing costs are beneficial only on large machines and for certain algorithms.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Security and Privacy II",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Graphene-SGX: A Practical Library OS for Unmodified Applications on SGX",
+          "authors": [
+            "Chia-Che Tsai",
+            "Donald E. Porter",
+            "Mona Vij"
+          ],
+          "abstract": "Intel SGX hardware enables applications to protect themselves from potentially-malicious OSes or hypervisors. In cloud computing and other systems, many users and applications could benefit from SGX. Unfortunately, current applications will not work out-of-the-box on SGX. Although previous work has shown that a library OS can execute unmodified applications on SGX, a belief has developed that a library OS will be ruinous for performance and TCB size, making application code modification an implicit prerequisite to adopting SGX. This paper demonstrates that these concerns are exaggerated, and that a fully-featured library OS can rapidly deploy unmodified applications on SGX with overheads comparable to applications modified to use “shim” layers. We present a port of Graphene to SGX, as well as a number of improvements to make the security benefits of SGX more usable, such as integrity support for dynamically-loaded libraries, and secure multi-process support. Graphene-SGX supports a wide range of unmodified applications, including Apache, GCC, and the R interpreter. The performance overheads of Graphene- SGX range from matching a Linux process to less than 2× in most single-process cases; these overheads are largely attributable to current SGX hardware or missed opportunities to optimize Graphene internals, and are not necessarily fundamental to leaving the application unmodified. Graphene-SGX is open-source and has been used concurrently by other groups for SGX research.",
+          "award": null
+        },
+        {
+          "title": "PrivApprox: Privacy-Preserving Stream Analytics",
+          "authors": [
+            "Do Le Quoc and Martin Beck",
+            "Pramod Bhatotia",
+            "Ruichuan Chen",
+            "Christof Fetzer and Thorsten Strufe"
+          ],
+          "abstract": "How to preserve users’ privacy while supporting high-utility analytics for low-latency stream processing? To answer this question: we describe the design, implementation and evaluation of PRIVAPPROX, a data analytics system for privacy-preserving stream processing. PRIVAPPROX provides three important properties: (i) Privacy: zero-knowledge privacy guarantee for users, a privacy bound tighter than the state-of-the-art differential privacy; (ii) Utility: an interface for data analysts to systematically explore the trade-offs between the output accuracy (with error estimation) and the query execution budget; (iii) Latency: near real-time stream processing based on a scalable “synchronization-free” distributed architecture. The key idea behind our approach is to marry two techniques together, namely, sampling (used for approximate computation) and randomized response (used for privacy-preserving analytics). The resulting marriage is complementary—it achieves stronger privacy guarantees, and also improves the performance for stream analytics.",
+          "award": null
+        },
+        {
+          "title": "Mercury: Bandwidth-Effective Prevention of Rollback Attacks Against Community Repositories",
+          "authors": [
+            "Trishank Karthik Kuppusamy"
+          ],
+          "abstract": "A popular community repository such as Docker Hub, PyPI, or RubyGems distributes tens of thousands of software projects to millions of users. The large number of projects and users make these repositories attractive targets for exploitation. After a repository compromise, a malicious party can launch a number of attacks on unsuspecting users, including rollback attacks that revert projects to obsolete and vulnerable versions. Unfortunately, due to the rapid rate at which packages are updated, existing techniques that protect against rollback attacks would cause each user to download 2–3 times the size of an average package in metadata each month, making them impractical to deploy. In this work, we develop a system called Mercury that uses a novel technique to compactly disseminate version information while still protecting against rollback attacks. Due to a different technique for dealing with key revocation, users are protected from rollback attacks, even if the software repository is compromised. This technique is bandwidth-efficient, especially when delta compression is used to transmit only the differences between previous and current lists of version information. An analysis we performed for the Python community shows that once Mercury is deployed on PyPI, each user will only download metadata each month that is about 3.5% the size of an average package. Our work has been incorporated into the latest versions of TUF, which is being integrated by Haskell, OCaml, RubyGems, Python, and CoreOS, and is being used in production by LEAP, Flynn, and Docker.",
+          "award": null
+        },
+        {
+          "title": "CAB-Fuzz: Practical Concolic Testing Techniques for COTS Operating Systems",
+          "authors": [
+            "Su Yong Kim",
+            "Sangho Lee",
+            "Byoungyoung Lee",
+            "Youngtae Yun",
+            "Taesoo Kim"
+          ],
+          "abstract": "Discovering the security vulnerabilities of commercial off-the-shelf (COTS) operating systems (OSes) is challenging because they not only are huge and complex, but also lack detailed debug information. Concolic testing, which generates all feasible inputs of a program by using symbolic execution and tests the program with the generated inputs, is one of the most promising approaches to solve this problem. Unfortunately, the state-of-the-art concolic testing tools do not scale well for testing COTS OSes because of state explosion. Indeed, they often fail to find a single bug (or crash) in COTS OSes despite their long execution time. In this paper, we propose CAB-FUZZ (Context-Aware and Boundary-focused), a practical concolic testing tool to quickly explore interesting paths that are highly likely triggering real bugs without debug information. First, CAB-FUZZ prioritizes the boundary states of arrays and loops, inspired by the fact that many vulnerabilities originate from a lack of proper boundary checks. Second, CAB-FUZZ exploits real programs interacting with COTS OSes to construct proper contexts to explore deep and complex kernel states without debug information. We applied CAB-FUZZ to Windows 7 and Windows Server 2008 and found 21 undisclosed unique crashes, including two local privilege escalation vulnerabilities (CVE- 2015-6098 and CVE-2016-0040) and one information disclosure vulnerability in a cryptography driver (CVE- 2016-7219). CAB-FUZZ found vulnerabilities that are non-trivial to discover; five vulnerabilities have existed for 14 years, and we could trigger them even in the initial version of Windows XP (August 2001).",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Don't Forget the Memory",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Log-Structured Non-Volatile Main Memory",
+          "authors": [
+            "Qingda Hu",
+            "Jinglei Ren and Anirudh Badam",
+            "Jiwu Shu",
+            "Thomas Moscibroda"
+          ],
+          "abstract": "Emerging non-volatile main memory (NVMM) unlocks the performance potential of applications by storing persistent data in the main memory. Such applications require a lightweight persistent transactional memory (PTM) system, instead of a heavyweight filesystem or database, to have fast access to data. In a PTM system, the memory usage, both capacity and bandwidth, plays a key role in dictating performance and efficiency. Existing memory management mechanisms for PTMs generate high memory fragmentation, high write traffic and a large number of persist barriers, since data is first written to a log and then to the main data store. In this paper, we present a log-structured NVMM system that not only maintains NVMM in a compact manner but also reduces the write traffic and the number of persist barriers needed for executing transactions. All data allocations and modifications are appended to the log which becomes the location of the data. Further, we address a unique challenge of log-structured memory management by designing a tree-based address translation mechanism where access granularities are flexible and different from allocation granularities. Our results show that the new system enjoys up to 89.9% higher transaction throughput and up to 82.8% lower write traffic than a traditional PTM system.",
+          "award": null
+        },
+        {
+          "title": "Soft Updates Made Simple and Fast on Non-volatile Memory",
+          "authors": [
+            "Mingkai Dong and Haibo Chen"
+          ],
+          "abstract": "Fast, byte-addressable NVM promises near cache latency and near memory bus throughput for file system operations. However, unanticipated cache line eviction may lead to disordered metadata update and thus existing NVM file systems (NVMFS) use synchronous cache flushes to ensure consistency, which extends critical path latency. In this paper, we revisit soft updates, an intriguing idea that eliminates most synchronous metadata updates through delayed writes and dependency tracking, in the context of NVMFS. We show that on one hand byte-addressability of NVM significantly simplifies dependency tracking and enforcement by allowing better directory organization and closely matching the per-pointer dependency tracking of soft updates. On the other hand, per-cache-line failure atomicity of NVM cannot ensure the correctness of soft updates, which relies on block write atomicity; page cache, which is necessary for dual views in soft updates, becomes inefficient due to double writes and duplicated metadata. To guarantee the correctness and consistency without synchronous cache flushes and page cache, we propose pointer-based dual views, which shares most data structures but uses different pointers in different views, to allow delayed persistency and eliminate file system checking after a crash. In this way, our system, namely SoupFS, significantly shortens the critical path latency by delaying almost all synchronous cache flushes.We have implemented SoupFS as a POSIX-compliant file system for Linux and evaluated it against state-of-the-art NVMFS like PMFS and NOVA. Performance results show that SoupFS can have notably lower latency and modestly higher throughput compared to existing NVMFS.",
+          "award": null
+        },
+        {
+          "title": "SmartMD: A High Performance Deduplication Engine with Mixed Pages",
+          "authors": [
+            "Fan Guo",
+            "Yongkun Li",
+            "Collaborative Innovation Center of High Performance Computing",
+            "Yinlong Xu",
+            "Anhui Province Key Laboratory of High Performance Computing",
+            "Song Jiang",
+            "John C. S. Lui"
+          ],
+          "abstract": "In hypervisor-based virtualization environments, translation lookaside buffers (TLBs) misses may induce two-dimensional page table walks, which may incur a long access latency, and this issue becomes worse with ever increasing memory capacity. To reduce the overhead of TLB misses, large pages (e.g., 2M-pages) are widely supported in modern hardware platforms to reduce the number of page table entries. However, memory management with large pages can be inefficient in deduplication, leading to low utilization of memory, which is a precious resource for a variety of applications. To simultaneously enjoy benefits of high performance by accessing memory with large pages (e.g., 2M-pages) and high deduplication rate by managing memory with base pages (e.g., 4K-pages), we propose Smart Memory Deduplciation, or SmartMD in short, which is an adaptive and efficient management scheme for mixed-page memory. Specifically, we propose two lightweight schemes to accurately monitor pages’ access frequency and repetition rate, and present a dynamic and adaptive conversion scheme to selectively split or reconstruct large pages. We implement a prototype system and conduct extensive experiments with various workloads. Experiment results show that SmartMD can simultaneously achieve high access performance similar to systems using large pages, and achieves a deduplication rate similar to that applying aggressive deduplication scheme (i.e., KSM) at the same time on base pages.",
+          "award": null
+        },
+        {
+          "title": "Elastic Memory Management for Cloud Data Analytics",
+          "authors": [
+            "Jingjing Wang and Magdalena Balazinska"
+          ],
+          "abstract": "We develop an approach for the automatic and elastic management of memory in shared clusters executing data analytics applications. Our approach, called ElasticMem, comprises a technique for dynamically changing memory limits in Java virtual machines, models to predict memory usage and garbage collection cost, and a scheduling algorithm that dynamically reallocates memory between applications. Experiments with our prototype implementation show that our approach outperforms static memory allocation leading to fewer query failures when memory is scarce, up to 80% lower garbage collection overheads, and up to 30% lower query times when memory is abundant.",
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "File Systems",
+      "chair": null,
+      "papers": [
+        {
+          "title": "Improving File System Performance of Mobile Storage Systems Using a Decoupled Defragmenter",
+          "authors": [
+            "Sangwook Shane Hahn",
+            "Sungjin Lee",
+            "Cheng Ji",
+            "Li-Pin Chang",
+            "Inhyuk Yee",
+            "Liang Shi",
+            "Chun Jason Xue",
+            "Jihong Kim"
+          ],
+          "abstract": "In this paper, we comprehensively investigate the file fragmentation problem on mobile flash storage. From our evaluation study with real Android smartphones, we observed two interesting points on file fragmentation on flash storage. First, defragmentation on mobile flash storage is essential for high I/O performance on Android smartphones because file fragmentation, which is a recurring problem (even after defragmentation), can significantly degrade I/O performance. Second, file fragmentation affects flash storage quite differently than HDDs. When files are fragmented on flash storage, the logical fragmentation and the physical fragmentation are decoupled and a performance degradation mostly comes from logical fragmentation. Motivated by our observations, we propose a novel defragger, janus defragger (janusd), which supports two defraggers, janusdL for a logical defragger and janusdP for a physical defragger. JanusdL, which takes advantage of flash storage’s internal logical to physical mapping table, supports logical defragmentation without data copies. JanusdL is very effective for most fragmented files while not sacrificing the flash lifetime. JanusdP, which is useful for physically fragmented files but requires data copies, is invoked only when absolutely necessary. By adaptively selecting janusdL and janusdP, janusd achieves the effect of full file defragmentation without reducing the flash lifetime. Our experimental results show that janusd can achieve at least the same level of I/O performance improvement as e4defrag without affecting the flash lifetime, thus making janusd an attractive defragmentation solution for mobile flash storage.",
+          "award": null
+        },
+        {
+          "title": "Octopus: an RDMA-enabled Distributed Persistent Memory File System",
+          "authors": [
+            "Youyou Lu",
+            "Tao Li"
+          ],
+          "abstract": "Non-volatile memory (NVM) and remote direct memory access (RDMA) provide extremely high performance in storage and network hardware. However, existing distributed file systems strictly isolate file system and network layers, and the heavy layered software designs leave high-speed hardware under-exploited. In this paper, we propose an RDMA-enabled distributed persistent memory file system, Octopus, to redesign file system internal mechanisms by closely coupling NVM and RDMA features. For data operations, Octopus directly accesses a shared persistent memory pool to reduce memory copying overhead, and actively fetches and pushes data all in clients to re-balance the load between the server and network. For metadata operations, Octopus introduces self-identified RPC for immediate notification between file systems and networking, and an efficient distributed transaction mechanism for consistency. Evaluations show that Octopus achieves nearly the raw bandwidth for large I/Os and orders of magnitude better performance than existing distributed file systems.",
+          "award": null
+        },
+        {
+          "title": "iJournaling: Fine-Grained Journaling for Improving the Latency of Fsync System Call",
+          "authors": [
+            "Daejun Park and Dongkun Shin"
+          ],
+          "abstract": "For data durability, many applications rely on synchronous operations such as an fsync() system call. However, latency-sensitive synchronous operations can be delayed under the compound transaction scheme of the current journaling technique. Because a compound transaction includes irrelevant data and metadata, as well as the data and metadata of fsynced file, the latency of an fsync call can be unexpectedly long. In this paper, we first analyze various factors that may delay an fsync operation, and propose a novel hybrid journaling technique, called ijournaling, which journals only the corresponding file-level transaction for an fsync call, while recording a normal journal transaction during periodic journaling. The file-level transaction journal has only the related metadata updates of the fsynced file. By removing several factors detrimental to fsync latency, the proposed technique can reduce the fsync latency, mitigate the interference between fsync-intensive threads, and provide high manycore scalability. Experiments using a smartphone and a desktop computer showed significant improvements in fsync latency through the use of ijournaling.",
+          "award": null
+        },
+        {
+          "title": "Scaling Distributed File Systems in Resource-Harvesting Datacenters",
+          "authors": [
+            "Pulkit A. Misra",
+            "Íñigo Goiri"
+          ],
+          "abstract": "Datacenters can use distributed file systems to store data for batch processing on the same servers that run latency-critical services. Taking advantage of this storage capacity involves minimizing interference with the co-located services, while implementing user-friendly, efficient, and scalable file system access. Unfortunately, current systems fail one or more of these requirements, and must be manually partitioned across independent subclusters. Thus, in this paper, we introduce techniques for automatically and transparently scaling such file systems to entire resource-harvesting datacenters. We create a layer of software in front of the existing metadata managers, assign servers to subclusters to minimize interference and data movement, and smartly migrate data across subclusters in the background. We implement our techniques in HDFS, and evaluate them using simulation of 10 production datacenters and a real 4k-server deployment. Our results show that our techniques produce high file access performance, and high data durability and availability, while migrating a limited amount of data. We recently deployed our system onto 30k servers in Bing’s datacenters, and discuss lessons from this deployment.",
+          "award": null
+        }
+      ]
+    }
+  ]
+}

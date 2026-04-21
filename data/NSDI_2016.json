@@ -1,0 +1,549 @@
+{
+  "conference": "NSDI",
+  "year": 2016,
+  "url": "https://www.usenix.org/conference/nsdi16/technical-sessions",
+  "crawled_at": "2026-04-21",
+  "sessions": [
+    {
+      "title": "Network Architectures and Protocols",
+      "chair": "Aditya Akella",
+      "papers": [
+        {
+          "title": "An Industrial-Scale Software Defined Internet Exchange Point",
+          "authors": [
+            "Arpit Gupta",
+            "Robert MacDavid",
+            "Rüdiger Birkner",
+            "Marco Canini",
+            "Nick Feamster",
+            "Jennifer Rexford",
+            "Laurent Vanbever"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "XFabric: A Reconfigurable In-Rack Network for Rack-Scale Computers",
+          "authors": [
+            "Sergey Legtchenko"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Be Fast, Cheap and in Control with SwitchKV",
+          "authors": [
+            "Xiaozhou Li",
+            "Raghav Sethi",
+            "Michael Kaminsky",
+            "David G. Andersen",
+            "Michael J. Freedman"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Bitcoin-NG: A Scalable Blockchain Protocol",
+          "authors": [
+            "Ittay Eyal"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Exploring Cross-Application Cellular Traffic Optimization with Baidu TrafficGuard",
+          "authors": [
+            "Zhenhua Li",
+            "Weiwei Wang",
+            "Tianyin Xu",
+            "Xin Zhong",
+            "Xiang-Yang Li",
+            "Yunhao Liu",
+            "Christo Wilson",
+            "Ben Y. Zhao"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Content Delivery",
+      "chair": "Monia (Manya) Ghobadi",
+      "papers": [
+        {
+          "title": "Efficiently Delivering Online Services over Integrated Infrastructure",
+          "authors": [
+            "Hongqiang Harry Liu",
+            "Raajay Viswanathan",
+            "Matt Calder",
+            "Aditya Akella",
+            "Ratul Mahajan"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Scalable and Private Media Consumption with Popcorn",
+          "authors": [
+            "Trinabh Gupta",
+            "Natacha Crooks",
+            "Whitney Mulhern",
+            "Srinath Setty",
+            "Lorenzo Alvisi",
+            "Michael Walfish"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Speeding up Web Page Loads with Shandian",
+          "authors": [
+            "Xiao Sophia Wang",
+            "Arvind Krishnamurthy",
+            "David Wetherall"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Polaris: Faster Page Loads Using Fine-grained Dependency Tracking",
+          "authors": [
+            "Ravi Netravali",
+            "Ameesh Goyal",
+            "James Mickens",
+            "Hari Balakrishnan",
+            "this partial ordering constrains the sequence in which a browser can process individual objects. Unfortunately",
+            "using a fully automatic compiler"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "CFA: A Practical Prediction System for Video QoE Optimization",
+          "authors": [
+            "Junchen Jiang",
+            "Vyas Sekar",
+            "Henry Milner",
+            "Davis Shepherd",
+            "Ion Stoica",
+            "Hui Zhang",
+            "e.g."
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Wireless I",
+      "chair": "Matt Welsh",
+      "papers": [
+        {
+          "title": "Passive Wi-Fi: Bringing Low Power to Wi-Fi Transmissions",
+          "authors": [
+            "Bryce Kellogg"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Decimeter-Level Localization with a Single WiFi Access Point",
+          "authors": [
+            "Deepak Vasisht",
+            "Swarun Kumar",
+            "Dina Katabi"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "A Scalable Multi-User Uplink for Wi-Fi",
+          "authors": [
+            "Adriana B. Flores"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "BeamSpy: Enabling Robust 60 GHz Links Under Blockage",
+          "authors": [
+            "Sanjib Sur",
+            "Ranveer Chandra"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Flexible Networks",
+      "chair": "Shyam Gollakota",
+      "papers": [
+        {
+          "title": "Compiling Path Queries",
+          "authors": [
+            "Srinivas Narayana"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Simplifying Software-Defined Network Optimization Using SOL",
+          "authors": [
+            "Victor Heorhiadi",
+            "Michael K. Reiter",
+            "Vyas Sekar"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Paving the Way for NFV: Simplifying Middlebox Modifications Using StateAlyzr",
+          "authors": [
+            "Junaid Khalid"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Embark: Securely Outsourcing Middleboxes to the Cloud",
+          "authors": [
+            "Chang Lan",
+            "Zhi Liu"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Dependability and Monitoring",
+      "chair": "Wyatt Lloyd",
+      "papers": [
+        {
+          "title": "BUZZ: Testing Context-Dependent Policies in Stateful Networks",
+          "authors": [
+            "Seyed K. Fayaz",
+            "e.g.",
+            "and (2) A scalable application of symbolic execution to tackle state-space explosion. We show that BUZZ generates test cases for a network with hundreds of network functions within two minutes (five orders of magnitude faster than alternative designs). We also show that BUZZ uncovers a range of both new",
+            "known policy violations in SDN/NFV systems.Available Media"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Minimizing Faulty Executions of Distributed Systems",
+          "authors": [
+            "Colin Scott",
+            "Aurojit Panda",
+            "Vjekoslav Brajkovic",
+            "George Necula",
+            "Arvind Krishnamurthy",
+            "Scott Shenker"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "FlowRadar: A Better NetFlow for Data Centers",
+          "authors": [
+            "Yuliang Li",
+            "Rui Miao",
+            "Changhoon Kim",
+            "Minlan Yu"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Sibyl: A Practical Internet Route Oracle",
+          "authors": [
+            "Ítalo Cunha",
+            "Pietro Marchetta",
+            "Matt Calder",
+            "Bruno V. A. Machado",
+            "Antonio Pescapè",
+            "Vasileios Giotsas",
+            "Harsha V. Madhyastha",
+            "Ethan Katz-Bassett"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "VAST: A Unified Platform for Interactive Network Forensics",
+          "authors": [
+            "Matthias Vallentin",
+            "Vern Paxson",
+            "Robin Sommer"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Resource Sharing",
+      "chair": "Siddhartha Sen",
+      "papers": [
+        {
+          "title": "Ernest: Efficient Performance Prediction for Large-Scale Advanced Analytics",
+          "authors": [
+            "Shivaram Venkataraman"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Cliffhanger: Scaling Performance Cliffs in Web Memory Caches",
+          "authors": [
+            "Asaf Cidon",
+            "Assaf Eisenman",
+            "Mohammad Alizadeh",
+            "Sachin Katti"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "FairRide: Near-Optimal, Fair Cache Sharing",
+          "authors": [
+            "Qifan Pu",
+            "Haoyuan Li",
+            "Matei Zaharia",
+            "Ali Ghodsi",
+            "Ion Stoica"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "HUG: Multi-Resource Fairness for Correlated and Elastic Demands",
+          "authors": [
+            "Mosharaf Chowdhury",
+            "Zhenhua Liu",
+            "Ali Ghodsi",
+            "Ion Stoica"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Distributed Systems",
+      "chair": "Jay Lorch",
+      "papers": [
+        {
+          "title": "Consensus in a Box: Inexpensive Coordination in Hardware",
+          "authors": [
+            "Zsolt István",
+            "Marko Vukolić"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "StreamScope: Continuous Reliable Distributed Processing of Big Data Streams",
+          "authors": [
+            "Wei Lin",
+            "Haochuan Fan",
+            "Zhengping Qian",
+            "Junwei Xu",
+            "Lidong Zhou"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Social Hash: An Assignment Framework for Optimizing Distributed Systems Operations on Social Networks",
+          "authors": [
+            "Alon Shalita",
+            "Herald Kllapi",
+            "Michael Stumm",
+            "Social Hash decreased the cache miss rate of production workloads by 25%. The second application assigns data records to storage subsystems with the goal of minimizing the number of storage subsystems that need to be accessed on multiget fetch requests",
+            "Social Hash cut the average response time in half on production workloads for one of the storage systems at Facebook.Available Media"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "The Design and Implementation of the Warp Transactional Filesystem",
+          "authors": [
+            "Robert Escriva",
+            "Emin Gün Sirer"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "BlowFish: Dynamic Storage-Performance Tradeoff in Data Stores",
+          "authors": [
+            "Anurag Khandelwal",
+            "and (ii) data stores with spatially-skewed",
+            "time-varying workloads (e.g."
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "In-Network Processing",
+      "chair": "Nathan Bronson",
+      "papers": [
+        {
+          "title": "Universal Packet Scheduling",
+          "authors": [
+            "Radhika Mittal",
+            "Scott Shenker",
+            "we find that LSTF performs comparable to the state-of-the-art for each of them. We also discuss how LSTF can be used in conjunction with active queue management schemes (such as CoDel",
+            "ECN) without changing the core of the network.Available Media"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Maglev: A Fast and Reliable Software Network Load Balancer",
+          "authors": [
+            "Danielle E. Eisenbud",
+            "Wentao Shang",
+            "Jinnah Dylan Hosein",
+            "each Maglev machine then matches the packets to their corresponding services",
+            "spreads them evenly to the service endpoints. To accommodate high",
+            "ever-increasing traffic"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Enabling ECN in Multi-Service Multi-Queue Data Centers",
+          "authors": [
+            "Wei Bai",
+            "Haitao Wu"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "DFC: Accelerating String Pattern Matching for Network Applications",
+          "authors": [
+            "Byungkwon Choi"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Security and Privacy",
+      "chair": "Ramakrishna Kotla",
+      "papers": [
+        {
+          "title": "Diplomat: Using Delegations to Protect Community Repositories",
+          "authors": [
+            "Trishank Karthik Kuppusamy"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "AnonRep: Towards Tracking-Resistant Anonymous Reputation",
+          "authors": [
+            "Ennan Zhai",
+            "David Isaac Wolinsky",
+            "Ruichuan Chen",
+            "Ewa Syta",
+            "Chao Teng",
+            "Bryan Ford"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Mind the Gap: Towards a Backpressure-Based Transport Protocol for the Tor Network",
+          "authors": [
+            "Florian Tschorsch",
+            "Björn Scheuermann",
+            "this is beneficial in terms of both fairness",
+            "anonymity. We show that it yields superior performance",
+            "improved fairness—between circuits"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Sieve: Cryptographically Enforced Access Control for User Data in Untrusted Clouds",
+          "authors": [
+            "Frank Wang",
+            "James Mickens",
+            "Nickolai Zeldovich",
+            "Vinod Vaikuntanathan"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Earp: Principled Storage, Sharing, and Protection for Mobile Apps",
+          "authors": [
+            "Yuanzhong Xu",
+            "Vitaly Shmatikov",
+            "Emmett Witchel"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    },
+    {
+      "title": "Wireless II",
+      "chair": "Jon Howell",
+      "papers": [
+        {
+          "title": "iCellular: Device-Customized Cellular Network Access on Commodity Smartphones",
+          "authors": [
+            "Yuanjie Li",
+            "Haotian Deng",
+            "Chunyi Peng",
+            "Zengwen Yuan"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Diamond: Nesting the Data Center Network with Wireless Rings in 3D Space",
+          "authors": [
+            "Yong Cui",
+            "Shihan Xiao",
+            "Xin Wang",
+            "Zhenjie Yang",
+            "Chao Zhu",
+            "Xiangyang Li",
+            "Liu Yang",
+            "Ning Ge"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "Ripple II: Faster Communication through Physical Vibration",
+          "authors": [
+            "Nirupam Roy",
+            "Romit Roy Choudhury"
+          ],
+          "abstract": null,
+          "award": null
+        },
+        {
+          "title": "PhyCloak: Obfuscating Sensing from Communication Signals",
+          "authors": [
+            "Yue Qiao"
+          ],
+          "abstract": null,
+          "award": null
+        }
+      ]
+    }
+  ]
+}
