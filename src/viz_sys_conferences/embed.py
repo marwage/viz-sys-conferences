@@ -39,12 +39,10 @@ def main(data_dir: str, topics: str, output: str) -> None:
 
     paper_titles: list[str] = []
     paper_years: list[int] = []
-    paper_conferences: list[str] = []
     for e in editions:
         for p in e["papers"]:
             paper_titles.append(p["title"])
             paper_years.append(e["year"])
-            paper_conferences.append(e["conference"])
 
     console.print(f"Loading model [bold]{MODEL_NAME}[/bold] …")
     model = SentenceTransformer(MODEL_NAME)
@@ -63,7 +61,6 @@ def main(data_dir: str, topics: str, output: str) -> None:
         topic_vecs=topic_vecs,
         paper_titles=np.array(paper_titles),
         paper_years=np.array(paper_years),
-        paper_conferences=np.array(paper_conferences),
         topics=np.array(topic_list),
     )
     console.print(f"[green]Saved embeddings → {out}[/green]")

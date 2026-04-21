@@ -26,16 +26,10 @@ def main() -> None:
 
     editions.sort(key=lambda e: (e["conference"], e["year"]))
 
-    col_conf = "Conference"
-    col_papers = "Papers"
+    rows = [(f"{e['conference']}{str(e['year'])[2:]}", str(e["papers"])) for e in editions]
 
-    rows = []
-    for e in editions:
-        yy = str(e["year"])[2:]
-        rows.append((f"{e['conference']}{yy}", str(e["papers"])))
-
-    w0 = max(len(col_conf), max(len(r[0]) for r in rows))
-    w1 = max(len(col_papers), max(len(r[1]) for r in rows))
+    w0 = max(len("Conference"), max(len(r[0]) for r in rows))
+    w1 = max(len("Papers"), max(len(r[1]) for r in rows))
 
     def fmt_row(a: str, b: str) -> str:
         """Format one markdown table row with fixed column widths."""
@@ -44,7 +38,7 @@ def main() -> None:
     lines = [
         "# Conference Statistics",
         "",
-        fmt_row(col_conf, col_papers),
+        fmt_row("Conference", "Papers"),
         f"| {'-' * w0} | {'-' * w1}:|",
     ]
     for row in rows:

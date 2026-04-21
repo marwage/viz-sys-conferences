@@ -7,139 +7,15 @@ to Plotly. Keeping Plotly imports out of this module makes it fully unit-testabl
 
 from __future__ import annotations
 
-import json
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import scipy.sparse as sp
-from sklearn.cluster import KMeans
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import normalize
 
 _STOPWORDS_FILE = Path(__file__).parent.parent.parent / "heatmap_stopwords.txt"
 _STOPWORDS: set[str] = set(_STOPWORDS_FILE.read_text().splitlines())
-
-# ── keyword topic groups for trend-line plot ─────────────────────────────────
-
-KEYWORD_GROUPS: dict[str, list[str]] = {
-    "ML / AI": [
-        "machine learning",
-        "deep learning",
-        "neural",
-        "llm",
-        "gpt",
-        "inference",
-        "training",
-        "model",
-        "transformer",
-        "gpu",
-    ],
-    "Cloud": [
-        "cloud",
-        "serverless",
-        "faas",
-        "datacenter",
-        "data center",
-        "container",
-        "kubernetes",
-        "microservice",
-        "saas",
-    ],
-    "Storage": [
-        "storage",
-        "file system",
-        "filesystem",
-        "database",
-        "key-value",
-        "kv",
-        "flash",
-        "ssd",
-        "nvm",
-        "persistent",
-    ],
-    "Networking": [
-        "network",
-        "rdma",
-        "rpc",
-        "tcp",
-        "congestion",
-        "routing",
-        "switch",
-        "nic",
-        "smartnic",
-        "p4",
-    ],
-    "Security": [
-        "security",
-        "privacy",
-        "sgx",
-        "tee",
-        "trusted",
-        "attack",
-        "exploit",
-        "vulnerability",
-        "isolation",
-        "enclave",
-    ],
-    "Distributed Systems": [
-        "distributed",
-        "consensus",
-        "paxos",
-        "raft",
-        "replication",
-        "fault tolerance",
-        "byzantine",
-        "consistency",
-        "transaction",
-    ],
-    "Verification": [
-        "verification",
-        "formal",
-        "proof",
-        "correctness",
-        "model checking",
-        "specification",
-        "symbolic",
-    ],
-    "OS / Kernel": [
-        "kernel",
-        "operating system",
-        "os",
-        "process",
-        "thread",
-        "scheduler",
-        "scheduling",
-        "memory management",
-        "hypervisor",
-        "virtualization",
-        "virtualisation",
-        "vm",
-    ],
-    "Hardware": [
-        "fpga",
-        "accelerator",
-        "hardware",
-        "cpu",
-        "cache",
-        "architecture",
-        "memory",
-        "dram",
-        "cxl",
-    ],
-    "Bugs / Testing": [
-        "bug",
-        "fuzzing",
-        "fuzz",
-        "test",
-        "debugging",
-        "race",
-        "concurrency",
-        "static analysis",
-    ],
-}
 
 
 # ── 1 · papers over time ─────────────────────────────────────────────────────
@@ -196,250 +72,22 @@ def keyword_heatmap_matrix(
 
     top_words = [w for w, _ in total.most_common(top_n * 2) if w not in _STOPWORDS][:top_n]
 
-    matrix = pd.DataFrame(
+    return pd.DataFrame(
         {year: [counts[year].get(w, 0) for w in top_words] for year in all_years},
         index=top_words,
     )
-    return matrix
 
 
-# ── 3 · paper clustering ─────────────────────────────────────────────────────
-
-N_CLUSTERS = 20
+# ── 3 · topic trend lines ────────────────────────────────────────────────────
 
 
-def build_cluster_data(
-    editions: list[dict],
-    n_clusters: int = N_CLUSTERS,
-) -> tuple[list[str], list[str], list[int], np.ndarray]:
-    """Vectorise all paper titles with TF-IDF and cluster with KMeans.
-
-    Args:
-        editions: Raw edition dicts from load_editions().
-        n_clusters: Number of KMeans clusters. Capped at the number of papers.
-
-    Returns:
-        Tuple of (titles, conference_years, cluster_ids, tfidf_matrix) where:
-        - titles: list of paper title strings
-        - conference_years: list of "{CONF} {year}" strings for each paper
-        - cluster_ids: list of integer cluster assignments
-        - tfidf_matrix: sparse matrix, shape (n_papers, n_features)
-    """
-    titles: list[str] = []
-    conf_years: list[str] = []
-    for e in editions:
-        label = f"{e['conference']} {e['year']}"
-        for p in e["papers"]:
-            titles.append(p["title"])
-            conf_years.append(label)
-
-    k = min(n_clusters, len(titles))
-    vectoriser = TfidfVectorizer(max_features=5000, ngram_range=(1, 2), stop_words="english")
-    matrix = vectoriser.fit_transform(titles)
-    kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
-    cluster_ids = kmeans.fit_predict(matrix).tolist()
-    return titles, conf_years, cluster_ids, matrix
-
-
-def get_cluster_labels(
-    titles: list[str],
-    cluster_ids: list[int],
-    cache_path: Path = Path("data/cluster_labels.json"),
-) -> dict[int, str]:
-    """Return {cluster_id: topic_label}, using cache if available.
-
-    Calls Claude claude-sonnet-4-6 for each cluster if the cache does not exist.
-
-    Args:
-        titles: Paper title strings.
-        cluster_ids: Cluster assignment for each title.
-        cache_path: JSON file to read/write cached labels.
-
-    Returns:
-        Dict mapping cluster id (int) to a 2–4 word topic label (str).
-    """
-    if cache_path.exists():
-        raw = json.loads(cache_path.read_text())
-        return {int(k): v for k, v in raw.items()}
-
-    import anthropic
-
-    client = anthropic.Anthropic()
-
-    # Group titles per cluster
-    clusters: dict[int, list[str]] = defaultdict(list)
-    for title, cid in zip(titles, cluster_ids, strict=True):
-        clusters[cid].append(title)
-
-    labels: dict[int, str] = {}
-    for cid in sorted(clusters):
-        sample = clusters[cid][:20]
-        prompt = (
-            "These are titles of computer systems research papers grouped by topic:\n\n"
-            + "\n".join(f"- {t}" for t in sample)
-            + "\n\nGive this cluster a specific 2–3 word technical label that names the "
-            "exact research area (e.g. 'Consensus Protocols', 'GPU Scheduling', "
-            "'Erasure Coding', 'Serverless Computing'). "
-            "Do NOT use generic words like 'systems', 'management', 'design', "
-            "'research', 'performance', or 'optimization' — name the specific technology "
-            "or problem being studied. Reply with only the label."
-        )
-        response = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=20,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        label = response.content[0].text.strip()
-        labels[cid] = label
-
-    cache_path.parent.mkdir(parents=True, exist_ok=True)
-    cache_path.write_text(json.dumps({str(k): v for k, v in labels.items()}, indent=2))
-    return labels
-
-
-def umap_projection(matrix: sp.spmatrix) -> np.ndarray:
-    """Project a TF-IDF sparse matrix to 2-D with UMAP.
-
-    Args:
-        matrix: Sparse TF-IDF matrix, shape (n_samples, n_features).
-
-    Returns:
-        2-D numpy array, shape (n_samples, 2).
-    """
-    from umap import UMAP
-
-    dense = normalize(matrix, norm="l2")
-    reducer = UMAP(n_components=2, random_state=42, n_neighbors=15, min_dist=0.1)
-    return reducer.fit_transform(dense)
-
-
-# ── 4 · keyword trend lines ──────────────────────────────────────────────────
-
-
-def keyword_trends(editions: list[dict]) -> pd.DataFrame:
-    """Compute per-year normalised frequency for each keyword group.
-
-    Frequency = (titles containing ≥1 keyword from group) / (total titles that year).
-
-    Args:
-        editions: Raw edition dicts from load_editions().
-
-    Returns:
-        DataFrame with columns: year, topic, frequency.
-    """
-    titles_by_year: dict[int, list[str]] = defaultdict(list)
-    for e in editions:
-        year = e["year"]
-        for p in e["papers"]:
-            titles_by_year[year].append(p["title"].lower())
-
-    rows = []
-    for year in sorted(titles_by_year):
-        all_titles = titles_by_year[year]
-        n = len(all_titles)
-        for topic, keywords in KEYWORD_GROUPS.items():
-            hits = sum(1 for t in all_titles if any(kw in t for kw in keywords))
-            rows.append({"year": year, "topic": topic, "frequency": hits / n if n else 0.0})
-    return pd.DataFrame(rows)
-
-
-def topic_trends_embedding(
-    editions: list[dict],
-    topics: list[str],
-    model_name: str = "google/embeddinggemma-300m",
+def topic_trends_from_embeddings(
+    embeddings_path: Path = Path("data/embeddings.npz"),
 ) -> pd.DataFrame:
-    """Assign each paper to its closest topic using semantic embeddings.
-
-    Encodes paper titles and topic names with a sentence embedding model,
-    then assigns each paper to the topic with the highest cosine similarity.
-
-    Args:
-        editions: Raw edition dicts from load_editions().
-        topics: List of topic name strings.
-        model_name: HuggingFace model identifier for the embedding model.
-
-    Returns:
-        DataFrame with columns: year, topic, count, frequency.
-    """
-    from sentence_transformers import SentenceTransformer
-
-    paper_rows: list[dict] = []
-    for e in editions:
-        for p in e["papers"]:
-            paper_rows.append({"title": p["title"], "year": e["year"]})
-
-    paper_titles = [r["title"] for r in paper_rows]
-
-    model = SentenceTransformer(model_name)
-    paper_vecs = model.encode_document(paper_titles, show_progress_bar=True, batch_size=64)
-    topic_vecs = model.encode_query(topics)
-
-    sims = model.similarity(topic_vecs, paper_vecs).numpy().T
-    assignments = sims.argmax(axis=1)
-
-    for i, row in enumerate(paper_rows):
-        row["topic"] = topics[assignments[i]]
-
-    df = pd.DataFrame(paper_rows)
-    totals = df.groupby("year")["title"].count().rename("total")
-    counts = df.groupby(["year", "topic"]).size().reset_index(name="count")
-    counts = counts.join(totals, on="year")
-    counts["frequency"] = counts["count"] / counts["total"]
-    return counts[["year", "topic", "count", "frequency"]]
-
-
-# ── 5 · conference similarity ────────────────────────────────────────────────
-
-
-def conference_similarity(
-    editions: list[dict],
-    top_n: int = 200,
-    year_range: tuple[int, int] | None = None,
-) -> pd.DataFrame:
-    """Compute pairwise Jaccard similarity of top title words between conferences.
-
-    Args:
-        editions: Raw edition dicts from load_editions().
-        top_n: Number of top words per conference to include in the word set.
-        year_range: Optional (min_year, max_year) inclusive filter.
-
-    Returns:
-        Symmetric DataFrame of shape (n_conferences, n_conferences) with Jaccard
-        similarity values. Diagonal is 1.0.
-    """
-    if year_range:
-        lo, hi = year_range
-        editions = [e for e in editions if lo <= e["year"] <= hi]
-
-    word_sets: dict[str, set[str]] = defaultdict(Counter)
-    for e in editions:
-        conf = e["conference"]
-        for p in e["papers"]:
-            word_sets[conf].update(_tokenise(p["title"]))
-
-    # Take top-N words per conference as a set
-    top_sets: dict[str, set[str]] = {
-        conf: {w for w, _ in counter.most_common(top_n)} for conf, counter in word_sets.items()
-    }
-
-    conferences = sorted(top_sets)
-    n = len(conferences)
-    matrix = np.zeros((n, n))
-    for i, ci in enumerate(conferences):
-        for j, cj in enumerate(conferences):
-            a, b = top_sets[ci], top_sets[cj]
-            inter = len(a & b)
-            union = len(a | b)
-            matrix[i, j] = inter / union if union else 0.0
-
-    return pd.DataFrame(matrix, index=conferences, columns=conferences)
-
-
-def topic_trends_from_embeddings(embeddings_path: Path = Path("data/embeddings.npz")) -> pd.DataFrame:
     """Load pre-computed embeddings and assign papers to topics by cosine similarity.
 
     Args:
-        embeddings_path: Path to the .npz file produced by the embed command.
+        embeddings_path: Path to the .npz file produced by `make embed`.
 
     Returns:
         DataFrame with columns: year, topic, count, frequency.
@@ -465,6 +113,52 @@ def topic_trends_from_embeddings(embeddings_path: Path = Path("data/embeddings.n
     counts = counts.join(totals, on="year")
     counts["frequency"] = counts["count"] / counts["total"]
     return counts[["year", "topic", "count", "frequency"]]
+
+
+# ── 4 · conference similarity ────────────────────────────────────────────────
+
+
+def conference_similarity(
+    editions: list[dict],
+    top_n: int = 200,
+    year_range: tuple[int, int] | None = None,
+) -> pd.DataFrame:
+    """Compute pairwise Jaccard similarity of top title words between conferences.
+
+    Args:
+        editions: Raw edition dicts from load_editions().
+        top_n: Number of top words per conference to include in the word set.
+        year_range: Optional (min_year, max_year) inclusive filter.
+
+    Returns:
+        Symmetric DataFrame of shape (n_conferences, n_conferences) with Jaccard
+        similarity values. Diagonal is 1.0.
+    """
+    if year_range:
+        lo, hi = year_range
+        editions = [e for e in editions if lo <= e["year"] <= hi]
+
+    word_sets: dict[str, Counter] = defaultdict(Counter)
+    for e in editions:
+        conf = e["conference"]
+        for p in e["papers"]:
+            word_sets[conf].update(_tokenise(p["title"]))
+
+    top_sets: dict[str, set[str]] = {
+        conf: {w for w, _ in counter.most_common(top_n)} for conf, counter in word_sets.items()
+    }
+
+    conferences = sorted(top_sets)
+    n = len(conferences)
+    matrix = np.zeros((n, n))
+    for i, ci in enumerate(conferences):
+        for j, cj in enumerate(conferences):
+            a, b = top_sets[ci], top_sets[cj]
+            inter = len(a & b)
+            union = len(a | b)
+            matrix[i, j] = inter / union if union else 0.0
+
+    return pd.DataFrame(matrix, index=conferences, columns=conferences)
 
 
 # ── helpers ──────────────────────────────────────────────────────────────────

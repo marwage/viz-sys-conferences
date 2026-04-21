@@ -261,12 +261,9 @@ def _venue(key: str) -> str | None:
     return None
 
 
-_DBLP_SLUGS = {
-    "OSDI": "osdi",
-    "NSDI": "nsdi",
-    "SOSP": "sosp",
-    "EuroSys": "eurosys",
-    "ATC": "usenix",
+# Derived from VENUE_PREFIXES: "conf/osdi/" → "osdi", etc.
+_DBLP_SLUGS: dict[str, str] = {
+    conf: prefix.split("/")[1] for prefix, conf in VENUE_PREFIXES.items()
 }
 
 

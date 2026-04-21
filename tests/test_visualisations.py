@@ -6,25 +6,21 @@ The real data in data/ is used for domain-property tests; synthetic data for uni
 
 from __future__ import annotations
 
-import tempfile
 from pathlib import Path
-from unittest.mock import MagicMock, patch
 
 import numpy as np
 import pytest
 
 from viz_sys_conferences.viz_data import load_editions
 from viz_sys_conferences.viz_plots import (
-    N_CLUSTERS,
-    build_cluster_data,
     conference_similarity,
-    get_cluster_labels,
     keyword_heatmap_matrix,
-    keyword_trends,
     papers_over_time,
+    topic_trends_from_embeddings,
 )
 
 DATA_DIR = Path(__file__).parent.parent / "data"
+EMBEDDINGS = DATA_DIR / "embeddings.npz"
 
 
 # ── fixtures ──────────────────────────────────────────────────────────────────
@@ -37,7 +33,6 @@ def editions() -> list[dict]:
 
 @pytest.fixture
 def tiny_editions() -> list[dict]:
-    """Minimal synthetic editions for fast, isolated tests."""
     return [
         {
             "conference": "FOO",
@@ -164,99 +159,26 @@ def test_heatmap_matrix_conference_filter(editions):
     assert set(osdi_matrix.columns) == osdi_years
 
 
-# ── build_cluster_data ────────────────────────────────────────────────────────
+# ── topic_trends_from_embeddings ──────────────────────────────────────────────
 
 
-def test_cluster_count(tiny_editions):
-    n_papers = sum(len(e["papers"]) for e in tiny_editions)
-    titles, conf_years, cluster_ids, matrix = build_cluster_data(tiny_editions, n_clusters=3)
-    assert len(titles) == len(conf_years) == len(cluster_ids) == n_papers
+@pytest.mark.skipif(not EMBEDDINGS.exists(), reason="embeddings.npz not present — run make embed")
+def test_topic_trends_columns():
+    df = topic_trends_from_embeddings(EMBEDDINGS)
+    assert set(df.columns) == {"year", "topic", "count", "frequency"}
 
 
-def test_cluster_all_titles_assigned(tiny_editions):
-    titles, conf_years, cluster_ids, matrix = build_cluster_data(tiny_editions, n_clusters=3)
-    assert all(isinstance(c, int) for c in cluster_ids)
-    assert len(set(cluster_ids)) == 3
-
-
-def test_cluster_real_data_n_clusters(editions):
-    titles, conf_years, cluster_ids, matrix = build_cluster_data(editions)
-    assert len(set(cluster_ids)) == N_CLUSTERS
-
-
-def test_cluster_matrix_shape(editions):
-    titles, conf_years, cluster_ids, matrix = build_cluster_data(editions)
-    assert matrix.shape[0] == len(titles)
-    assert matrix.shape[1] <= 5000
-
-
-# ── get_cluster_labels (with cache) ──────────────────────────────────────────
-
-
-def test_cluster_label_cache_write_and_read():
-    titles = ["Fast storage system", "Key-value store", "Network scheduling"]
-    cluster_ids = [0, 0, 1]
-    mock_response = MagicMock()
-    mock_response.content = [MagicMock(text="Storage Systems")]
-
-    with tempfile.TemporaryDirectory() as tmp:
-        cache_path = Path(tmp) / "labels.json"
-        with patch("anthropic.Anthropic") as MockClient:
-            instance = MockClient.return_value
-            instance.messages.create.return_value = mock_response
-            labels1 = get_cluster_labels(titles, cluster_ids, cache_path=cache_path)
-            assert cache_path.exists()
-            assert instance.messages.create.call_count == 2
-            labels2 = get_cluster_labels(titles, cluster_ids, cache_path=cache_path)
-            assert instance.messages.create.call_count == 2  # cache hit
-        assert labels1 == labels2
-        assert set(labels1.keys()) == {0, 1}
-
-
-def test_cluster_label_cache_keys_are_ints():
-    titles = ["Operating system kernel", "Thread scheduling"]
-    cluster_ids = [0, 0]
-    mock_response = MagicMock()
-    mock_response.content = [MagicMock(text="OS Kernel")]
-
-    with tempfile.TemporaryDirectory() as tmp:
-        cache_path = Path(tmp) / "labels.json"
-        with patch("anthropic.Anthropic") as MockClient:
-            instance = MockClient.return_value
-            instance.messages.create.return_value = mock_response
-            labels = get_cluster_labels(titles, cluster_ids, cache_path=cache_path)
-        assert all(isinstance(k, int) for k in labels)
-
-
-# ── keyword_trends ────────────────────────────────────────────────────────────
-
-
-def test_keyword_trends_columns(editions):
-    df = keyword_trends(editions)
-    assert set(df.columns) == {"year", "topic", "frequency"}
-
-
-def test_keyword_trends_frequency_range(editions):
-    df = keyword_trends(editions)
+@pytest.mark.skipif(not EMBEDDINGS.exists(), reason="embeddings.npz not present — run make embed")
+def test_topic_trends_frequency_range():
+    df = topic_trends_from_embeddings(EMBEDDINGS)
     assert df["frequency"].between(0.0, 1.0).all()
 
 
-def test_keyword_trends_one_row_per_year_per_topic(editions):
-    from viz_sys_conferences.viz_plots import KEYWORD_GROUPS
-
-    df = keyword_trends(editions)
-    n_years = df["year"].nunique()
-    n_topics = len(KEYWORD_GROUPS)
-    assert len(df) == n_years * n_topics
-
-
-def test_keyword_trends_ml_rises_over_time(editions):
-    """ML/AI frequency should be higher in 2022–2025 than 2006–2010."""
-    df = keyword_trends(editions)
-    ml = df[df["topic"] == "ML / AI"]
-    early = ml[ml["year"].between(2006, 2010)]["frequency"].mean()
-    late = ml[ml["year"].between(2022, 2025)]["frequency"].mean()
-    assert late > early, f"Expected ML to rise: early={early:.3f}, late={late:.3f}"
+@pytest.mark.skipif(not EMBEDDINGS.exists(), reason="embeddings.npz not present — run make embed")
+def test_topic_trends_all_years_covered(editions):
+    df = topic_trends_from_embeddings(EMBEDDINGS)
+    edition_years = {e["year"] for e in editions}
+    assert edition_years.issubset(set(df["year"]))
 
 
 # ── conference_similarity ─────────────────────────────────────────────────────
