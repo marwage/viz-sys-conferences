@@ -111,6 +111,31 @@ _STOPWORDS = {
     "result",
     "results",
     "existing",
+    # adjectives / partial phrases that lose meaning without their noun
+    "big",
+    "machine",
+    "operating",
+    "key",
+    "value",
+    "center",
+    # too vague to be informative
+    "computing",
+    "management",
+    "processing",
+    "applications",
+    "application",
+    "software",
+    "resource",
+    "resources",
+    "layer",
+    "operational",
+    # conference admin / catch-all session names
+    "best",
+    "track",
+    "potpourri",
+    "deployed",
+    # duplicate forms already covered by singular
+    "networks",
 }
 
 # ── keyword topic groups for trend-line plot ─────────────────────────────────
