@@ -7,7 +7,7 @@ test:
 	uv run pytest
 
 stats:
-	uv run python scripts/stats.py
+	uv run stats
 
 lint:
 	uv run ruff check .

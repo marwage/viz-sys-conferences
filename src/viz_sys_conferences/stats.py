@@ -8,8 +8,8 @@ from pathlib import Path
 
 def main() -> None:
     """Read all crawled JSON editions and write STATS.md with a summary table."""
-    data_dir = Path(__file__).parent.parent / "data"
-    output_path = Path(__file__).parent.parent / "STATS.md"
+    data_dir = Path(__file__).parent.parent.parent / "data"
+    output_path = Path(__file__).parent.parent.parent / "STATS.md"
 
     editions = []
     for path in sorted(data_dir.glob("*.json")):
