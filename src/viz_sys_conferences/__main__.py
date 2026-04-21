@@ -81,7 +81,7 @@ def main(
     output_dir = Path(output)
     editions: list[ConferenceEdition] = []
 
-    with HttpClient() as client, Progress(console=console) as progress:
+    with HttpClient(rate_limit_delay=3.0) as client, Progress(console=console) as progress:
         task = progress.add_task("Crawling...", total=len(targets))
         for target in targets:
             progress.update(task, description=f"{target.conference} {target.year}")

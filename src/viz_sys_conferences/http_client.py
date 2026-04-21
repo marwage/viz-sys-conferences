@@ -5,6 +5,8 @@ import time
 from dataclasses import dataclass
 
 import httpx
+from httpcore import RemoteProtocolError as _CoreRemoteProtocolError
+from httpx import RemoteProtocolError as _RemoteProtocolError
 from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
 
 logger = logging.getLogger(__name__)
@@ -53,9 +55,11 @@ class HttpClient:
             raise
 
     @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(min=2, max=10),
-        retry=retry_if_exception_type(httpx.HTTPStatusError),
+        stop=stop_after_attempt(5),
+        wait=wait_exponential(min=3, max=30),
+        retry=retry_if_exception_type(
+            (httpx.HTTPStatusError, _RemoteProtocolError, _CoreRemoteProtocolError)
+        ),
     )
     def _fetch_httpx(self, url: str) -> FetchResult:
         resp = self._client.get(url)
