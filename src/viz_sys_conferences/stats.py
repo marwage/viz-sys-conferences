@@ -14,6 +14,8 @@ def main() -> None:
     editions = []
     for path in sorted(data_dir.glob("*.json")):
         d = json.loads(path.read_text())
+        if "conference" not in d:
+            continue
         editions.append(
             {
                 "conference": d["conference"],
