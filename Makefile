@@ -1,4 +1,4 @@
-.PHONY: run test stats lint fmt
+.PHONY: run test stats lint fmt notebook
 
 run:
 	uv run python -m viz_sys_conferences --output data/
@@ -8,6 +8,9 @@ test:
 
 stats:
 	uv run stats
+
+notebook:
+	uv run jupyter lab --notebook-dir=notebooks
 
 lint:
 	uv run ruff check .
