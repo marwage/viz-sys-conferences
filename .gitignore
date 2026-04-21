@@ -1,4 +1,5 @@
 data/
+# but track the dump separately if needed — it's 4 GB so excluded by default
 STATS.md
 notebooks/.ipynb_checkpoints/
 .env
