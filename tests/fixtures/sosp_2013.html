@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SOSP 2013 -- Program</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Wolfgang Richter">
+
+    <!-- Le styles -->
+    <link href="css/readable.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:200,400,600,700,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"
+          href="ico/apple-touch-icon-57-precomposed.png">
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-34107931-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+  </head>
+
+  <body>
+
+    <div class="container">
+    <div class="row">
+    <div class="span12">
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="row">
+                    <div class="span12">
+                        <a class="brand visible-large-display" href="index.html">SOSP'13: The 24th ACM Symposium on Operating Systems Principles</a>
+                        <a class="brand visible-desktop visible-tablet" href="index.html" style="line-height:1.3;">SOSP'13: The 24th ACM Symposium on Operating Systems Principles</a>
+                        <a class="brand visible-phone" href="index.html" style="font-size: 14pt;">SOSP'13: The 24th ACM Symposium on Operating Systems Principles</a>
+                    </div> <!-- span12 -->
+                </div> <!-- row -->
+                <div class="row">
+                    <div class="span12">
+                        <div class="navbar-text hidden-phone">
+                            November 3-6, 2013, Nemacolin Woodlands Resort, Farmington, Pennsylvania, USA
+                        </div> <!-- span12 -->
+                        <div class="navbar-text visible-phone" style="font-size: 6pt;">
+                            November 3-6, 2013, Nemacolin Woodlands Resort, Farmington, Pennsylvania, USA
+                        </div> <!-- span12 -->
+                    </div> <!-- span12 -->
+                </div> <!-- row -->
+            </div> <!--navbar-inner -->
+
+        <div class="visible-phone">
+            <a class="btn btn-navbar" id="showsidebar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+
+        </div> <!--navbar -->
+
+    </div> <!-- span12 -->
+    </div> <!-- row -->
+
+      <div class="row">
+            <div class="span3">
+                <div id="sidebar" class="well sidebar-nav sidebar-nav-fixed hidden-phone">
+                    <ul class="nav nav-list">
+                        <li><a href="index.html"><i class="icon-home"></i> Home</a></li>
+                        <li class="nav-header">Conference Details</li>
+                        <li><a href="registration.html"><i class=" icon-pencil"></i> Registration</a></li>
+                        <li><a href="glance.html"><i class="icon-bookmark"></i> At-a-Glance</a></li>
+                        <li class="active"><a href="program.html"><i class="icon-book"></i> Program</a></li>
+                        <li><a href="cfp.html"><i class="icon-file"></i> Call for Papers</a></li>
+                        <li><a href="cfp.html#dates"><i class="icon-calendar"></i> Important Dates</a></li>
+                        <li><a href="cfp.html#pc"><i class="icon-user"></i> PC / Organizers</a></li>
+
+                        <li class="nav-header">Local Information</li>
+                        <li><a href="venue.html"><i class="icon-picture"></i> Venue</a></li>
+                        <li><a href="venue.html#transportation"><i class="icon-plane"></i> Transportation</a></li>
+                        <li><a href="venue.html#accommodations"><i class="icon-briefcase"></i> Accommodations</a></li>
+                        <li><a href="venue.html#activities"><i class="icon-star"></i> Activities</a></li>
+                        <li class="nav-header">Additional Information</li>
+                        <li><a href="attendees.html"><i class="icon-list"></i> Attendees List</a></li>
+                        <li><a href="workshops.html"><i class="icon-wrench"></i> Workshops</a></li>
+                        <li><a href="posters.html"><i class="icon-list-alt"></i> Posters/WIPs/BOFs</a></li>
+                        <li><a href="students.html"><i class="icon-certificate"></i> Scholarships</a></li>
+                        <li><a href="sponsors.html"><i class="icon-thumbs-up"></i> Sponsors</a></li>
+                        <img src="img/sosp13-montage.jpg" alt="Resort picture."
+                             style="display: block; margin-left: auto;
+                             margin-right: auto;
+                             margin-top: 10px;
+                             margin-bottom: 10px;" />
+                        <img class="centered" src="img/siglogo.png" height=48px />
+                        <p style="text-align: center; margin-top: 0.65em;">In cooperation with</p>
+                        <img class="centered" src="img/usenix-logo.png" height=56px />
+                    </ul>
+                </div><!--well -->
+            </div><!--span3 -->
+
+        <div class="span9">
+            <div class="sosp-content">
+              <h2>Program</h2>
+              <p>Please see the <a href="glance.html">At a Glance page</a> for more
+              information about the schedule, including meals, and breaks.  The workshop
+              programs are available on the <a href="workshops.html">individual workshop websites</a>.</p>
+
+              <p class="text-info"><b>Note:</b> Please note that we are <em>not</em> handing out USB drives with
+              the proceedings at the conference.  Attendees who want a
+              local copy are encouraged to download them ahead of time.</p>
+
+              <p><br></p>
+
+              <div class="alert alert-block sosp-alert-info">
+              <p class="text-center"><b>NEW: YouTube Videos</b></p>
+              <p>All of the SOSP'13 videos are now available on the ACM YouTube Channel.  Click <b><a href="https://www.youtube.com/playlist?list=PLn0nrSd4xjjZsNjpfWvNEtuBMtKkTd3gW">here</a></b> to go to the playlist.</p>
+              </div>
+
+              <p><br></p>
+
+              <div style="margin-left:2em;">
+                <a href="http://dl.acm.org/citation.cfm?id=2517349">ACM Digital Library Proceedings Page</a>
+              </div>
+              <div style="margin-left:2em;">
+                <a href="http://dl.acm.org/ft_gateway.cfm?id=2517349&ftid=1413864">Full SOSP'13 Proceedings</a> (single PDF file with bookmarks for navigation - 21 MB)
+              </div>
+              <div style="margin-left:2em;">
+                <a href="http://dl.acm.org/ft_gateway.cfm?id=2517349&ftid=1413863">Full SOSP'13 Proceedings</a> (ZIP archive with individual paper PDFs - 19 MB)
+              </div>
+              <div style="margin-left:2em;">
+                <a href="http://portalparts.acm.org/2520000/2517349/fm/frontmatter.pdf">SOSP'13 Proceedings Front Matter</a> (cover page, forward, ToC, etc.)
+              </div>
+              <p><br /></p>
+              <div class="text-center">
+                  <ul class="unstyled inline">
+                      <li><i class="icon-file align-center"></i> Paper PDF
+                      <li><i class="icon-picture"></i> Talk Slides
+                      <li><i class="icon-question-sign"></i> <a href="http://www.google.com/moderator/#16/e=215b85">Google Moderator</a>
+                      <li><i class="icon-film"></i> Talk Video
+                  </ul>
+              </div>
+              <table class="table table-spread" style="padding-left:auto;">
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="success"><td><strong>Welcome and Awards</strong>
+                          <span class="pull-right"><i>Monday, 8:30am-9am</i></span></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 1: Juggling Chainsaws</strong>, Chair: Rebecca Isaacs
+                          <span class="pull-right"><i>Monday, 9am-10:30am</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522712&ftid=1403961&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/clements_commutativity_se01_01.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.41"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522712&ftid=1416261&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <span class="badge badge-info pull-right">Best Paper</span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522712">The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors</a></strong>
+                  </td></tr>
+                  <tr><td>Austin T. Clements, M. Frans Kaashoek, Nickolai Zeldovich, Robert Morris (MIT CSAIL), Eddie Kohler (Harvard)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522713&ftid=1403962&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/tu_silo_se01_02.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.42"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522713&ftid=1416837&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522713">Speedy Transactions in Multicore In-Memory Databases</a></strong>
+                  </td></tr>
+                  <tr><td>Stephen Tu, Wenting Zheng (MIT), Eddie Kohler (Harvard), Barbara Liskov, Samuel Madden (MIT)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522714&ftid=1403933&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/trigonakis_ssync_se01_03.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.43"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522714&ftid=1417046&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522714">Everything You Always Wanted to Know about Synchronization but Were Afraid to Ask</a></strong>
+                  </td></tr>
+                  <tr><td>Tudor David, Rachid Guerraoui, Vasileios Trigonakis (EPFL)</td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 2: Time is of the Essence</strong>, Chair: Eddie Kohler
+                          <span class="pull-right"><i>Monday, 11am-12:30pm</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522715&ftid=1403934&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/rossbach_dandelion_se02_01.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.44"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522715&ftid=1416259&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522715">Dandelion: A Compiler and Runtime for Heterogeneous Systems</a></strong>
+                  </td></tr>
+                  <tr><td>Christopher J Rossbach, Yuan Yu, Jon Currey, Jean-Philippe Martin, Dennis Fetterly (Microsoft Research Silicon Valley)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522716&ftid=1403935&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/ousterhout_sparrow_se02_02.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.45"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522716&ftid=1416842&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522716">Sparrow: Distributed, Low Latency Scheduling</a></strong>
+                  </td></td>
+                  <tr><td>Kay Ousterhout, Patrick Wendell, Matei Zaharia, Ion Stoica (UC Berkeley)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522717&ftid=1403936&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/ravindranath_timecard_se02_03.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.46"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522717&ftid=1417639&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522717">Timecard: Controlling User-Perceived Delays in Server-Based Mobile Applications</a></strong>
+                  </td></td>
+                  <tr><td>Lenin Ravindranath (MIT), Jitendra Padhye, Ratul Mahajan (Microsoft Research), Hari Balakrishnan (MIT)</td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 3: Seed Corn</strong>, Chair: Robert Morris
+                          <span class="pull-right"><i>Monday, 2pm-3:30pm</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522718&ftid=1403937&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/kedia_fdbt_se03_01.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.5e"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522718&ftid=1417047&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522718">Fast Dynamic Binary Translation for the Kernel</a></strong>
+                  </td></td>
+                  <tr><td>Piyus Kedia, Sorav Bansal (IIT Delhi)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522719&ftid=1403938&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/nikolaev_virtuos_se03_02.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.5d"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522719&ftid=1416843&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522719">VirtuOS: An Operating System with Kernel Virtualization</a></strong>
+                  </td></td>
+                  <tr><td>Ruslan Nikolaev, Godmar Back (Virginia Polytechnic Institute)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522720&ftid=1403939&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/elphinstone_l3sel4_se03_03.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.5c"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522720&ftid=1418245&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522720">From L3 to seL4: What Have We Learnt in 20 Years of L4 Microkernels?</a></strong>
+                  </td></td>
+                  <tr><td>Kevin Elphinstone, Gernot Heiser (NICTA &amp; UNSW)</td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 4: Everything in its Place</strong>, Chair: James Mickens
+                          <span class="pull-right"><i>Monday, 4pm-6pm</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522721&ftid=1403940&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/mashtizadeh_ori_se04_01.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.5b"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522721&ftid=1416844&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522721">Replication, History, and Grafting in the Ori File System</a></strong>
+                  </td></td>
+                  <tr><td>Ali Mashtizadeh, Andrea Bittau, Yifeng Frank Huang, David Mazi&#232;res (Stanford University)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522722&ftid=1403941&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/huang_fb_se04_02.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.5a"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522722&ftid=1416866&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522722">An Analysis of Facebook Photo Caching</a></strong><br />
+                          <small class="text-info">The authors of this paper have posted an <a href="http://www.cs.cornell.edu/~qhuang/papers/sosp_fbanalysis.pdf">updated version</a> which contains minor clarifications.</small>
+                  </td></td>
+                  <tr><td>Qi Huang, Ken Birman, Robbert van Renesse (Cornell University), Wyatt Lloyd (Princeton University), Sanjeev Kumar, Harry C. Li (Facebook Inc.)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522723&ftid=1403942&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/thereska_ioflow_se04_03.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.59"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522723&ftid=1416897&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                      <strong><a href="http://doi.acm.org/10.1145/2517349.2522723">IOFlow: A Software-Defined Storage Architecture</a></strong>
+                  </td></td>
+                  <tr><td>Eno Thereska, Hitesh Ballani, Greg O'Shea, Thomas Karagiannis, Antony Rowstron (Microsoft Research), Tom Talpey
+                            (Microsoft), Richard Black (Microsoft Research), Timothy Zhu (Carnegie Mellon University)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522724&ftid=1403943&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/coburn_mars_se04_04.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.58"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522724&ftid=1417640&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522724">From ARIES to MARS: Transaction Support for Next-Generation, Solid-State Drives</a></strong>
+                  </td></td>
+                  <tr><td>Joel Coburn, Trevor Bunker, Meir Schwarz, Rajesh K. Gupta, Steven Swanson (University of California, San Diego)</td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="success"><td><strong><a href="posterslist.html#monday">Poster Session 1</a></strong>
+                          <span class="pull-right"><i>Monday, 6pm-8pm</i></span></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 5: Whoops</strong>, Chair: Robbert van Renesse
+                          <span class="pull-right"><i>Tuesday, 8:30am-10:30am</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522725&ftid=1403944&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/chandra_aire_se05_01.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.57"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522725&ftid=1418246&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522725">Asynchronous Intrusion Recovery for Interconnected Web Services</a></strong>
+                  </td></td>
+                  <tr><td>Ramesh Chandra, Taesoo Kim, Nickolai Zeldovich (MIT CSAIL)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522726&ftid=1403945&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/chidambaram_optfs_se05_02.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.56"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522726&ftid=1416978&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522726">Optimistic Crash Consistency</a></strong>
+                  </td></td>
+                  <tr><td>Vijay Chidambaram, Thanumalayan Sankaranarayana Pillai, Andrea C. Arpaci-Dusseau, Remzi H. Arpaci-Dusseau (University of Wisconsin-Madison)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522727&ftid=1403946&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/xu_spex_se05_03.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.55"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522727&ftid=1417014&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522727">Do Not Blame Users for Misconfigurations</a></strong>
+                  </td></td>
+                  <tr><td>Tianyin Xu, Jiaqi Zhang, Peng Huang, Jing Zheng, Tianwei Sheng (UC San Diego), Ding Yuan (University of Toronto), Yuanyuan Zhou (UC San Diego), Shankar Pasupathy (NetApp Inc)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522728&ftid=1403947&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/wang_stack_se05_04.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.54"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522728&ftid=1417015&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <span class="badge badge-info pull-right">Best Paper</span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522728">Towards Optimization-Safe Systems: Analyzing the Impact of Undefined Behavior</a></strong>
+                  </td></td>
+                  <tr><td>Xi Wang, Nickolai Zeldovich, M. Frans Kaashoek, Armando Solar-Lezama (MIT CSAIL)</td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 6: Data, Data, Everywhere</strong>, Chair: John Ousterhout
+                          <span class="pull-right"><i>Tuesday, 11am-12:30pm</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522729&ftid=1403948&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/zhang_lynx_se06_01.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.53"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522729&ftid=1417016&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522729">Transaction Chains: Achieving Serializability with Low Latency in Geo-Distributed Storage Systems</a></strong><br />
+                          <small class="text-info">The authors of this paper have posted an <a href="http://news.cs.nyu.edu/~jinyang/pub/sosp13-lynx.pdf">updated version</a> which contains minor clarifications.</small>
+                  </td></td>
+                  <tr><td>Yang Zhang, Russell Power, Siyuan Zhou, Yair Sovran (NYU), Marcos K. Aguilera (Microsoft Research), Jinyang Li (NYU)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522730&ftid=1403949&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/wu_spanstore_se06_02.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.52"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522730&ftid=1417017&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522730">SPANStore: Cost-Effective Geo-Replicated Storage Spanning Multiple Cloud Services</a></strong>
+                  </td></td>
+                  <tr><td>Zhe Wu, Michael Butkiewicz, Dorian Perkins (UC Riverside), Ethan Katz-Bassett (USC), Harsha V. Madhyastha (UC Riverside)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522731&ftid=1403950&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/terry_pileus_se06_03.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.51"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522731&ftid=1417018&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522731">Consistency-Based Service Level Agreements for Cloud Storage</a></strong>
+                  </td></td>
+                  <tr><td>Douglas B. Terry, Vijayan Prabhakaran, Ramakrishna Kotla, Mahesh Balakrishnan, Marcos K. Aguilera (Microsoft Research), Hussam Abu-Libdeh (Cornell University)</td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 7: Right Makes Might</strong>, Chair: YY Zhou
+                          <span class="pull-right"><i>Tuesday, 3:30pm-5pm</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522732&ftid=1403951&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/balakrishnan_tango_se07_01.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.50"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522732&ftid=1417045&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522732">Tango: Distributed Data Structures over a Shared Log</a></strong>
+                  </td></td>
+                  <tr><td>Mahesh Balakrishnan, Dahlia Malkhi, Ted Wobber, Ming Wu, Vijayan Prabhakaran (Microsoft Research), Michael Wei (UCSD), John D. Davis (Microsoft Research), Sriram Rao (Microsoft), Tao Zou (Cornell University), Aviad Zuck (Tel-Aviv University)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522733&ftid=1403952&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/setty_pantry_se07_02.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.4f"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522733&ftid=1417641&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522733">Verifying Computations with State</a></strong>
+                  </td></td>
+                  <tr><td>Benjamin Braun (UT Austin), Ariel J. Feldman (University of Pennsylvania), Zuocheng Ren, Srinath Setty, Andrew J. Blumberg, Michael Walfish (UT Austin)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2517350&ftid=1403953&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/moraru_epaxos_se07_03.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.4e"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2517350&ftid=1417642&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2517350">There Is More Consensus In Egalitarian Parliaments</a></strong>
+                  </td></td>
+                  <tr><td>Iulian Moraru, David G. Andersen (Carnegie Mellon University), Michael Kaminsky (Intel Labs)</td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="success"><td><strong><a href="wipslist.html">WIPs</a></strong>
+                          <span class="pull-right"><i>Tuesday, 5pm-6pm</i></span></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="success"><td><strong><a href="posterslist.html#tuesday">Poster Session 2</a> / <a href="bofslist.html">BOFs</a></strong>
+                          <span class="pull-right"><i>Tuesday, 6pm-8pm</i></span></td></tr>
+                  <tr><td><strong>BOF Session 1</strong>
+                          <span class="pull-right"><i>Tuesday, 6pm-7pm</i></span></td></tr>
+                  <tr><td><span class="pull-right">Josephs Room</span><a href="bofslist.html#bof1"><strong>Energy-efficiency and Resilience Challenges for Long-running Applications on Leadership-scale Machines</strong></a></td></tr>
+                  <tr><td><span class="pull-right">Club Room</span><a href="bofslist.html#bof2"><strong>Should we build clouds with strong properties or stop wringing our hands?</strong></a></td></tr>
+                  <tr><td><strong>BOF Session 2</strong>
+                          <span class="pull-right"><i>Tuesday, 7pm-8pm</i></span></td></tr>
+                  <tr><td><span class="pull-right">Josephs Room</span><a href="bofslist.html#bof3"><strong>Availability of PRObE: 1000 Nodes for Systems Research Experiments</strong></a></td></tr>
+                  <tr><td><span class="pull-right">Club Room</span><a href="bofslist.html#bof4"><strong>Cloud based network services, Resilience, Virtual machines, TPMs, Key Management</strong></a></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 8: N' Sync</strong>, Chair: Michael Walfish
+                          <span class="pull-right"><i>Wednesday, 9am-10:30am</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522734&ftid=1403954&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/weiss_root_se08_01.html"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.4d"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522734&ftid=1418247&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522734">ROOT: Replaying Multithreaded Traces with Resource-Oriented Ordering</a></strong>
+                  </td></td>
+                  <tr><td>Zev Weiss, Tyler Harter, Andrea C. Arpaci-Dusseau, Remzi H. Arpaci-Dusseau (University of Wisconsin-Madison)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522735&ftid=1403955&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/cui_parrot_se08_02.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.4c"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522735&ftid=1418248&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522735">PARROT: A Practical Runtime for Deterministic, Stable, and Reliable Threads</a></strong>
+                  </td></td>
+                  <tr><td>Heming Cui (Columbia University), Jiri Simsa (Carnegie Mellon University), Yi-Hong Lin, Hao Li (Columbia University), Ben Blum (Carnegie Mellon University), Xinan Xu, Junfeng Yang (Columbia University), Garth A. Gibson, Randal E. Bryant (Carnegie Mellon University)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522736&ftid=1403956&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/kasikci_racemob_se08_03.pdf"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.4b"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522736&ftid=1418249&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522736">RaceMob: Crowdsourced Data Race Detection</a></strong>
+                  </td></td>
+                  <tr><td>Baris Kasikci, Cristian Zamfir, George Candea (EPFL)</td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr><td></td></tr>
+                  <tr class="info"><td><strong>Session 9: Data into Information</strong>, Chair: George Candea
+                          <span class="pull-right"><i>Wednesday, 11am-1pm</i></span></td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522737&ftid=1403957&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/das_spark_se09_01.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.4a"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522737&ftid=1417643&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522737">Discretized Streams: Fault-Tolerant Streaming Computation at Scale</a></strong><br />
+                          <small class="text-info">The authors of this paper have posted an <a href="http://www.cs.berkeley.edu/~matei/papers/2013/sosp_spark_streaming.pdf">updated version</a> which contains minor clarifications.</small>
+                  </td></td>
+                  <tr><td>Matei Zaharia, Tathagata Das, Haoyuan Li, Timothy Hunter, Scott Shenker, Ion Stoica (UC Berkeley)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522738&ftid=1403958&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/murray_naiad_se09_02.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.49"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522738&ftid=1417644&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <span class="badge badge-info pull-right">Best Paper</span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522738">Naiad: A Timely Dataflow System</a></strong>
+                  </td></td>
+                  <tr><td>Derek G. Murray, Frank McSherry, Rebecca Isaacs, Michael Isard, Paul Barham, Martin Abadi (Microsoft Research)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522739&ftid=1403959&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/nguyen_graph_se09_03.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.48"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522739&ftid=1417645&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522739">A Lightweight Infrastructure for Graph Analytics</a></strong>
+                  </td></td>
+                  <tr><td>Donald Nguyen, Andrew Lenharth, Keshav Pingali (University of Texas at Austin)</td></tr>
+                  <tr><td>
+                          <span class="pull-right"><a href="http://dl.acm.org/ft_gateway.cfm?id=2522740&ftid=1403960&dwn=1"><i class="icon-file"></i></a>
+                          <a href="talks/roy_xstream_se09_04.pptx"><i class="icon-picture"></i></a>
+                          <a href="http://www.google.com/moderator/#15/e=215b85&amp;t=215b85.47"><i class="icon-question-sign"></i></a>
+                          <a href="http://dl.acm.org/ft_gateway.cfm?id=2522740&ftid=1417646&dwn=1"><i class="icon-film"></i></a>
+                          </span>
+                          <strong><a href="http://doi.acm.org/10.1145/2517349.2522740">X-Stream: Edge-Centric Graph Processing using Streaming Partitions</a></strong>
+                  </td></td>
+                  <tr><td>Amitabha Roy, Ivo Mihailovic, Willy Zwaenepoel (EPFL)</td></tr>
+              </table>
+
+          </div>
+        </div>
+      </div>
+
+    <div class="row row-small">
+        <div class="span12">
+                  <hr>
+          <div class="sosp-sponsors">
+              <ul class="unstyled inline aligntop">
+                  <li>
+                      <h4 class="muted">Platinum Sponsors</h4>
+                      <ul class="unstyled inline">
+                          <li><img src="img/cisco_logo.png" width=120px></li>
+                          <li><b style="font-size:1.5em; vertical-align:middle; text-align:center; line-height:1em;">The Murty <br />
+                                                  Family Foundation</b></li>
+                          <li><img src="img/nsf_logo.png" width=115px></li>
+                      </ul>
+                  </li>
+              </ul>
+
+              <ul class="unstyled inline aligntop">
+                  <li>
+                      <h4 class="muted">Gold Sponsors</h4>
+                      <ul class="unstyled inline">
+                          <li><b style="font-size:2em;">Apple</b></li>
+                          <li><img src="img/craw_logo.png" width=100px></li>
+                          <li><img src="img/facebook_logo.png" width=150px></li>
+                          <li><img src="img/netapp_logo.png" width=90px></li>
+                          <li><img src="img/msr_logo.png" width=250px></li>
+                      </ul>
+                  </li>
+              </ul>
+
+              <ul class="unstyled inline aligntop">
+                  <li>
+                      <h4 class="muted">Silver Sponsors</h4>
+                      <ul class="unstyled inline">
+                          <li><img src="img/akamai_logo.png" height=52px></li>
+                          <li><img src="img/google_logo.png" height=52px></li>
+                          <li><img src="img/hp_logo.png" height=70px></li>
+                          <li><img src="img/intel_logo.png" width=85px></li>
+                          <li><img src="img/symantec_logo.png" width=112px></li>
+                          <li><img src="img/vmware_logo.png" width=110px></li>
+                      </ul>
+                  </li>
+              </ul>
+
+              <ul class="unstyled inline aligntop">
+                  <li>
+                      <h4 class="muted">Bronze Sponsors</h4>
+                      <ul class="unstyled inline">
+                          <li><img src="img/bromium_logo.png" width=135px></li>
+                          <li><img src="img/ibm_logo.png" height=20px width=140px></li>
+                          <li><img src="img/oracle_logo.png" width=130px></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+        <hr>
+            <footer>
+                <p>&copy; SIGOPS 2013 | <a href="privacy.html">Privacy Policy</a> | All trademarks and registered trademarks are the property of their respective owners.</p>
+            </footer>
+        </div>
+    </div>
+
+    </div><!--/.container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/sosp13.js"></script>
+
+  </body>
+</html>

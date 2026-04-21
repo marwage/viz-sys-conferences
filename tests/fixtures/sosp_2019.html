@@ -1,0 +1,853 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SOSP 2019 - Symposium on Operating Systems Principles</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="SOSP 2019" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!--side-bar-->
+        <div class="col-sm-3 col-md-2 sidebar">
+            <!--logo-->
+  <div class="logo">
+      <a href="https://www.sigops.org/sosp/sosp19/" target="_blank">
+	<img src="images/logo.png" alt="SOSP19"/>
+      </a>
+    <div></div>
+    <a href="https://www.sigops.org/" target="_blank"><img src="images/sigops.jpg" alt="SIGOPS"/></a>
+    <div>In cooperation with</div>
+    <a href="https://www.usenix.org/" target="_blank"><img src="images/usenix.png" alt="USENIX"/></a>
+  </div>
+  <!--logo-->
+
+  <!--sidebar menu-->
+  <div class="top-nav">
+    <div class="nav1">
+      <ul class="nav nav-sidebar">
+        <li><a id="homenav" href="index.html">Home</a></li>
+        <li>
+          <b>Conference Details</b>
+          <ul>
+	    <li><a href="program.html">Program</a></li>
+	    <li><a href="sched.html">Workshop and Tutorial Schedule</a></li>
+	    <li><a href="reg.html">Registration</a></li>
+	    <li><a href="venue.html">Venue</a></li>
+	    <li><a href="sponsors.html">Sponsors</a></li>
+	    <li><a href="workshops.html">Workshops</a></li>
+	    <li><a href="tutorials.html">Tutorials</a></li>
+	    <li><a href="https://sysartifacts.github.io/index.html">Artifact Evaluation</a></li>
+	    <li><a href="organizers.html">Organizers</a></li>
+          </ul>
+        </li>
+        <!--
+	<li>
+          <b>Local Information</b>
+          <ul>
+	    <li><a href="https://wp.nyu.edu/sosp2017tutorials/" 
+	    target="_blank">Tutorial</a></li>
+            <li><a href="bof.html">Birds of Feather</a></li>
+            <li><a href="excursion.html">Excursion</a></li>
+	    <li><a href="reg.html">Registration</a></li>
+	  </ul>
+	</li>-->
+	<li>
+	<b>Calls for Participation</b>
+	  <ul>
+	    <li><a href="cfp.html">Call for Papers</a></li>
+	    <!--<li><a href="cfw.html">Call for Workshops</a></li>-->
+	    <li><a href="cft.html">Call for Tutorials</a></li>
+	    <li><a href="cfsrc.html">Student Research Competition</a></li>
+	    <li><a href="cfss.html">Call for Scholarships</a></li>
+	    <li><a href="cfs.html">Call for Sponsors</a></li>
+	    <li><a href="mentoring.html">Mentoring</a></li>
+	  </ul>
+	</li>
+	<li>
+          <b>Additional Information</b>
+          <ul>
+	    <li><a href="visa.html">Visa Information</a></li>
+	    <li><a href="cc.html">Child Care</a></li>
+	    <li><a href="code.html">Code of Conduct</a></li>
+	    <li><a href="dei.html">Diversity Plan</a></li>
+	    <li><a href="http://www.sosp.org/">Prior SOSPs</a></li>
+          </ul>
+        </li>
+      </ul> 
+    </div>	
+  </div>
+  <!--sidebar menu-->
+          <div class="clearfix"> </div>				
+        </div>
+        <!--//side-bar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <!--banner-->
+          <div class="banner">
+            <div class="jumbotron banner-text">
+              <h2>SOSP 2019</h2>
+              <p>
+              The 27th ACM Symposium on Operating Systems Principles<br>
+              Deerhurst Resort, Huntsville, Ontario, Canada<br>
+              October 27-30, 2019
+              </p>
+            </div>
+          </div>
+	  <nav class="navbar navbar-default" role="navigation"> 
+  <div class="navbar-header"> 
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sosp17-navbar-collapse"> 
+      <span class="icon-bar"></span> 
+      <span class="icon-bar"></span> 
+      <span class="icon-bar"></span> 
+    </button> 
+  </div>
+  <div class="collapse navbar-collapse" id="sosp17-navbar-collapse"> 
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="program.html#" class="dropdown-toggle" data-toggle="dropdown">Conference Details<b class="caret"></b> </a> 
+        <ul class="dropdown-menu">
+	  <li><a href="program.html">Program</a></li>
+	  <li><a href="sched.html">Workshop and Tutorial Schedule</a></li>
+	  <li><a href="reg.html">Registration</a></li>
+	  <li><a href="venue.html">Venue</a></li>
+	  <li><a href="sponsors.html">Sponsors</a></li>
+	  <li><a href="workshops.html">Workshops</a></li>
+	  <li><a href="tutorials.html">Tutorials</a></li>
+	  <li><a href="https://sysartifacts.github.io/index.html">Artifact Evaluation</a></li>
+	  <li><a href="organizers.html">Organizers</a></li>
+	</ul>
+      </li>
+      <li class="dropdown">
+	<a href="program.html#" class="dropdown-toggle" data-toggle="dropdown">Calls for 
+		Participation<b class="caret"></b> </a>
+	<ul class="dropdown-menu">
+	  <li><a href="cfp.html">Call for Papers</a></li>
+	  <!--<li><a href="cfw.html">Call for Workshops</a></li>-->
+	  <li><a href="cft.html">Call for Tutorials</a></li>
+	  <li><a href="cfsrc.html">Student Research Competition</a></li>
+	  <li><a href="cfss.html">Call for Scholarships</a></li>
+	  <li><a href="cfs.html">Call for Sponsors</a></li>
+	  <li><a href="mentoring.html">Mentoring</a></li>
+	</ul>
+      </li>
+      <li class="dropdown">
+        <a href="program.html#" class="dropdown-toggle" data-toggle="dropdown">Additional Information<b class="caret"></b> </a> 
+        <ul class="dropdown-menu">
+	  <li><a href="visa.html">Visa Information</a></li>
+	  <li><a href="cc.html">Child Care</a></li>
+	  <li><a href="code.html">Code of Conduct</a></li>
+	  <li><a href="dei.html">Diversity Plan</a></li>
+	  <li><a href="http://www.sosp.org/">Prior SOSPs</a></li>
+	</ul>
+      </li>
+    </ul> 
+  </div> 
+</nav>
+	  <!--//banner-->
+
+          <!--main-text-->
+          
+<div class="main-text">
+  <div class="welcome">
+    <h3>SOSP 2019 Program</h3>
+    <div class="col-md-12">
+      <p align="center">
+      <img class="icon-paper" src="images/icon-paper.png"></img> Paper PDF &nbsp;&nbsp;
+      <img class="icon-slide" src="images/icon-slide.png"></img> Talk Slides &nbsp;&nbsp;
+      <img class="icon-video" src="images/icon-video.png"></img> Talk Video &nbsp;&nbsp;
+      </p>
+      <p align="center">
+      <a href="program.pdf"><img class="icon-paper" src="images/icon-paper.png"/> SOSP Program (PDF)</a>
+      <a href="https://dl.acm.org/citation.cfm?id=3341301"><img class="icon-paper" src="images/icon-paper.png"/> Proceedings</a>
+      </p>
+    </div>
+    <div class="col-md-12">
+    <h2 class="left-h">Monday, October 28, 2019</h2>
+    <table class="table table-spread" style="padding-left:auto;">
+      <tr class="success">
+	<td><strong>Breakfast</strong>
+          <span class="pull-right">(Waterhouse/Peninsula) <i>7:30 AM - 8:45 AM</i></span>
+        </td></tr>
+      <tr><td></td></tr>
+      <tr class="success">
+	<td><strong>Opening Remarks</strong>
+          <span class="pull-right">(Legacy Hall) <i>8:45 AM - 9:00 AM</i></span>
+        </td></tr>
+      <tr><td>
+      <span class="pull-right">
+       <!--
+       <a href="https://dl.acm.org/ft_gateway.cfm?id=3132785&ftid=1913904"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+       <a href="#"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+       <a href="#"><img class="icon-video" src="images/icon-video.png"></img></a>
+       <a href="https://app.sli.do/event/l6dfcagi/ask"><img class="icon-links" src="images/icon-links.png"></img></a>
+       -->
+       </span>
+       <strong><a href="javascript:void(0);">Welcome</a></strong>
+      </td></tr>
+      <tr>
+        <td>General Chairs: Tim Brecht (University of Waterloo) and Carey 
+          Williamson (University of Calgary)<br/>
+          PC Chairs: Remzi H. Arpaci-Dusseau (University of Wisconsin) and 
+          Yuanyuan Zhou (University of Calfornia San Diego)
+        </td></tr>
+
+      <tr class="info"><td><strong>Session 1: Machines, Learning
+	  (Vijay Chidambaram, University of Texas Austin and VMware 
+	  Research)</strong>
+          <span class="pull-right">(Legacy Hall) <i>9:00 AM - 10:20 AM</i></span>
+      </td></tr>
+      <!-- template 
+      <tr><td>
+              <span class="pull-right">
+              <a href="#"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="#"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="#"><img class="icon-video" src="images/icon-video.png"></img></a>
+              <a href="#"><img class="icon-minutes" src="images/icon-minutes.png"></img></a>
+              <a href="#"><img class="icon-links" src="images/icon-links.png"></img></a>
+              <a href="#"><img class="icon-answer" src="images/icon-answer.png"></img></a>
+              </span>
+              <span class="badge badge-info pull-right">Best Paper</span>
+              <strong><a href="Paper acm page">Paper Title</a></strong>
+      </td></tr>
+      <tr><td>Author1, Author2, ...</td></tr>
+      -->
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695015"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/narayanan.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S1-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695015">PipeDream: Generalized Pipeline Parallelism for DNN Training
+</a></strong>
+          </td></tr>
+          <tr><td>Deepak Narayanan (Stanford University), Aaron Harlap (Carnegie Mellon University), Amar Phanishayee (Microsoft Research), Vivek Seshadri (Microsoft Research), Nikhil R. Devanur (Microsoft Research), Gregory R. Ganger (CMU), Phillip B. Gibbons (Carnegie Mellon University), Matei Zaharia (Stanford University)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695016"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/peng.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S1-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695016">A Generic Communication Scheduler for Distributed DNN Training Acceleration
+</a></strong>
+          </td></tr>
+          <tr><td>Yanghua Peng (The University of Hong Kong), Yibo Zhu (ByteDance Inc.), Yangrui Chen (The University of Hong Kong), Yixin Bao (The University of Hong Kong), Bairen Yi (ByteDance Inc.), Chang Lan (ByteDance Inc.), Chuan Wu (The University of Hong Kong), Chuanxiong Guo (ByteDance Inc.)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695017"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/kosaian.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S1-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695017">Parity Models: Erasure-Coded Resilience for Prediction Serving Systems
+</a></strong>
+          </td></tr>
+          <tr><td>Jack Kosaian (Carnegie Mellon University), K. V. Rashmi (Carnegie Mellon University), Shivaram Venkataraman (University of Wisconsin-Madison)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695018"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/jia.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S1-P4.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695018">TASO: Optimizing Deep Learning Computation with Automated Generation of Graph Substitutions
+</a></strong>
+          </td></tr>
+          <tr><td>Zhihao Jia (Stanford University), Oded Padon (Stanford University), James Thomas (Stanford University), Todd Warszawski (Stanford University), Matei Zaharia (Stanford University), Alex Aiken (Stanford Univeristy)
+</td></tr>
+      
+      <tr class="success"><td><strong>Break</strong>
+          <span class="pull-right"><i>10:20 AM - 10:50 AM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 2: It Must Be Secure
+	  (Taesoo Kim, Georgia Tech and Samsung Research)</strong>
+          <span class="pull-right">(Legacy 
+            Hall) <i>10:50 AM - 11:50 AM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695019"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/lind.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S2-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695019">Teechain: A Secure Payment Network with Asynchronous Blockchain Access
+</a></strong>
+          </td></tr>
+          <tr><td>Joshua Lind (Imperial College London), Oded Naor (Technion), Ittay Eyal (Technion), Florian Kelbert (Imperial College London), Emin Gun Sirer (Cornell University), Peter Pietzuch (Imperial College London)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695010"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/mazieres.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S2-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695010">Fast and Secure Global Payments with Stellar
+</a></strong>
+          </td></tr>
+          <tr><td>Marta Lokhava (Stellar), Giuliano Losa (Galois), David Mazi&egrave;res (Stanford), Graydon Hoare (Stellar), Nicolas Barry (Stellar), Eliezer Gafni (UCLA), Jonathan Jove (Stellar), Rafa&#322; Malinowski (Stellar), Jed McCaleb (Stellar)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695011"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/athalye.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S2-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695011">Notary: A Device for Secure Transaction Approval
+</a></strong>
+          </td></tr>
+          <tr><td>Anish Athalye (MIT CSAIL), Adam Belay (MIT CSAIL), Frans Kaashoek (MIT CSAIL), Robert Morris (MIT CSAIL), Nickolai Zeldovich (MIT CSAIL), 
+</td></tr>
+
+      <tr class="success"><td><strong>Lunch</strong>
+          <span class="pull-right">(Waterhouse/Peninsula) <i>11:50 AM - 1:40 PM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 3: Systems: Still Buggy
+	  (Baris Kasikci, University of Michigan)</strong>
+          <span class="pull-right">(Legacy Hall) <i>1:40 PM - 3:00 PM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695012"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/lu.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S3-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695012">CrashTuner: Detecting Crash Recovery Bugs in Cloud Systems via Meta-info Analysis
+</a></strong>
+          </td></tr>
+          <tr><td>Jie Lu (The Institute of Computing Technology of the Chinese Academy of Sciences), Chen Liu (The Institute of Computing Technology of the Chinese Academy of Sciences), Lian Li (The Institute of Computing Technology of the Chinese Academy of Sciences), Xiaobing Feng (The Institute of Computing Technology of the Chinese Academy of Sciences), Feng Tan (Alibaba Group), Jun Yang (Alibaba Group), Liang You (Alibaba Group)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695013"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/zhang.pptx"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S3-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695013">The Inflection Point Hypothesis: A Principled Debugging Approach for Locating the Root Cause of a Failure
+</a></strong>
+          </td></tr>
+          <tr><td>Yongle Zhang (University of Toronto), Kirk Rodrigues (University of Toronto), Yu Luo (University of Toronto), Michael Stumm (University of Toronto), Ding Yuan (University of Toronto)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695014"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/kim.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S3-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695014">Finding Semantic Bugs in File Systems with an Extensible Fuzzing Framework
+</a></strong>
+          </td></tr>
+          <tr><td>Seulbae Kim (Georgia Institute of Technology), Meng Xu (Georgia Institute of Technology), Sanidhya Kashyap (Georgia Institute of Technology), Jungyeon Yoon (Georgia Institute of Technology), Wen Xu (Georgia Institute of Technology), Taesoo Kim (Georgia Institute of Technology)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695025"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+	      <a href="slides/li.pptx"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S3-P4.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695025">Efficient and Scalable Thread-Safety Violation Detection --- Finding thousands of concurrency bugs during testing
+</a></strong>
+          </td></tr>
+          <tr><td>Guangpu Li (University of Chicago), Shan Lu (University of Chicago), Madanlal Musuvathi (Microsoft Research), Suman Nath (Microsoft Research), Rohan Padhye (Berkeley)
+</td></tr>
+
+      <tr class="success"><td><strong>Break</strong>
+          <span class="pull-right"><i>3:00 PM - 3:30 PM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 4: Keeping Things Private
+	  (Brad Karp, University of College London (UCL))</strong> 
+          <span class="pull-right">(Legacy 
+            Hall) <i>3:30 PM - 4:30 PM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695026"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/lecuyer.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S4-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695026">Privacy Accounting and Quality Control in the Sage Differentially Private ML Platform
+</a></strong>
+          </td></tr>
+          <tr><td>Mathias Lecuyer (Columbia University), Riley Spahn (Columbia University), Kiran Vodrahalli (Columbia University), Roxana Geambasu (Columbia University), Daniel Hsu (Columbia University)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695027"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/roth.pptx"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D1-S4-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695027">Honeycrisp: Large-scale Differentially Private Aggregation Without a Trusted Core
+</a></strong>
+          </td></tr>
+          <tr><td>Edo Roth (University of Pennsylvania), Daniel Noble (University of Pennsylvania), Brett Hemenway Falk (University of Pennsylvania), Andreas Haeberlen (University of Pennsylvania)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695028"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+	      <!--<a href="#"><img class="icon-slide" src="images/icon-slide.png"></img></a>-->
+              <a href="videos/D1-S4-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695028">Yodel: Strong Metadata Security for Voice Calls
+</a></strong>
+          </td></tr>
+          <tr><td>David Lazar (MIT CSAIL), Yossi Gilad (MIT CSAIL), Nickolai Zeldovich (MIT CSAIL)
+</td></tr>
+
+      <tr class="success"><td><strong>Student Research Competition Poster 
+		  Session</strong>
+          <span class="pull-right">(Waterhouse/Peninsula) <i>5:00 PM - 7:30 PM</i></span>
+      </td></tr>
+      <tr><td>
+          <strong><a href="srcinfo.pdf">Student Research Competition Program 
+              (PDF)</a></strong>
+      </td></tr>
+      <tr class="success"><td><strong>Conference Papers Poster Session</strong>
+          <span class="pull-right">(Waterhouse/Peninsula) <i>5:00 PM - 7:30 PM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="success"><td><strong>Cocktails and Reception (Dinner)</strong>
+          <span class="pull-right"> (Waterhouse/Peninsula) <i>5:00 PM - 7:30 PM</i></span>
+      </td></tr>
+    </table>
+
+    <h2 class="left-h">Tuesday, October 29, 2019</h2>
+    <table class="table table-spread" style="padding-left:auto;">
+      <tr class="success">
+	<td><strong>Breakfast</strong>
+          <span class="pull-right">(Waterhouse/Peninsula) <i>7:30 AM - 9:00 AM</i></span>
+        </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 5: It Must Be Correct
+	  (Junfeng Yang, Columbia University)</strong>
+          <span class="pull-right">(Legacy Hall) <i>9:00 AM - 10:20 AM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695029"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/nelson.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S1-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695029">Scaling Symbolic Evaluation for Automated Verification of Systems Code with Serval
+</a></strong>
+          </td></tr>
+          <tr><td>Luke Nelson (University of Washington), James Bornholt (University of Washington), Ronghui Gu (Columbia University), Andrew Baumann (Microsoft Research), Emina Torlak (University of Washington), Xi Wang (University of Washington)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695020"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+	      <a href="slides/chajed.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S1-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695020">Verifying Concurrent, Crash-safe Systems with Perennial
+</a></strong>
+          </td></tr>
+          <tr><td>Tej Chajed (MIT CSAIL), Joseph Tassarotti (MIT CSAIL), Frans Kaashoek (MIT CSAIL), Nickolai Zeldovich (MIT CSAIL)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695021"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/zou.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S1-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695021">Using Concurrent Relational Logic with Helpers for Verifying the AtomFS File System
+</a></strong>
+          </td></tr>
+          <tr><td>Mo Zou (Shanghai Jiao Tong University), Haoran Ding (Shanghai Jiao Tong University), Dong Du (Shanghai Jiao Tong University), Ming Fu (Huawei Technologies Co. Ltd), Ronghui Gu (Columbia University), Haibo Chen (Shanghai Jiao Tong University)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695022"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/zaostrovnykh.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S1-P4.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695022">Verifying Software Network Functions with No Verification Expertise
+</a></strong>
+          </td></tr>
+          <tr><td>Arseniy Zaostrovnykh (EPFL), Solal Pirelli (EPFL), Rishabh Iyer (EPFL), Matteo Rizzo (EPFL), Luis Pedrosa (EPFL), Katerina Argyraki (EPFL), George Candea (EPFL)
+</td></tr>
+
+      <tr class="success"><td><strong>Break</strong>
+          <span class="pull-right"><i>10:20 AM - 10:50 AM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 6: Data, Data, Everywhere
+	  (Shivaram Venkataraman, University of Wisconsin-Madison)</strong>
+          <span class="pull-right">(Legacy Hall) <i>10:50 AM - 11:50 AM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695023"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/palkar.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S2-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695023">Optimizing Data-Intensive Computations in Existing Libraries with Split Annotations
+</a></strong>
+          </td></tr>
+          <tr><td>Shoumik Palkar (Stanford University), Matei Zaharia (Stanford University), 
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695024"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/xu.ppsx"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S2-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695024">Niijima: Sound and Automated Computation Consolidation for Efficient Multilingual Data-Parallel Pipelines
+</a></strong>
+          </td></tr>
+          <tr><td>Guoqing Harry Xu (UCLA), Margus Veanes (Microsoft Research), Michael Barnett (Microsoft Research), Madan Musuvathi (Microsoft Research), Todd Mytkowicz (Microsoft Research), Ben Zorn (Microsoft Research), Huan He (Microsoft), Haibo Lin (Microsoft)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695035"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/shen.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S2-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695035">Nexus: A GPU Cluster Engine for Accelerating DNN-Based Video Analysis
+</a></strong>
+          </td></tr>
+          <tr><td>Haichen Shen (Amazon Web Services), Lequn Chen (University of Washington), Yuchen Jin (University of Washington), Liangyu Zhao (University of Washington), Bingyu Kong (Shanghai Jiao Tong University), Matthai Philipose (Microsoft Research), Arvind Krishnamurthy (University of Washington), Ravi Sundaram (Northeastern University)
+</td></tr>
+
+      <tr class="success"><td><strong>Lunch</strong>
+          <span class="pull-right">(Waterhouse/Peninsula) <i>11:50 AM - 1:40 PM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 7: The Revolution Will Be Distributed
+	  (Atul Adya, Google)</strong>
+          <span class="pull-right">(Legacy Hall) <i>1:40 PM - 3:00 PM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695036"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/wang.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S3-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695036">Lineage Stash: Fault Tolerance Off the Critical Path
+</a></strong>
+          </td></tr>
+          <tr><td>Stephanie Wang (UC Berkeley), John Liagouris (ETH Zurich), 
+              Robert Nishihara (UC Berkeley), Philipp Moritz (UC Berkeley), 
+              Ujval Misra (UC Berkeley), Alexey Tumanov (UC Berkeley), Ion 
+              Stoica (UC Berkeley)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695037"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/aghayev.odp"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S3-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695037">File Systems Unfit as Distributed Storage Backends: Lessons from 10 Years of Ceph Evolution
+</a></strong>
+          </td></tr>
+          <tr><td>Abutalib Aghayev (Carnegie Mellon University), Sage Weil (Red Hat Inc.), Michael Kuchnik (Carnegie Mellon University), Mark Nelson (Red Hat Inc.), Gregory R. Ganger (Carnegie Mellon University), George Amvrosiadis (Carnegie Mellon University)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695038"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/ma.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S3-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695038">I4: Incremental Inference of Inductive Invariants for Verification of Distributed Protocols
+</a></strong>
+          </td></tr>
+          <tr><td>Haojun Ma (University of Michigan), Aman Goel (University of Michigan), Jean-Baptiste Jeannin (University of Michigan), Manos Kapritsos (University of Michigan), Baris Kasikci (University of Michigan), Karem A. Sakallah (University of Michigan)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695039"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/kapritsos.key"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S3-P4.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695039">Aegean: Replication Beyond the Client-Server Model
+</a></strong>
+          </td></tr>
+          <tr><td>Remzi Can Aksoy (University of Michigan), Manos Kapritsos (University of Michigan)
+</td></tr>
+
+      <tr class="success"><td><strong>Break</strong>
+          <span class="pull-right"><i>3:00 PM - 3:30 PM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 8: Net Work
+	    (Rebecca Isaacs, Twitter)</strong>
+          <span class="pull-right">(Legacy Hall) <i>3:30 PM - 4:30 PM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695030"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/marty.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S4-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695030">Snap: a Microkernel Approach to Host Networking
+</a></strong>
+          </td></tr>
+          <tr><td>Michael Marty (Google), Marc de Kruijf (Google), Jacob 
+              Adriaens (Google), Christopher Alfeld (Google), Sean Bauer 
+              (Google), Carlo Contavalli (Google), Michael Dalton (Google), 
+              Nandita Dukkipati (Google), William C.  Evans (Google), Steve 
+              Gribble (Google), Nicholas Kidd (Google), Roman Kokonov (Google), 
+              Gautam Kumar (Google), Carl Mauer (Google), Emily Musick 
+              (Google), Lena Olson (Google), Erik Rubow (Google), Michael Ryan 
+              (Google), Kevin Springborn (Google), Paul Turner (Google), Valas 
+              Valancius (Google), Xi Wang (Google), Amin Vahdat (Google)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695031"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/alipourfard.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S4-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695031">Risk-based planning for evolving data-center networks
+</a></strong>
+          </td></tr>
+          <tr><td>Omid Alipourfard (Yale University), Jiaqi Gao (Harvard University), Jeremie Koenig (Yale University), Chris Harshaw (Yale University), Amin Vahdat (Google), Minlan Yu (Harvard University)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695032"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/chou.pptx"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D2-S4-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695032">Taiji: Managing Global User Traffic for Large-Scale Internet Services at the Edge
+</a></strong>
+          </td></tr>
+          <tr><td>David Chou (Facebook), Tianyin Xu (UIUC and Facebook), 
+              Kaushik Veeraraghavan (Facebook), Andrew Newell (Facebook), Sonia 
+              Margulis (Facebook), Lin Xiao (Facebook), Pol Mauri Ruiz 
+              (Facebook), Justin Meza (Facebook), Kiryong Ha (Facebook), Shruti 
+              Padmanabha (Facebook), Kevin Cole (Facebook), Dmitri Perelman 
+              (Facebook)
+</td></tr>
+
+      <tr class="success"><td><strong>Student Research Competition 
+		  Presentations</strong>
+          <span class="pull-right">(Tom Thomson Room) <i>5:00 PM - 6:30 PM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Banquet and Awards</strong>
+          <span class="pull-right">(Legacy Hall) <i>7:00 PM - 9:00 PM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>ACM SIGOPS Business Meeting</strong>
+          <span class="pull-right">(Legacy 
+            Hall) <i>9:00 PM - 10:00 PM</i></span>
+      </td></tr>
+    </table>
+
+    <h2 class="left-h">Wednesday, October 30, 2019</h2>
+    <table class="table table-spread" style="padding-left:auto;">
+      <tr class="success">
+	<td><strong>Breakfast</strong>
+          <span class="pull-right">(Waterhouse/Peninsula)<i>7:30 AM - 9:00 AM</i></span>
+        </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 9: The Persistence Of Memory
+	  (Tianyin Xu, UIUC)</strong>
+          <span class="pull-right">(Legacy Hall) <i>9:00 AM - 10:20 AM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695033"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/lepers.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S1-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695033">KVell: the Design and Implementation of a Fast Persistent Key-Value Store
+</a></strong>
+          </td></tr>
+          <tr><td>Baptiste Lepers (University of Sydney), Oana Balmau (University of Sydney), Karan Gupta (Nutanix Inc.), Willy Zwaenepoel (University of Sydney and EPFL)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695034"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/lee.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S1-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695034">Recipe: Converting Concurrent DRAM Indexes to Persistent-Memory Indexes
+</a></strong>
+          </td></tr>
+          <tr><td>Se Kwon Lee (University of Texas at Austin), Jayashree Mohan (University of Texas at Austin), Sanidhya Kashyap (Georgia Tech), Taesoo Kim (Georgia Tech), Vijay Chidambaram (University of Texas at Austin and VMware Research)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695045"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+	      <a href="slides/dong.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S1-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695045">Performance and Protection in the ZoFS User-space NVM File System
+</a></strong>
+          </td></tr>
+          <tr><td>Mingkai Dong (Shanghai Jiao Tong University), Heng Bu (Shanghai Jiao Tong University), Jifei Yi (Shanghai Jiao Tong University), Benchao Dong (Shanghai Jiao Tong University), Haibo Chen (Shanghai Jiao Tong University)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695046"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/kadekodi.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S1-P4.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695046">SplitFS: Reducing Software Overhead in File Systems for Persistent Memory
+</a></strong>
+          </td></tr>
+          <tr><td>Rohan Kadekodi (University of Texas at Austin), Se Kwon Lee (University of Texas at Austin), Sanidhya Kashyap (Georgia Tech), Taesoo Kim (Georgia Tech), Aasheesh Kolli (Penn State University and VMware Research), Vijay Chidambaram (University of Texas at Austin and VMware Research)
+</td></tr>
+
+      <tr class="success"><td><strong>Break</strong>
+          <span class="pull-right"><i>10:20 AM - 10:50 AM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 10: Making Things Faster
+	  (Don Porter, UNC)</strong>
+          <span class="pull-right">(Legacy Hall)<i>10:50 AM - 11:50 AM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695047"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/mawhirter.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S2-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695047">AutoMine: Harmonizing High-Level Abstraction and High Performance for Graph Mining
+</a></strong>
+          </td></tr>
+          <tr><td>Daniel Mawhirter (Colorado School of Mines), Bo Wu (Colorado School of Mines)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695048"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/yang.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S2-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695048">KnightKing: A Fast Distributed Graph Random Walk Engine
+</a></strong>
+          </td></tr>
+          <tr><td>Ke Yang (Tsinghua University), MingXing Zhang (Tsinghua University), Kang Chen (Tsinghua University), Xiaosong Ma (QCRI), Yang Bai (4Paradigm Co. Ltd.), Yong Jiang (Tsinghua University)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695049"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/navasca.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S2-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695049">Gerenuk: Thin Computation over Big Native Data Using Speculative Program Transformation
+</a></strong>
+          </td></tr>
+          <tr><td>Christian Navasca (UCLA), Cheng Cai (UCLA), Khanh Nguyen (UCLA), Brian Demsky (UC Irvine), Shan Lu (University of Chicago), Miryung Kim (UCLA), Guoqing Harry Xu (UCLA)
+</td></tr>
+
+      <tr class="success"><td><strong>Lunch</strong>
+          <span class="pull-right">(Waterhouse/Peninsula) <i>11:50 AM - 1:40 PM</i></span>
+      </td></tr>
+      <tr><td></td></tr>
+      <tr class="info"><td><strong>Session 11: The Final Session
+	  (Gernot Heiser, UNSW and Data61)</strong>
+          <span class="pull-right">(Legacy Hall) <i>1:40 PM - 2:40 PM</i></span>
+      </td></tr>
+
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695040"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/ren.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S3-P1.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695040">An Analysis of Performance Evolution of Linux's Core Operations
+</a></strong>
+          </td></tr>
+          <tr><td>Xiang (Jenny) Ren (University of Toronto), Kirk Rodrigues 
+              (University of Toronto), Luyuan Chen (University of Toronto), 
+              Camilo Vega (University of Toronto), Michael Stumm (University of 
+              Toronto), Ding Yuan (University of Toronto)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695041"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+	      <!--<a href="#"><img class="icon-slide" src="images/icon-slide.png"></img></a>-->
+              <a href="videos/D3-S3-P2.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695041">ShortCut: Accelerating Mostly-Deterministic Code Regions
+</a></strong>
+          </td></tr>
+          <tr><td>Xianzheng Dou (University of Michigan), Peter M. Chen (University of Michigan), Jason Flinn (University of Michigan)
+</td></tr>
+          <tr><td>
+            <span class="pull-right">
+              <a href="https://dl.acm.org/authorize?N695042"><img class="icon-paper" src="images/icon-paper.png"></img></a>
+              <a href="slides/kashyap.pdf"><img class="icon-slide" src="images/icon-slide.png"></img></a>
+              <a href="videos/D3-S3-P3.mp4"><img class="icon-video" src="images/icon-video.png"></img></a>
+            </span>
+            <strong><a href="https://dl.acm.org/authorize?N695042">Scalable and Practical Locking with Shuffling
+</a></strong>
+          </td></tr>
+          <tr><td>Sanidhya Kashyap (Georgia Tech), Irina Calciu (VMware Research Group), Xiaohe Cheng (Hong Kong University of Science and Technology), Changwoo Min (Virginia Tech), Taesoo Kim (Georgia Institute of Technology)
+</td></tr>
+    </table>
+    </div>
+    <div class="col-md-12 welcome-middle">
+      <h5 class="left-h">Problems</h5>
+      <p>
+      Any questions about the conference can be emailed to
+      <a href="mailto:sosp2019@gmail.com">sosp2019@gmail.com</a>.  Contact the 
+      webmasters directly regarding any problems and/or request to changes to 
+      the titles, author list, or affiliations.</p>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>
+
+
+          <div class="footer">
+            <!--
+              <p>&copy;SIGOPS 2017 &#183; Privacy Policy &#183; All trademarks and registered trademarks are the property of their respective owners.</p>
+            -->
+          </div>
+        </div>
+        <div class="footer-logo">
+          <a href="https://www.sigops.org/sosp/sosp19/" target="_blank">
+            <img src="images/logo.png" id="sosp19logo" alt="SOSP19"/>
+          </a>
+          <div></div>
+          <a href="https://www.sigops.org/" target="_blank">
+            <img src="images/sigops.jpg" alt="SIGOPS"/>
+          </a>
+          <div>In cooperation with</div>
+          <a href="https://www.usenix.org/" target="_blank">
+            <img src="images/usenix.png" alt="USENIX"/>
+          </a>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+    </div>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script> addEventListener("load", function() { setTimeout(hideURLbar, 0); 
+    }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="js/jq364s.js"></script>
+    <script src="js/bootstrap.js"> </script>
+    <script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
+jQuery(document).ready(function($) {
+  $(".scroll").click(function(event){		
+    event.preventDefault();
+    $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+  });
+});
+    </script>
+  </body>
+</html>
