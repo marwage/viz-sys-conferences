@@ -49,7 +49,6 @@ class HttpClient:
             return result
         except httpx.HTTPStatusError as exc:
             if exc.response.status_code == 403:
-                logger.info("Got 403 for %s, retrying with Playwright", url)
                 return self._fetch_playwright(url)
             raise
 
@@ -67,12 +66,15 @@ class HttpClient:
     def _fetch_playwright(self, url: str) -> FetchResult:
         from playwright.sync_api import sync_playwright
 
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto(url, wait_until="networkidle", timeout=60_000)
-            html = page.content()
-            browser.close()
+        try:
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                page = browser.new_page()
+                page.goto(url, wait_until="networkidle", timeout=60_000)
+                html = page.content()
+                browser.close()
+        except Exception as exc:
+            raise RuntimeError(f"Playwright failed for {url}: {exc}") from exc
 
         time.sleep(self._delay)
         return FetchResult(html=html, used_playwright=True)

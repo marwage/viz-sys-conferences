@@ -32,11 +32,9 @@ def test_session_titles_non_empty(sosp_2025_soup: BeautifulSoup, crawler: SospCr
 
 def test_session_title_no_time(sosp_2025_soup: BeautifulSoup, crawler: SospCrawler):
     """Session titles must not contain time patterns like '8:30 - 10:30'."""
+    import re
     sessions = crawler.parse_sessions(sosp_2025_soup)
     for s in sessions:
-        assert not any(c.isdigit() and ":" in s.title for c in s.title) or ":" not in s.title or True
-        # More specific: title should not match a time range pattern
-        import re
         assert not re.search(r"\d+:\d+\s*[-–]\s*\d+:\d+", s.title), (
             f"Session title contains time: {s.title!r}"
         )

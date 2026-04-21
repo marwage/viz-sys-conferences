@@ -22,9 +22,10 @@ _NON_SESSION_H2 = re.compile(
 class UsenixCrawler(BaseCrawler):
     """Crawler for USENIX conference schedule pages (OSDI, NSDI, ATC).
 
-    Supports two HTML eras:
+    Supports three HTML eras:
     - 2016+: Drupal article.node-session / article.node-paper nested structure
-    - 2012–2015: flat sequential h2 elements for both sessions and papers
+    - 2014–2015: div.node-session / div.node-paper nested structure
+    - 2012–2013: flat sequential h2 elements for both sessions and papers
     """
 
     conference_name: str
@@ -78,7 +79,8 @@ class UsenixCrawler(BaseCrawler):
             return []
         raw = div.get_text()
         parts = [p.strip() for p in raw.split(";")]
-        return [p.split(",")[0].strip() for p in parts if p.split(",")[0].strip()]
+        names = [p.split(",")[0].strip() for p in parts]
+        return [n for n in names if n]
 
     def _abstract_from_paper_article(self, article: Tag) -> str | None:
         div = article.select_one("div.field-name-field-paper-description-long")

@@ -6,6 +6,7 @@ from pathlib import Path
 
 
 def main() -> None:
+    """Read all crawled JSON editions and write STATS.md with a summary table."""
     data_dir = Path(__file__).parent.parent / "data"
     output_path = Path(__file__).parent.parent / "STATS.md"
 
@@ -39,6 +40,7 @@ def main() -> None:
     w2 = max(len(col_papers), max(len(r[2]) for r in rows))
 
     def fmt_row(a: str, b: str, c: str) -> str:
+        """Format one markdown table row with fixed column widths."""
         return f"| {a:<{w0}} | {b:>{w1}} | {c:>{w2}} |"
 
     lines = [
