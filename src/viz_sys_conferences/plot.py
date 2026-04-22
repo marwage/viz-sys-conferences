@@ -129,15 +129,13 @@ def main(data_dir: str, embeddings: str, output: str, width: int) -> None:
     _save(fig, out / "4_determinism.svg", width=width, height=450)
 
     # 4b · AI keywords
-    ai_keywords = [
-        "machine learning", "deep learning", "artificial intelligence",
-        "neural network", "llm", " ml ", " dl ", " ai ",
-    ]
+    ai_keywords = (Path(data_dir) / ".." / "config" / "ai_keywords.txt").resolve()
+    keywords = [kw.strip() for kw in ai_keywords.read_text().splitlines() if kw.strip()]
     counts_by_year = defaultdict(int)
     for e in editions:
         for p in e["papers"]:
             title_lower = " " + p["title"].lower() + " "
-            if any(kw in title_lower for kw in ai_keywords):
+            if any(f" {kw} " in title_lower for kw in keywords):
                 counts_by_year[e["year"]] += 1
 
     years = sorted(counts_by_year)
