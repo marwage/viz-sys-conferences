@@ -22,7 +22,7 @@ console = Console()
 
 MODEL_NAME = "google/embeddinggemma-300m"
 DEFAULT_DATA_DIR = Path("data")
-DEFAULT_TOPICS_FILE = Path("sosp26_topics.txt")
+DEFAULT_TOPICS_FILE = Path("config/sosp26_topics.txt")
 DEFAULT_OUTPUT = Path("data/embeddings.npz")
 
 

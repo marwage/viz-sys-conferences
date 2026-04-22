@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-_STOPWORDS_FILE = Path(__file__).parent.parent.parent / "heatmap_stopwords.txt"
+_STOPWORDS_FILE = Path(__file__).parent.parent.parent / "config" / "heatmap_stopwords.txt"
 _STOPWORDS: set[str] = set(_STOPWORDS_FILE.read_text().splitlines())
 
 
