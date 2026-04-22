@@ -1,10 +1,13 @@
-.PHONY: run embed test stats lint fmt notebook
+.PHONY: run embed plots test stats lint fmt notebook
 
 run:
 	uv run extract --output data/
 
 embed:
 	uv run embed
+
+plots:
+	uv run plot
 
 test:
 	uv run pytest
