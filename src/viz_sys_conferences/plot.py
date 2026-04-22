@@ -63,7 +63,7 @@ def main(data_dir: str, embeddings: str, config_dir: str, output: str, width: in
     _save(
         figure_keyword_frequency(
             editions,
-            keywords=["determinis"],
+            keywords=["determinism", "deterministic"],
             title="Frequency of determinism / deterministic in paper titles",
         ),
         out / "4_determinism.svg", width=width, height=450,
