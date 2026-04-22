@@ -166,7 +166,7 @@ def figure_conference_similarity(editions: list[dict]) -> go.Figure:
         hovertemplate="%{y} vs %{x}: %{z:.3f}<extra></extra>",
     ))
     fig.update_layout(
-        title="Conference topic similarity — Jaccard of top-200 paper title words",
+        title="Conference topic similarity",
         height=500,
     )
     return fig
