@@ -63,7 +63,7 @@ def keyword_heatmap_matrix(
     for e in editions:
         year = e["year"]
         for p in e["papers"]:
-            counts[year].update(_tokenise(p["title"]))
+            counts[year].update(_words(p["title"]))
 
     all_years = sorted(counts)
     total: Counter = Counter()
@@ -142,7 +142,7 @@ def conference_similarity(
     for e in editions:
         conf = e["conference"]
         for p in e["papers"]:
-            word_sets[conf].update(_tokenise(p["title"]))
+            word_sets[conf].update(_words(p["title"]))
 
     top_sets: dict[str, set[str]] = {
         conf: {w for w, _ in counter.most_common(top_n)} for conf, counter in word_sets.items()
@@ -164,7 +164,6 @@ def conference_similarity(
 # ── helpers ──────────────────────────────────────────────────────────────────
 
 
-def _tokenise(text: str) -> list[str]:
-    """Lowercase, strip punctuation, return non-stopword tokens of length ≥ 3."""
-    tokens = re.findall(r"[a-z]{3,}", text.lower())
-    return [t for t in tokens if t not in _STOPWORDS]
+def _words(text: str) -> list[str]:
+    """Extract lowercase words of length ≥ 3, excluding stopwords."""
+    return [w for w in re.findall(r"[a-z]{3,}", text.lower()) if w not in _STOPWORDS]
