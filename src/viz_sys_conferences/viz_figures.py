@@ -123,13 +123,15 @@ def figure_keyword_frequency(
         Plotly figure.
     """
     counts: dict[int, int] = defaultdict(int)
+    all_years: set[int] = set()
     for e in editions:
+        all_years.add(e["year"])
         for p in e["papers"]:
             padded = " " + p["title"].lower() + " "
             if any(f" {kw} " in padded for kw in keywords):
                 counts[e["year"]] += 1
 
-    years = sorted(counts)
+    years = sorted(all_years)
     fig = go.Figure()
     fig.add_bar(x=years, y=[counts[y] for y in years], name="Paper count")
     fig.update_layout(
