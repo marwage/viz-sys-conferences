@@ -110,6 +110,7 @@ def main(data_dir: str, embeddings: str, output: str, width: int) -> None:
 
     # 4 · Determinism
     from collections import defaultdict
+
     counts_by_year: dict[int, int] = defaultdict(int)
     for e in editions:
         for p in e["papers"]:
@@ -126,6 +127,29 @@ def main(data_dir: str, embeddings: str, output: str, width: int) -> None:
         height=450,
     )
     _save(fig, out / "4_determinism.svg", width=width, height=450)
+
+    # 4b · AI keywords
+    ai_keywords = [
+        "machine learning", "deep learning", "artificial intelligence",
+        "neural network", "llm", " ml ", " dl ", " ai ",
+    ]
+    counts_by_year = defaultdict(int)
+    for e in editions:
+        for p in e["papers"]:
+            title_lower = " " + p["title"].lower() + " "
+            if any(kw in title_lower for kw in ai_keywords):
+                counts_by_year[e["year"]] += 1
+
+    years = sorted(counts_by_year)
+    fig = go.Figure()
+    fig.add_bar(x=years, y=[counts_by_year[y] for y in years], name="Paper count")
+    fig.update_layout(
+        title="AI-related keywords in paper titles",
+        xaxis=dict(dtick=1, title="Year"),
+        yaxis=dict(title="Paper count"),
+        height=450,
+    )
+    _save(fig, out / "4b_ai_keywords.svg", width=width, height=450)
 
     # 5 · Conference similarity
     sim = conference_similarity(editions)
